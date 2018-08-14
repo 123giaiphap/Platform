@@ -148,7 +148,10 @@ namespace Telegram_Spam_Tools
             this.gridview_tab = 4;
             color();
         }
-
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectTab("tabPage2");
+        }
         private void btnCmt_Click(object sender, EventArgs e)
         {
             this.species = 1;
@@ -247,8 +250,7 @@ namespace Telegram_Spam_Tools
             }
             if (species == 1)
             {
-                int max = 0;
-                
+                int max = 0;               
                 for (int j = 0; j < bunifuCustomDataGrid1.ColumnCount; j++)
                 {
                     max++;
@@ -265,6 +267,8 @@ namespace Telegram_Spam_Tools
                     {
                         for (int i = 0; i < bunifuCustomDataGrid1.RowCount; i++)
                         {
+                            this.bunifuCustomDataGrid1.Rows[i].Cells[1] = new TextAndImageCell();
+                            ((TextAndImageCell)bunifuCustomDataGrid1.Rows[i].Cells[1]).Image = (Image)imageList1.Images[1];
                             string val = bunifuCustomDataGrid1.Rows[i].Cells[2].Value.ToString();
                             if (val == "Active")
                             {
@@ -385,5 +389,11 @@ namespace Telegram_Spam_Tools
             }
             // m.Items[2].Text = "Active";
         }
+        public void ImageRowDisplay()
+        {
+            ((TextAndImageCell)bunifuCustomDataGrid1.Rows[0].Cells[0]).Image = (Image)imageList1.Images[1];
+        }
+
+        
     }
 }

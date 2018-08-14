@@ -159,6 +159,7 @@ namespace Telegram_Spam_Tools
             {
                 try
                 {
+                    MessageBox.Show(species_use.ToString());
                     bunifuCustomDataGrid.ClearSelection();
                     var hti = bunifuCustomDataGrid.HitTest(e.X, e.Y);
                     this.bunifuCustomDataGrid.Rows[hti.RowIndex].Selected = true;
