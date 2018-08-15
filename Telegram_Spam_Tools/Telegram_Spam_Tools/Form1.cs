@@ -38,6 +38,7 @@ namespace Telegram_Spam_Tools
         private void Form1_Load(object sender, EventArgs e)
         {
             Total_Status();
+
         }
         private void hahaha()
         {
@@ -250,7 +251,7 @@ namespace Telegram_Spam_Tools
             }
             if (species == 1)
             {
-                int max = 0;               
+                int max = 0;
                 for (int j = 0; j < bunifuCustomDataGrid1.ColumnCount; j++)
                 {
                     max++;
@@ -260,9 +261,25 @@ namespace Telegram_Spam_Tools
                 {
                     DataGridViewImageColumn imgCol = new DataGridViewImageColumn();
                     imgCol.Name = "abc";
-                    imgCol.HeaderText = "";
-
+                    imgCol.HeaderText = "Image";
                     bunifuCustomDataGrid1.Columns.Add(imgCol);
+                    TextAndImageColumn txtcol = new TextAndImageColumn();
+                    txtcol.Name = "anhxa";
+                    txtcol.HeaderText = "";
+                    bunifuCustomDataGrid1.Columns.Add(txtcol);
+                    this.bunifuCustomDataGrid1.Columns[max].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                    this.bunifuCustomDataGrid1.Columns[max + 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                    TextAndImageColumn txtcol1 = new TextAndImageColumn();
+                    txtcol1.Name = "anhxa";
+                    txtcol1.HeaderText = "";
+                    bunifuCustomDataGrid1.Columns.Add(txtcol1);
+                    this.bunifuCustomDataGrid1.Columns[max + 2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                    this.grid = max + 2;
+                    TextAndImageColumn txtcol2 = new TextAndImageColumn();
+                    txtcol2.Name = "anhxa";
+                    txtcol2.HeaderText = "";
+                    bunifuCustomDataGrid1.Columns.Add(txtcol2);
+                    this.bunifuCustomDataGrid1.Columns[max + 3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                     try
                     {
                         for (int i = 0; i < bunifuCustomDataGrid1.RowCount; i++)
@@ -270,24 +287,30 @@ namespace Telegram_Spam_Tools
                             this.bunifuCustomDataGrid1.Rows[i].Cells[1] = new TextAndImageCell();
                             ((TextAndImageCell)bunifuCustomDataGrid1.Rows[i].Cells[1]).Image = (Image)imageList1.Images[1];
                             string val = bunifuCustomDataGrid1.Rows[i].Cells[2].Value.ToString();
+                            bunifuCustomDataGrid1.Rows[i].Cells[max + 1].Value = "12";
+                            bunifuCustomDataGrid1.Rows[i].Cells[max + 2].Value = "12";
+                            bunifuCustomDataGrid1.Rows[i].Cells[max + 3].Value = "12";
+                            //((TextAndImageCell)bunifuCustomDataGrid1.Rows[i].Cells[max+1]).Image = (Image)imageList1.Images[1];
                             if (val == "Active")
                             {
                                 bunifuCustomDataGrid1.Rows[i].Cells[max].Value = Image.FromFile(@"image_on.png");
                                 this.bunifuCustomDataGrid1.Columns[max].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                                //this.bunifuCustomDataGrid1.Columns[max - 1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                //this.bunifuCustomDataGrid1.Columns[max - 1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             }
                             if (val == "Stop")
                             {
                                 bunifuCustomDataGrid1.Rows[i].Cells[max].Value = Image.FromFile(@"image_off.png"); ;
                             }
+                            //bunifuCustomDataGrid1.Rows[i].Cells[max + 1].Value = bunifuCustomDataGrid1.Rows[i].Cells[1].Value;                     
+                            ((TextAndImageCell)bunifuCustomDataGrid1.Rows[i].Cells[max + 1]).Image = (Image)imageList1.Images[1];
+                            ((TextAndImageCell)bunifuCustomDataGrid1.Rows[i].Cells[max + 2]).Image = (Image)imageList1.Images[2];
+                            ((TextAndImageCell)bunifuCustomDataGrid1.Rows[i].Cells[max + 3]).Image = (Image)imageList1.Images[3];
                         }
                     }
                     catch (Exception)
                     {
 
                     }
-                }              
+                }
             }
         }
         private void bunifuCustomDataGrid1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -394,6 +417,52 @@ namespace Telegram_Spam_Tools
             ((TextAndImageCell)bunifuCustomDataGrid1.Rows[0].Cells[0]).Image = (Image)imageList1.Images[1];
         }
 
-        
+
+
+        private void txtSearch_KeyPress(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                if (this.gridview_tab == 1)
+                {
+                    this.search = "select * from User where UserName Like '%" + txtSearch.Text + "%'";
+                }
+                if (this.gridview_tab == 2)
+                {
+                    this.search = "select * from Link where LinkName Like '%" + txtSearch.Text + "%'";
+                }
+                if (this.gridview_tab == 3)
+                {
+                    this.search = "select * from Comment where Comment Like '%" + txtSearch.Text + "%'";
+                }
+                if (this.gridview_tab == 4)
+                {
+                    this.search = "select * from ListGroup where GroupName Like '%" + txtSearch.Text + "%'";
+                }
+                Function_Settings fnc = new Function_Settings();
+                fnc.search_value(this.search);
+                fnc.search_item(bunifuCustomDataGrid1, this.search);
+            }
+        }
+
+        private void bunifuCustomDataGrid1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex == grid -1 && e.RowIndex > -1)
+            {
+                e.AdvancedBorderStyle.Left = DataGridViewAdvancedCellBorderStyle.None;
+                e.AdvancedBorderStyle.Right = DataGridViewAdvancedCellBorderStyle.None;
+            }
+            if (e.ColumnIndex == grid  && e.RowIndex > -1)
+            {
+                e.AdvancedBorderStyle.Left = DataGridViewAdvancedCellBorderStyle.None;
+                e.AdvancedBorderStyle.Right = DataGridViewAdvancedCellBorderStyle.None;
+            }
+        }
     }
 }
+ 
