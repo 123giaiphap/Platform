@@ -47,17 +47,27 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.txtSearch = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.bunifuImageButton5 = new Bunifu.Framework.UI.BunifuImageButton();
             this.bunifuImageButton4 = new Bunifu.Framework.UI.BunifuImageButton();
             this.bunifuImageButton3 = new Bunifu.Framework.UI.BunifuImageButton();
             this.btnReload = new Bunifu.Framework.UI.BunifuImageButton();
             this.bunifuImageButton1 = new Bunifu.Framework.UI.BunifuImageButton();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.txtSearch = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.bunifuCustomDataGrid1 = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lbltp2Tittle = new System.Windows.Forms.Label();
+            this.btnNext = new Bunifu.Framework.UI.BunifuImageButton();
+            this.btnNextAll = new Bunifu.Framework.UI.BunifuImageButton();
+            this.btnBack = new Bunifu.Framework.UI.BunifuImageButton();
+            this.btnBackAll = new Bunifu.Framework.UI.BunifuImageButton();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -70,6 +80,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.bunifuCustomDataGrid1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNext)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNextAll)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBackAll)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -322,6 +337,25 @@
             this.panel4.Size = new System.Drawing.Size(1154, 43);
             this.panel4.TabIndex = 3;
             // 
+            // txtSearch
+            // 
+            this.txtSearch.BorderColorFocused = System.Drawing.Color.Blue;
+            this.txtSearch.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtSearch.BorderColorMouseHover = System.Drawing.Color.Blue;
+            this.txtSearch.BorderThickness = 1;
+            this.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtSearch.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.txtSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtSearch.isPassword = false;
+            this.txtSearch.Location = new System.Drawing.Point(384, 0);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(370, 33);
+            this.txtSearch.TabIndex = 12;
+            this.txtSearch.Text = " Search...";
+            this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
+            // 
             // bunifuImageButton5
             // 
             this.bunifuImageButton5.BackColor = System.Drawing.Color.Transparent;
@@ -397,25 +431,6 @@
             this.imageList1.Images.SetKeyName(2, "icons8-lock-filled-50.png");
             this.imageList1.Images.SetKeyName(3, "icons8-no-chat-50.png");
             // 
-            // txtSearch
-            // 
-            this.txtSearch.BorderColorFocused = System.Drawing.Color.Blue;
-            this.txtSearch.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtSearch.BorderColorMouseHover = System.Drawing.Color.Blue;
-            this.txtSearch.BorderThickness = 1;
-            this.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSearch.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.txtSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtSearch.isPassword = false;
-            this.txtSearch.Location = new System.Drawing.Point(384, 0);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(370, 33);
-            this.txtSearch.TabIndex = 12;
-            this.txtSearch.Text = "bunifuMetroTextbox1";
-            this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
-            // 
             // bunifuCustomDataGrid1
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -451,7 +466,6 @@
             this.bunifuCustomDataGrid1.Size = new System.Drawing.Size(1148, 550);
             this.bunifuCustomDataGrid1.TabIndex = 4;
             this.bunifuCustomDataGrid1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.bunifuCustomDataGrid1_CellContentClick);
-            this.bunifuCustomDataGrid1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.bunifuCustomDataGrid1_CellFormatting);
             this.bunifuCustomDataGrid1.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.bunifuCustomDataGrid1_CellPainting);
             this.bunifuCustomDataGrid1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.bunifuCustomDataGrid1_MouseClick);
             // 
@@ -459,6 +473,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(105, 72);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -478,6 +493,15 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.btnBackAll);
+            this.tabPage2.Controls.Add(this.btnBack);
+            this.tabPage2.Controls.Add(this.btnNextAll);
+            this.tabPage2.Controls.Add(this.btnNext);
+            this.tabPage2.Controls.Add(this.lbltp2Tittle);
+            this.tabPage2.Controls.Add(this.textBox1);
+            this.tabPage2.Controls.Add(this.listBox2);
+            this.tabPage2.Controls.Add(this.listBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -485,6 +509,112 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // listBox1
+            // 
+            this.listBox1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(16, 120);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(291, 368);
+            this.listBox1.TabIndex = 0;
+            // 
+            // listBox2
+            // 
+            this.listBox2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(417, 120);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(291, 368);
+            this.listBox2.TabIndex = 1;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(106, 20);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(399, 20);
+            this.textBox1.TabIndex = 2;
+            // 
+            // lbltp2Tittle
+            // 
+            this.lbltp2Tittle.AutoSize = true;
+            this.lbltp2Tittle.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lbltp2Tittle.Location = new System.Drawing.Point(17, 22);
+            this.lbltp2Tittle.Name = "lbltp2Tittle";
+            this.lbltp2Tittle.Size = new System.Drawing.Size(88, 16);
+            this.lbltp2Tittle.TabIndex = 3;
+            this.lbltp2Tittle.Text = "Comment: ";
+            // 
+            // btnNext
+            // 
+            this.btnNext.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
+            this.btnNext.ImageActive = null;
+            this.btnNext.Location = new System.Drawing.Point(323, 182);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(76, 31);
+            this.btnNext.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnNext.TabIndex = 4;
+            this.btnNext.TabStop = false;
+            this.btnNext.Zoom = 10;
+            // 
+            // btnNextAll
+            // 
+            this.btnNextAll.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnNextAll.Image = ((System.Drawing.Image)(resources.GetObject("btnNextAll.Image")));
+            this.btnNextAll.ImageActive = null;
+            this.btnNextAll.Location = new System.Drawing.Point(323, 231);
+            this.btnNextAll.Name = "btnNextAll";
+            this.btnNextAll.Size = new System.Drawing.Size(76, 31);
+            this.btnNextAll.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnNextAll.TabIndex = 5;
+            this.btnNextAll.TabStop = false;
+            this.btnNextAll.Zoom = 10;
+            // 
+            // btnBack
+            // 
+            this.btnBack.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnBack.Image = ((System.Drawing.Image)(resources.GetObject("btnBack.Image")));
+            this.btnBack.ImageActive = null;
+            this.btnBack.Location = new System.Drawing.Point(323, 279);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(76, 31);
+            this.btnBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnBack.TabIndex = 6;
+            this.btnBack.TabStop = false;
+            this.btnBack.Zoom = 10;
+            // 
+            // btnBackAll
+            // 
+            this.btnBackAll.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnBackAll.Image = ((System.Drawing.Image)(resources.GetObject("btnBackAll.Image")));
+            this.btnBackAll.ImageActive = null;
+            this.btnBackAll.Location = new System.Drawing.Point(323, 330);
+            this.btnBackAll.Name = "btnBackAll";
+            this.btnBackAll.Size = new System.Drawing.Size(76, 31);
+            this.btnBackAll.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnBackAll.TabIndex = 7;
+            this.btnBackAll.TabStop = false;
+            this.btnBackAll.Zoom = 10;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1146, 548);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(607, 505);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(101, 28);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Apply";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -513,6 +643,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.bunifuCustomDataGrid1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNext)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNextAll)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBackAll)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -544,6 +680,16 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private Bunifu.Framework.UI.BunifuImageButton btnBackAll;
+        private Bunifu.Framework.UI.BunifuImageButton btnBack;
+        private Bunifu.Framework.UI.BunifuImageButton btnNextAll;
+        private Bunifu.Framework.UI.BunifuImageButton btnNext;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button button1;
+        internal System.Windows.Forms.ListBox listBox2;
+        internal System.Windows.Forms.ListBox listBox1;
+        internal System.Windows.Forms.Label lbltp2Tittle;
     }
 }
 

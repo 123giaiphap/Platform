@@ -19,6 +19,7 @@ namespace Telegram_Spam_Tools
         private string selected = string.Empty;
         private string deleted = string.Empty;
         private TabControl tabcol;
+        private int choised;
         private string name = string.Empty;
         Form1 f = new Form1();
         private string active = string.Empty;
@@ -159,7 +160,6 @@ namespace Telegram_Spam_Tools
             {
                 try
                 {
-                    MessageBox.Show(species_use.ToString());
                     bunifuCustomDataGrid.ClearSelection();
                     var hti = bunifuCustomDataGrid.HitTest(e.X, e.Y);
                     this.bunifuCustomDataGrid.Rows[hti.RowIndex].Selected = true;
@@ -233,6 +233,10 @@ namespace Telegram_Spam_Tools
                 bunifuCustomDataGrid.Rows[e.RowIndex].Tag = e.Value;
                 e.Value = new String('*', e.Value.ToString().Length);
             }
+            if (bunifuCustomDataGrid.Columns[e.ColumnIndex].Name == "Status")
+            {
+                bunifuCustomDataGrid.Columns[e.ColumnIndex].Visible = false;
+            }
         }
         #endregion
         //Contextmenutrip Event
@@ -242,7 +246,6 @@ namespace Telegram_Spam_Tools
         {
             ToolStripItem clickedItem = sender as ToolStripItem;
             tabcol.SelectTab(name);
-
         }
         //Contextmenutrip Event Delete item click
         private void item1_Click(object sender, EventArgs e)

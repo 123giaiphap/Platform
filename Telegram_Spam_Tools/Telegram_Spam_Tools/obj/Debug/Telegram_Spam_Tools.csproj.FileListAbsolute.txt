@@ -40,3 +40,4 @@ D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.csproj.
 D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.csproj.CopyComplete
 D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.exe
 D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.pdb
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.Resource1.resources

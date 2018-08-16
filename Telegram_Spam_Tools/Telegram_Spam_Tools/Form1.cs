@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using System.Data.SQLite;
+using System.Resources;
+
 
 namespace Telegram_Spam_Tools
 {
@@ -23,7 +25,7 @@ namespace Telegram_Spam_Tools
         private int grid = 0;
         private int grid1;
         private int species;
-        private int gridview_tab;
+        internal int gridview_tab;
         private string select = string.Empty;
         private string active = string.Empty;
         private string stop = string.Empty;
@@ -38,7 +40,6 @@ namespace Telegram_Spam_Tools
         private void Form1_Load(object sender, EventArgs e)
         {
             Total_Status();
-
         }
         private void hahaha()
         {
@@ -270,13 +271,13 @@ namespace Telegram_Spam_Tools
                     this.bunifuCustomDataGrid1.Columns[max].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                     this.bunifuCustomDataGrid1.Columns[max + 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                     TextAndImageColumn txtcol1 = new TextAndImageColumn();
-                    txtcol1.Name = "anhxa";
+                    txtcol1.Name = "anhxa1";
                     txtcol1.HeaderText = "";
                     bunifuCustomDataGrid1.Columns.Add(txtcol1);
                     this.bunifuCustomDataGrid1.Columns[max + 2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                     this.grid = max + 2;
                     TextAndImageColumn txtcol2 = new TextAndImageColumn();
-                    txtcol2.Name = "anhxa";
+                    txtcol2.Name = "anhxa2";
                     txtcol2.HeaderText = "";
                     bunifuCustomDataGrid1.Columns.Add(txtcol2);
                     this.bunifuCustomDataGrid1.Columns[max + 3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -313,14 +314,6 @@ namespace Telegram_Spam_Tools
                 }
             }
         }
-        private void bunifuCustomDataGrid1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (bunifuCustomDataGrid1.Columns[e.ColumnIndex].Name == "Status")
-            {
-                bunifuCustomDataGrid1.Columns[e.ColumnIndex].Visible = false;
-            }
-        }
-
         private void bunifuCustomDataGrid1_MouseClick(object sender, MouseEventArgs e)
         {
             try
@@ -416,14 +409,6 @@ namespace Telegram_Spam_Tools
         {
             ((TextAndImageCell)bunifuCustomDataGrid1.Rows[0].Cells[0]).Image = (Image)imageList1.Images[1];
         }
-
-
-
-        private void txtSearch_KeyPress(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)13)
@@ -463,6 +448,7 @@ namespace Telegram_Spam_Tools
                 e.AdvancedBorderStyle.Right = DataGridViewAdvancedCellBorderStyle.None;
             }
         }
+        
     }
 }
  
