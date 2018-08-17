@@ -29,7 +29,7 @@ namespace Telegram_Spam_Tools
         private int columnIndex;
         private int stt;
         private CheckBox headerCheckBox = new CheckBox();
-        private ContextMenuStrip m = new ContextMenuStrip();
+
         internal void status(string atc, string stp)
         {
             active = atc;
@@ -93,16 +93,7 @@ namespace Telegram_Spam_Tools
                         MessageBox.Show(ex.Message);
                     }
                 }
-                add_checkbox(bunifuCustomDataGrid);
-                m.Items.Clear();
-                ToolStripItem item0 = m.Items.Add("Edit ");
-                item0.Click += new EventHandler(item0_Click);
-                ToolStripItem item1 = m.Items.Add("Delete ");
-                item1.Click += new EventHandler(item1_Click);
-                ToolStripItem item2 = m.Items.Add("Active ");
-                item2.Click += new EventHandler(item2_Click);
-                bunifuCustomDataGrid.MouseClick += new MouseEventHandler(bunifuCustomDataGrid_MouseClick);
-                bunifuCustomDataGrid.CellFormatting += new DataGridViewCellFormattingEventHandler(bunifuCustomDataGrid_CellFormatting);
+                add_checkbox(bunifuCustomDataGrid);               
             }
             if (species_use == 1)
             {
@@ -137,55 +128,11 @@ namespace Telegram_Spam_Tools
                     }
                 }
                 add_checkbox(bunifuCustomDataGrid);
-                m.Items.Clear();
-                ToolStripItem item0 = m.Items.Add("Edit ");
-                item0.Click += new EventHandler(item0_Click);
-                ToolStripItem item1 = m.Items.Add("Delete ");
-                item1.Click += new EventHandler(item1_Click);
-                ToolStripItem item2 = m.Items.Add("Active ");
-                item2.Click += new EventHandler(item2_Click);
-                bunifuCustomDataGrid.MouseClick += new MouseEventHandler(bunifuCustomDataGrid_MouseClick);
-                bunifuCustomDataGrid.CellFormatting += new DataGridViewCellFormattingEventHandler(bunifuCustomDataGrid_CellFormatting);
             }
         }
         #endregion
         //Mouse Event Click DataGridView (mouse.right, mouse.left)
         #region GridView MouseClick
-        private void bunifuCustomDataGrid_MouseClick(object sender, MouseEventArgs e)
-        {
-            stt = 0;
-            m.Items[2].Visible = false;
-            //Check to ensure that the row CheckBox is clicked.
-            if (e.Button == MouseButtons.Right)
-            {
-                try
-                {
-                    bunifuCustomDataGrid.ClearSelection();
-                    var hti = bunifuCustomDataGrid.HitTest(e.X, e.Y);
-                    this.bunifuCustomDataGrid.Rows[hti.RowIndex].Selected = true;
-                    this.rowIndex = hti.RowIndex;
-                    this.columnIndex = hti.ColumnIndex;
-                    this.m.Show(this.bunifuCustomDataGrid, e.Location);
-                    if (bunifuCustomDataGrid.Rows[this.rowIndex].Cells[this.columnIndex].Value.ToString() == "Active")
-                    {
-                        stt = 1;
-                        m.Items[2].Visible = true;
-                        m.Items[2].Text = "Stop";
-                    }
-                    if (bunifuCustomDataGrid.Rows[this.rowIndex].Cells[this.columnIndex].Value.ToString() == "Stop")
-                    {
-                        stt = 2;
-                        m.Items[2].Visible = true;
-                        m.Items[2].Text = "Active";
-                    }
-                    m.Show(Cursor.Position);
-                }
-                catch (Exception)
-                {
-
-                }
-            }
-        }
         #endregion
         //Search Value in Datagridview
         #region Search
@@ -224,75 +171,11 @@ namespace Telegram_Spam_Tools
             }
         }
         #endregion
-        //Passwordchar in datagridview
-        #region Gridview Format Cells
-        private void bunifuCustomDataGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (bunifuCustomDataGrid.Columns[e.ColumnIndex].Name == "Password" && e.Value != null)
-            {
-                bunifuCustomDataGrid.Rows[e.RowIndex].Tag = e.Value;
-                e.Value = new String('*', e.Value.ToString().Length);
-            }
-            if (bunifuCustomDataGrid.Columns[e.ColumnIndex].Name == "Status")
-            {
-                bunifuCustomDataGrid.Columns[e.ColumnIndex].Visible = false;
-            }
-        }
-        #endregion
-        //Contextmenutrip Event
         #region Contextmenutrip Event
         //Contextmenutrip Event Edit item click
-        private void item0_Click(object sender, EventArgs e)
-        {
-            ToolStripItem clickedItem = sender as ToolStripItem;
-            tabcol.SelectTab(name);
-        }
-        //Contextmenutrip Event Delete item click
-        private void item1_Click(object sender, EventArgs e)
-        {
-            ToolStripItem clickedItem = sender as ToolStripItem;
-            delete_item(bunifuCustomDataGrid);
-            reload(bunifuCustomDataGrid, selected, species_use);
-            // your code here
-        }
-        //Contextmenutrip Event Active item click
-        private void item2_Click(object sender, EventArgs e)
-        {
-            ToolStripItem clickedItem = sender as ToolStripItem;
-            if (stt == 1)
-            {
-                status_active(bunifuCustomDataGrid);
-                reload(bunifuCustomDataGrid, selected, species_use);
-            }
-            if (stt == 2)
-            {
-                status_stop(bunifuCustomDataGrid);
-                reload(bunifuCustomDataGrid, selected, species_use);
-            }
-
-        }
+       
         //Contextmenutrip Event delete item after clicking
-        private void delete_item(DataGridView bunifuCustomDataGrid)
-        {
-            using (SQLiteConnection con = new SQLiteConnection(connect))
-            {
-                try
-                {
-                    string sql = deleted + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "'";
-                    using (var cmdd = new SQLiteCommand(sql, con))
-                    {
-                        con.Open();
-                        cmdd.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            bunifuCustomDataGrid.Rows.RemoveAt(this.rowIndex);
-            reload(bunifuCustomDataGrid, selected, species_use);
-        }
+        
         //Contextmenutrip Event Active-Active item after clicking
         internal void status_active(DataGridView bunifuCustomDataGrid1)
         {
@@ -381,15 +264,6 @@ namespace Telegram_Spam_Tools
                     }
                 }
                 add_checkbox(bunifuCustomDataGrid);
-                m.Items.Clear();
-                ToolStripItem item0 = m.Items.Add("Edit ");
-                item0.Click += new EventHandler(item0_Click);
-                ToolStripItem item1 = m.Items.Add("Delete ");
-                item1.Click += new EventHandler(item1_Click);
-                ToolStripItem item2 = m.Items.Add("Active ");
-                item2.Click += new EventHandler(item2_Click);
-                bunifuCustomDataGrid.MouseClick += new MouseEventHandler(bunifuCustomDataGrid_MouseClick);
-                bunifuCustomDataGrid.CellFormatting += new DataGridViewCellFormattingEventHandler(bunifuCustomDataGrid_CellFormatting);
             }
             if (species_use == 1)
             {
@@ -423,17 +297,7 @@ namespace Telegram_Spam_Tools
                         MessageBox.Show(ex.Message);
                     }
                 }
-
                 add_checkbox(bunifuCustomDataGrid);
-                m.Items.Clear();
-                ToolStripItem item0 = m.Items.Add("Edit ");
-                item0.Click += new EventHandler(item0_Click);
-                ToolStripItem item1 = m.Items.Add("Delete ");
-                item1.Click += new EventHandler(item1_Click);
-                ToolStripItem item2 = m.Items.Add("Active ");
-                item2.Click += new EventHandler(item2_Click);
-                bunifuCustomDataGrid.MouseClick += new MouseEventHandler(bunifuCustomDataGrid_MouseClick);
-                bunifuCustomDataGrid.CellFormatting += new DataGridViewCellFormattingEventHandler(bunifuCustomDataGrid_CellFormatting);
             }
         }
         #endregion

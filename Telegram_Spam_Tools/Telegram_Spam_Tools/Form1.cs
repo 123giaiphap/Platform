@@ -16,16 +16,17 @@ namespace Telegram_Spam_Tools
 {
     public partial class Form1 : Form
     {
+        private ContextMenuStrip m = new ContextMenuStrip();
         private string connect = string.Empty;
         private int rowIndex;
         private int columnIndex;
-        private int count_total;
-        private int status_active;
-        private int status_stop;
+        private int i = 0;
         private int grid = 0;
         private int grid1;
         private int species;
         internal int gridview_tab;
+        private string listbox1_item_sql = string.Empty;
+        private string listbox2_item_sql = string.Empty;
         private string select = string.Empty;
         private string active = string.Empty;
         private string stop = string.Empty;
@@ -70,12 +71,14 @@ namespace Telegram_Spam_Tools
             string name = "tabPage2";
             Function_Settings dta = new Function_Settings();
             dta.select_tab(tabControl1, name);
+            this.listbox1_item_sql = "select Link.LinkName from LinkUser left join Link on LinkUser.IDLink=Link.IDLink where LinkUser.IDUser='";
+            this.listbox2_item_sql = "select Link.LinkName from Link where Link.IDLink NOT IN (select Link.IDLink from LinkUser left join Link on LinkUser.IDLink=Link.IDLink where LinkUser.IDUser='";
             this.active = "update User set Status = '2'  where IDUser ='";
             this.stop = "update User set Status = '1'  where IDUser ='";
             this.delete = "DELETE FROM User WHERE IDUser='";
             dta.status(this.active, this.stop);
             dta.delete(this.delete);
-            this.select = "select User.IDUser, Status.Status, User.UserName, User.Password,User.Description, User.UserAgent, User.ProxyIP, User.ProxyPort, User.DeleteDay, User.CreateDay from User inner join Status on User.Status=Status.IDStatus;";
+            this.select = "select User.IDUser, Status.Status, User.UserName,  User.Password, User.UserAgent, User.ProxyIP, User.ProxyPort, User.Description, User.DeleteDay, User.CreateDay,(select count(*) from LinkUser where LinkUser.IDUser=user.IDUser) as 'Link User' from  User left join Status, LinkUser on User.Status=Status.IDStatus group by User.IDUser";
             if (grid1 == 0)
             {
                 dta.gridview(bunifuCustomDataGrid1, this.select, this.species);
@@ -130,6 +133,8 @@ namespace Telegram_Spam_Tools
             string name = "tabPage2";
             Function_Settings dta = new Function_Settings();
             dta.select_tab(tabControl1, name);
+            this.listbox1_item_sql = "select Link.LinkName from LinkGroup left join Link on LinkGroup.IDLink=Link.IDLink where LinkGroup.IDGroup='";
+            this.listbox2_item_sql = "select Link.LinkName from Link where Link.IDLink NOT IN (select Link.IDLink from LinkGroup left join Link on LinkGroup.IDLink=Link.IDLink where LinkGroup.IDGroup='";
             this.active = "update ListGroup set Status = '2'  where IDGroup ='";
             this.stop = "update ListGroup set Status = '1'  where IDGroup ='";
             this.delete = "DELETE FROM ListGroup WHERE IDGroup='";
@@ -163,6 +168,8 @@ namespace Telegram_Spam_Tools
             string name = "tabPage2";
             Function_Settings dta = new Function_Settings();
             dta.select_tab(tabControl1, name);
+            this.listbox1_item_sql = "select Link.LinkName from LinkComment left join Link on LinkComment.IDLink=Link.IDLink where LinkComment.IDComment='";
+            this.listbox2_item_sql = "select Link.LinkName from Link where Link.IDLink NOT IN (select Link.IDLink from LinkComment left join Link on LinkComment.IDLink=Link.IDLink where LinkComment.IDComment='";
             this.active = "update Comment set Status = '2'  where IDCmt ='";
             this.stop = "update Comment set Status = '1'  where IDCmt ='";
             this.delete = "DELETE FROM Comment WHERE IDCmt='";
@@ -235,6 +242,11 @@ namespace Telegram_Spam_Tools
         }
         private void color()
         {
+            m.Items.Clear();
+            ToolStripItem item0 = m.Items.Add("Edit ");
+            item0.Click += new EventHandler(item0_Click);
+            ToolStripItem item1 = m.Items.Add("Delete ");
+            item1.Click += new EventHandler(item1_Click);
             if (species == 0)
             {
                 for (int i = 0; i < bunifuCustomDataGrid1.RowCount; i++)
@@ -295,7 +307,7 @@ namespace Telegram_Spam_Tools
                             if (val == "Active")
                             {
                                 bunifuCustomDataGrid1.Rows[i].Cells[max].Value = Image.FromFile(@"image_on.png");
-                                this.bunifuCustomDataGrid1.Columns[max].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                                //this.bunifuCustomDataGrid1.Columns[max].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                             }
                             if (val == "Stop")
                             {
@@ -318,6 +330,7 @@ namespace Telegram_Spam_Tools
         {
             try
             {
+                bunifuCustomDataGrid.ClearSelection();
                 var hti = bunifuCustomDataGrid.HitTest(e.X, e.Y);
                 this.bunifuCustomDataGrid.Rows[hti.RowIndex].Selected = true;
                 this.rowIndex = hti.RowIndex;
@@ -327,22 +340,39 @@ namespace Telegram_Spam_Tools
             {
 
             }
+            if (e.Button == MouseButtons.Right)
+            {
+                try
+                {
+                    bunifuCustomDataGrid.ClearSelection();
+                    var hti = bunifuCustomDataGrid.HitTest(e.X, e.Y);
+                    this.bunifuCustomDataGrid.Rows[hti.RowIndex].Selected = true;
+                    this.rowIndex = hti.RowIndex;
+                    this.columnIndex = hti.ColumnIndex;
+                    this.m.Show(this.bunifuCustomDataGrid, e.Location);
+                    m.Show(Cursor.Position);
+                }
+                catch (Exception)
+                {
+
+                }
+            }
 
         }
 
         private void bunifuCustomDataGrid1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            Function_Settings fnc = new Function_Settings();
             for (int i = 0; i < bunifuCustomDataGrid1.RowCount; i++)
             {
                 string val = bunifuCustomDataGrid1.Rows[i].Cells[2].Value.ToString();
-                //MessageBox.Show(columnIndex.ToString());
                 if (bunifuCustomDataGrid1.Columns[columnIndex].Name == "abc")
                 {
+
                     Bitmap a = (Bitmap)Image.FromFile(@"image_on.png", true);
                     Bitmap b = (Bitmap)Image.FromFile(@"image_off.png", true);
                     if (val == "Active")
                     {
+                        
                         this.rowIndex = e.RowIndex;
                         this.columnIndex = e.ColumnIndex;
                         bunifuCustomDataGrid1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = b;
@@ -437,18 +467,329 @@ namespace Telegram_Spam_Tools
 
         private void bunifuCustomDataGrid1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.ColumnIndex == grid -1 && e.RowIndex > -1)
+            if (e.ColumnIndex == grid -1 && e.RowIndex > -1 && this.species==1)
             {
                 e.AdvancedBorderStyle.Left = DataGridViewAdvancedCellBorderStyle.None;
                 e.AdvancedBorderStyle.Right = DataGridViewAdvancedCellBorderStyle.None;
             }
-            if (e.ColumnIndex == grid  && e.RowIndex > -1)
+            if (e.ColumnIndex == grid  && e.RowIndex > -1 && this.species == 1)
             {
                 e.AdvancedBorderStyle.Left = DataGridViewAdvancedCellBorderStyle.None;
                 e.AdvancedBorderStyle.Right = DataGridViewAdvancedCellBorderStyle.None;
             }
         }
-        
+
+        private void bunifuCustomDataGrid1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (bunifuCustomDataGrid.Columns[e.ColumnIndex].Name == "Password" && e.Value != null)
+            {
+                bunifuCustomDataGrid.Rows[e.RowIndex].Tag = e.Value;
+                e.Value = new String('*', e.Value.ToString().Length);
+            }
+            if (bunifuCustomDataGrid.Columns[e.ColumnIndex].Name == "Status")
+            {
+                bunifuCustomDataGrid.Columns[e.ColumnIndex].Visible = false;
+            }
+        }
+        private void listbox_item()
+        {
+            using (SQLiteConnection con = new SQLiteConnection(connect))
+            {
+                //Add a CheckBox Column to the DataGridView Header Cell.
+                con.Open();
+                string stm = listbox1_item_sql + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "'";
+                try
+                {
+                    using (SQLiteCommand cmd = new SQLiteCommand(stm, con))
+                    {
+                        using (SQLiteDataReader rdr = cmd.ExecuteReader())
+                        {
+                            while (rdr.Read())
+                            {
+                                listBox1.Items.Add(rdr.GetString(0));
+                                i++;
+                            }
+                        }
+                    }
+                    con.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            using (SQLiteConnection con = new SQLiteConnection(connect))
+            {
+                con.Open();
+                string stm = listbox2_item_sql + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "')";
+                try
+                {
+                    using (SQLiteCommand cmd = new SQLiteCommand(stm, con))
+                    {
+                        using (SQLiteDataReader rdr = cmd.ExecuteReader())
+                        {
+                            while (rdr.Read())
+                            {
+                                listBox2.Items.Add(rdr.GetString(0));
+                            }
+                        }
+                    }
+                    con.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+        private void list_box_inverse(int i)
+        {
+            listBox1.Items.Clear();
+            listBox2.Items.Clear();
+            if (i == 1)
+            {                
+                using (SQLiteConnection con = new SQLiteConnection(connect))
+                {
+                    con.Open();
+                    string stm = listbox2_item_sql + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "')";
+                    try
+                    {
+                        using (SQLiteCommand cmd = new SQLiteCommand(stm, con))
+                        {
+                            using (SQLiteDataReader rdr = cmd.ExecuteReader())
+                            {
+                                while (rdr.Read())
+                                {
+                                    listBox2.Items.Add(rdr.GetString(0));
+                                }
+                            }
+                        }
+                        con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                using (SQLiteConnection con = new SQLiteConnection(connect))
+                {
+                    //Add a CheckBox Column to the DataGridView Header Cell.
+                    con.Open();
+                    string stm = listbox1_item_sql + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "'";
+                    try
+                    {
+                        using (SQLiteCommand cmd = new SQLiteCommand(stm, con))
+                        {
+                            using (SQLiteDataReader rdr = cmd.ExecuteReader())
+                            {
+                                while (rdr.Read())
+                                {
+                                    listBox2.Items.Add(rdr.GetString(0));
+                                }
+                            }
+                        }
+                        con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+            if (i == 2)
+            {
+                using (SQLiteConnection con = new SQLiteConnection(connect))
+                {
+                    //Add a CheckBox Column to the DataGridView Header Cell.
+                    con.Open();
+                    string stm = listbox1_item_sql + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "'";
+                    try
+                    {
+                        using (SQLiteCommand cmd = new SQLiteCommand(stm, con))
+                        {
+                            using (SQLiteDataReader rdr = cmd.ExecuteReader())
+                            {
+                                while (rdr.Read())
+                                {
+                                    listBox1.Items.Add(rdr.GetString(0));
+                                }
+                            }
+                        }
+                        con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                using (SQLiteConnection con = new SQLiteConnection(connect))
+                {
+                    con.Open();
+                    string stm = listbox2_item_sql + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "')";
+                    try
+                    {
+                        using (SQLiteCommand cmd = new SQLiteCommand(stm, con))
+                        {
+                            using (SQLiteDataReader rdr = cmd.ExecuteReader())
+                            {
+                                while (rdr.Read())
+                                {
+                                    listBox1.Items.Add(rdr.GetString(0));
+                                }
+                            }
+                        }
+                        con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+        }
+        private void item0_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            listBox2.Items.Clear();
+            ToolStripItem clickedItem = sender as ToolStripItem;
+            if (gridview_tab == 1)
+            {
+                lbltp2Tittle.Text = "User";
+                chktp2.Text = "Edit Link-User";
+                listbox_item();
+                txttp2Name.Text = bunifuCustomDataGrid1.Rows[rowIndex].Cells[3].Value.ToString();
+            }
+            if (gridview_tab == 3)
+            {
+                lbltp2Tittle.Text = "Comment";
+                chktp2.Text = "Edit Link-Comment";
+                listbox_item();
+                txttp2Name.Text = bunifuCustomDataGrid1.Rows[rowIndex].Cells[3].Value.ToString();
+            }
+            if (gridview_tab == 4)
+            {
+                chktp2.Text = "Edit Link-Group";
+                listbox_item();
+                txttp2Name.Text = bunifuCustomDataGrid1.Rows[rowIndex].Cells[3].Value.ToString();
+            }
+            check_item_listbox();
+            tabControl1.SelectTab("tabPage2");
+            if (gridview_tab == 2)
+            {
+                tabControl1.SelectTab("tabPage3");
+            }
+        }
+        //Contextmenutrip Event Delete item click
+        private void item1_Click(object sender, EventArgs e)
+        {
+            Function_Settings fnc = new Function_Settings();
+            ToolStripItem clickedItem = sender as ToolStripItem;
+            delete_item(bunifuCustomDataGrid);
+            fnc.reload(bunifuCustomDataGrid, select, species);
+            // your code here
+        }
+        private void delete_item(DataGridView bunifuCustomDataGrid)
+        {
+            Function_Settings fnc = new Function_Settings();
+            using (SQLiteConnection con = new SQLiteConnection(connect))
+            {
+                try
+                {
+                    string sql = delete + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "'";
+                    using (var cmdd = new SQLiteCommand(sql, con))
+                    {
+                        con.Open();
+                        cmdd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            bunifuCustomDataGrid.Rows.RemoveAt(this.rowIndex);
+            fnc.reload(bunifuCustomDataGrid, select, species);
+        }
+        private void check_item_listbox()
+        {
+            int total = 0;
+            int total2 = 0;
+            for (int i = 0; i < listBox1.Items.Count; i++)
+            {
+                total++;
+            }
+            for (int i = 0; i < listBox2.Items.Count; i++)
+            {
+                total2++;
+            }
+            if (total == 0)
+            {
+                btnNext.Enabled = false;
+                btnNext.BackColor = Color.White;
+                btnNextAll.Enabled = false;
+                btnNextAll.BackColor = Color.White;
+            }
+            if (total2 == 0)
+            {
+                btnBack.Enabled = false;
+                btnBack.BackColor = Color.White;
+                btnBackAll.Enabled = false;
+                btnBackAll.BackColor = Color.White;
+            }
+            if(total!=0)
+            {
+                btnNext.Enabled = true;
+                //btnNext.BackColor = Color.White;
+                btnNextAll.Enabled = true;
+                //btnNextAll.BackColor = Color.White;
+            }
+            if (total2 != 0)
+            {
+                btnBack.Enabled = true;
+                btnBack.BackColor = Color.White;
+                btnBackAll.Enabled = true;
+                btnBackAll.BackColor = Color.White;
+            }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            String SelectedItem = listBox2.GetItemText(listBox2.SelectedItem);
+            if (SelectedItem != "")
+            {
+                listBox1.Items.Add(SelectedItem);
+                listBox2.Items.Remove(SelectedItem);
+            }
+            check_item_listbox();
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            String SelectedItem = listBox1.GetItemText(listBox1.SelectedItem);
+            if (SelectedItem != "")
+            {
+                listBox2.Items.Add(SelectedItem);
+                listBox1.Items.Remove(SelectedItem);
+            }
+            check_item_listbox();
+        }
+
+        private void btnNextAll_Click(object sender, EventArgs e)
+        {
+            list_box_inverse(1);
+            check_item_listbox();
+        }
+
+        private void btnBackAll_Click(object sender, EventArgs e)
+        {
+            list_box_inverse(2);
+            check_item_listbox();
+        }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
  

@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnExit = new Bunifu.Framework.UI.BunifuFlatButton();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -58,16 +58,17 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lbltp2Tittle = new System.Windows.Forms.Label();
-            this.btnNext = new Bunifu.Framework.UI.BunifuImageButton();
-            this.btnNextAll = new Bunifu.Framework.UI.BunifuImageButton();
-            this.btnBack = new Bunifu.Framework.UI.BunifuImageButton();
+            this.chktp2 = new System.Windows.Forms.CheckBox();
+            this.btnApply = new System.Windows.Forms.Button();
             this.btnBackAll = new Bunifu.Framework.UI.BunifuImageButton();
+            this.btnBack = new Bunifu.Framework.UI.BunifuImageButton();
+            this.btnNextAll = new Bunifu.Framework.UI.BunifuImageButton();
+            this.btnNext = new Bunifu.Framework.UI.BunifuImageButton();
+            this.lbltp2Tittle = new System.Windows.Forms.Label();
+            this.txttp2Name = new System.Windows.Forms.TextBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -81,10 +82,10 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNext)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNextAll)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnBack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBackAll)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNextAll)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNext)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -433,28 +434,28 @@
             // 
             // bunifuCustomDataGrid1
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.bunifuCustomDataGrid1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.bunifuCustomDataGrid1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.bunifuCustomDataGrid1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.bunifuCustomDataGrid1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.bunifuCustomDataGrid1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.bunifuCustomDataGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.bunifuCustomDataGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.bunifuCustomDataGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.bunifuCustomDataGrid1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.bunifuCustomDataGrid1.DefaultCellStyle = dataGridViewCellStyle9;
             this.bunifuCustomDataGrid1.DoubleBuffered = true;
             this.bunifuCustomDataGrid1.EnableHeadersVisualStyles = false;
             this.bunifuCustomDataGrid1.HeaderBgColor = System.Drawing.Color.SeaGreen;
@@ -466,6 +467,7 @@
             this.bunifuCustomDataGrid1.Size = new System.Drawing.Size(1148, 550);
             this.bunifuCustomDataGrid1.TabIndex = 4;
             this.bunifuCustomDataGrid1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.bunifuCustomDataGrid1_CellContentClick);
+            this.bunifuCustomDataGrid1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.bunifuCustomDataGrid1_CellFormatting);
             this.bunifuCustomDataGrid1.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.bunifuCustomDataGrid1_CellPainting);
             this.bunifuCustomDataGrid1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.bunifuCustomDataGrid1_MouseClick);
             // 
@@ -493,13 +495,14 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.chktp2);
+            this.tabPage2.Controls.Add(this.btnApply);
             this.tabPage2.Controls.Add(this.btnBackAll);
             this.tabPage2.Controls.Add(this.btnBack);
             this.tabPage2.Controls.Add(this.btnNextAll);
             this.tabPage2.Controls.Add(this.btnNext);
             this.tabPage2.Controls.Add(this.lbltp2Tittle);
-            this.tabPage2.Controls.Add(this.textBox1);
+            this.tabPage2.Controls.Add(this.txttp2Name);
             this.tabPage2.Controls.Add(this.listBox2);
             this.tabPage2.Controls.Add(this.listBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -510,30 +513,82 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // listBox1
+            // chktp2
             // 
-            this.listBox1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(16, 120);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(291, 368);
-            this.listBox1.TabIndex = 0;
+            this.chktp2.AutoSize = true;
+            this.chktp2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.chktp2.Location = new System.Drawing.Point(20, 65);
+            this.chktp2.Name = "chktp2";
+            this.chktp2.Size = new System.Drawing.Size(106, 20);
+            this.chktp2.TabIndex = 9;
+            this.chktp2.Text = "checkBox1";
+            this.chktp2.UseVisualStyleBackColor = true;
             // 
-            // listBox2
+            // btnApply
             // 
-            this.listBox2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(417, 120);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(291, 368);
-            this.listBox2.TabIndex = 1;
+            this.btnApply.Location = new System.Drawing.Point(607, 505);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(101, 28);
+            this.btnApply.TabIndex = 8;
+            this.btnApply.Text = "Apply";
+            this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
-            // textBox1
+            // btnBackAll
             // 
-            this.textBox1.Location = new System.Drawing.Point(106, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(399, 20);
-            this.textBox1.TabIndex = 2;
+            this.btnBackAll.BackColor = System.Drawing.Color.IndianRed;
+            this.btnBackAll.Image = ((System.Drawing.Image)(resources.GetObject("btnBackAll.Image")));
+            this.btnBackAll.ImageActive = null;
+            this.btnBackAll.Location = new System.Drawing.Point(323, 330);
+            this.btnBackAll.Name = "btnBackAll";
+            this.btnBackAll.Size = new System.Drawing.Size(76, 31);
+            this.btnBackAll.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnBackAll.TabIndex = 7;
+            this.btnBackAll.TabStop = false;
+            this.btnBackAll.Zoom = 10;
+            this.btnBackAll.Click += new System.EventHandler(this.btnBackAll_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.BackColor = System.Drawing.Color.IndianRed;
+            this.btnBack.Image = ((System.Drawing.Image)(resources.GetObject("btnBack.Image")));
+            this.btnBack.ImageActive = null;
+            this.btnBack.Location = new System.Drawing.Point(323, 279);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(76, 31);
+            this.btnBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnBack.TabIndex = 6;
+            this.btnBack.TabStop = false;
+            this.btnBack.Zoom = 10;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // btnNextAll
+            // 
+            this.btnNextAll.BackColor = System.Drawing.Color.IndianRed;
+            this.btnNextAll.Image = ((System.Drawing.Image)(resources.GetObject("btnNextAll.Image")));
+            this.btnNextAll.ImageActive = null;
+            this.btnNextAll.Location = new System.Drawing.Point(323, 231);
+            this.btnNextAll.Name = "btnNextAll";
+            this.btnNextAll.Size = new System.Drawing.Size(76, 31);
+            this.btnNextAll.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnNextAll.TabIndex = 5;
+            this.btnNextAll.TabStop = false;
+            this.btnNextAll.Zoom = 10;
+            this.btnNextAll.Click += new System.EventHandler(this.btnNextAll_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.BackColor = System.Drawing.Color.IndianRed;
+            this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
+            this.btnNext.ImageActive = null;
+            this.btnNext.Location = new System.Drawing.Point(323, 182);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(76, 31);
+            this.btnNext.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnNext.TabIndex = 4;
+            this.btnNext.TabStop = false;
+            this.btnNext.Zoom = 10;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // lbltp2Tittle
             // 
@@ -545,57 +600,32 @@
             this.lbltp2Tittle.TabIndex = 3;
             this.lbltp2Tittle.Text = "Comment: ";
             // 
-            // btnNext
+            // txttp2Name
             // 
-            this.btnNext.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
-            this.btnNext.ImageActive = null;
-            this.btnNext.Location = new System.Drawing.Point(323, 182);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(76, 31);
-            this.btnNext.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnNext.TabIndex = 4;
-            this.btnNext.TabStop = false;
-            this.btnNext.Zoom = 10;
+            this.txttp2Name.Location = new System.Drawing.Point(106, 20);
+            this.txttp2Name.Name = "txttp2Name";
+            this.txttp2Name.Size = new System.Drawing.Size(399, 20);
+            this.txttp2Name.TabIndex = 2;
             // 
-            // btnNextAll
+            // listBox2
             // 
-            this.btnNextAll.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnNextAll.Image = ((System.Drawing.Image)(resources.GetObject("btnNextAll.Image")));
-            this.btnNextAll.ImageActive = null;
-            this.btnNextAll.Location = new System.Drawing.Point(323, 231);
-            this.btnNextAll.Name = "btnNextAll";
-            this.btnNextAll.Size = new System.Drawing.Size(76, 31);
-            this.btnNextAll.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnNextAll.TabIndex = 5;
-            this.btnNextAll.TabStop = false;
-            this.btnNextAll.Zoom = 10;
+            this.listBox2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(417, 120);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.listBox2.Size = new System.Drawing.Size(291, 368);
+            this.listBox2.TabIndex = 1;
             // 
-            // btnBack
+            // listBox1
             // 
-            this.btnBack.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnBack.Image = ((System.Drawing.Image)(resources.GetObject("btnBack.Image")));
-            this.btnBack.ImageActive = null;
-            this.btnBack.Location = new System.Drawing.Point(323, 279);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(76, 31);
-            this.btnBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnBack.TabIndex = 6;
-            this.btnBack.TabStop = false;
-            this.btnBack.Zoom = 10;
-            // 
-            // btnBackAll
-            // 
-            this.btnBackAll.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnBackAll.Image = ((System.Drawing.Image)(resources.GetObject("btnBackAll.Image")));
-            this.btnBackAll.ImageActive = null;
-            this.btnBackAll.Location = new System.Drawing.Point(323, 330);
-            this.btnBackAll.Name = "btnBackAll";
-            this.btnBackAll.Size = new System.Drawing.Size(76, 31);
-            this.btnBackAll.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnBackAll.TabIndex = 7;
-            this.btnBackAll.TabStop = false;
-            this.btnBackAll.Zoom = 10;
+            this.listBox1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(16, 120);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.listBox1.Size = new System.Drawing.Size(291, 368);
+            this.listBox1.TabIndex = 0;
             // 
             // tabPage3
             // 
@@ -606,15 +636,6 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(607, 505);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(101, 28);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Apply";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -645,10 +666,10 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNext)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNextAll)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnBack)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBackAll)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNextAll)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNext)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -684,12 +705,13 @@
         private Bunifu.Framework.UI.BunifuImageButton btnBack;
         private Bunifu.Framework.UI.BunifuImageButton btnNextAll;
         private Bunifu.Framework.UI.BunifuImageButton btnNext;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txttp2Name;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnApply;
         internal System.Windows.Forms.ListBox listBox2;
         internal System.Windows.Forms.ListBox listBox1;
         internal System.Windows.Forms.Label lbltp2Tittle;
+        private System.Windows.Forms.CheckBox chktp2;
     }
 }
 
