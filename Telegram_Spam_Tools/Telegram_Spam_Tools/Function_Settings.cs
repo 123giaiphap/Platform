@@ -19,15 +19,11 @@ namespace Telegram_Spam_Tools
         private string selected = string.Empty;
         private string deleted = string.Empty;
         private TabControl tabcol;
-        private int choised;
         private string name = string.Empty;
         Form1 f = new Form1();
         private string active = string.Empty;
         private string stop = string.Empty;
         private string searched = string.Empty;
-        private int rowIndex;
-        private int columnIndex;
-        private int stt;
         private CheckBox headerCheckBox = new CheckBox();
 
         internal void status(string atc, string stp)
@@ -169,57 +165,6 @@ namespace Telegram_Spam_Tools
                     MessageBox.Show(ex.Message);
                 }
             }
-        }
-        #endregion
-        #region Contextmenutrip Event
-        //Contextmenutrip Event Edit item click
-       
-        //Contextmenutrip Event delete item after clicking
-        
-        //Contextmenutrip Event Active-Active item after clicking
-        internal void status_active(DataGridView bunifuCustomDataGrid1)
-        {
-            using (SQLiteConnection sqlConn = new SQLiteConnection(connect))
-            {
-                try
-                {
-                    string sql = active + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "'";
-                    using (var cmd = new SQLiteCommand(sql, sqlConn))
-                    {
-                        sqlConn.Open();
-                        cmd.ExecuteNonQuery();
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            //  m.Items[2].Text = "Stop";
-        }
-        //Contextmenutrip Event Active-Stop item after clicking
-        internal void status_stop(DataGridView bunifuCustomDataGrid1)
-        {
-            using (SQLiteConnection sqlConn = new SQLiteConnection(connect))
-            {
-                try
-                {
-
-                    string sql = stop + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "'";
-                    using (var cmd = new SQLiteCommand(sql, sqlConn))
-                    {
-                        sqlConn.Open();
-                        cmd.ExecuteNonQuery();
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            // m.Items[2].Text = "Active";
         }
         #endregion
         //Function datagridview and insert checkbox(use create datasource)

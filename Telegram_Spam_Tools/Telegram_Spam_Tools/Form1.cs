@@ -46,8 +46,9 @@ namespace Telegram_Spam_Tools
             bunifuTextbox1.text = "Enter some text here";
             bunifuTextbox2._TextBox.PasswordChar = '*';
             Total_Status();
-            //Lang_Image_Font();
+            Lang_Image_Font();
         }
+        #region Format DataGridView
         private void hahaha()
         {
             try
@@ -67,7 +68,8 @@ namespace Telegram_Spam_Tools
                 MessageBox.Show(ex.Message);
             }
         }
-
+        #endregion
+        #region Button User
         private void btnUser_Click(object sender, EventArgs e)
         {
             this.species = 0;
@@ -99,7 +101,8 @@ namespace Telegram_Spam_Tools
             this.gridview_tab = 1;
             color();
         }
-
+        #endregion
+        #region Button Link
         private void btnLink_Click(object sender, EventArgs e)
         {
             this.species = 0;
@@ -129,7 +132,8 @@ namespace Telegram_Spam_Tools
             this.gridview_tab = 2;
             color();
         }
-
+        #endregion
+        #region Button List_Group
         private void btnGroup_Click(object sender, EventArgs e)
         {
             this.species = 1;
@@ -161,11 +165,15 @@ namespace Telegram_Spam_Tools
             this.gridview_tab = 4;
             color();
         }
+        #endregion
+        #region Button DashBoard 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab("tabPage2");
             //player.Play();
         }
+        #endregion
+        #region Button Comment 
         private void btnCmt_Click(object sender, EventArgs e)
         {
             this.species = 1;
@@ -197,11 +205,13 @@ namespace Telegram_Spam_Tools
             this.gridview_tab = 3;
             color();
         }
-
+        #endregion
+        #region Button Exit-Logout
         private void btnExit_Click(object sender, EventArgs e)
         {
             Environment.Exit(-1);
         }
+        #endregion
         internal void Total_Status()
         {
             //string TotalUser = "select count(User.IDUser) from User";
@@ -229,7 +239,7 @@ namespace Telegram_Spam_Tools
             //this.lblTotalCmt.Text = count_total.ToString();
             //this.lblStatusCmt.Text = status_active.ToString() + "/" + status_stop.ToString();
         }
-
+        #region Button Reload
         private void btnReload_Click(object sender, EventArgs e)
         {
             Function_Settings dta = new Function_Settings();
@@ -247,6 +257,8 @@ namespace Telegram_Spam_Tools
             }
             color();
         }
+        #endregion
+        #region Format Column DataGridView, Insert Image, Icon, Create Column
         private void color()
         {
             m.Items.Clear();
@@ -333,10 +345,13 @@ namespace Telegram_Spam_Tools
                 }
             }
         }
+        #endregion
+        #region Mouse Click DataGridView Event
         private void bunifuCustomDataGrid1_MouseClick(object sender, MouseEventArgs e)
         {
             try
             {
+                MessageBox.Show(species.ToString());
                 bunifuCustomDataGrid.ClearSelection();
                 var hti = bunifuCustomDataGrid.HitTest(e.X, e.Y);
                 this.bunifuCustomDataGrid.Rows[hti.RowIndex].Selected = true;
@@ -366,7 +381,8 @@ namespace Telegram_Spam_Tools
             }
 
         }
-
+        #endregion
+        #region Event Cell Content Click DataGridView
         private void bunifuCustomDataGrid1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             for (int i = 0; i < bunifuCustomDataGrid1.RowCount; i++)
@@ -398,6 +414,8 @@ namespace Telegram_Spam_Tools
                 }
             }
         }
+        #endregion
+        #region Event Status Active
         internal void status_actived(DataGridView bunifuCustomDataGrid1)
         {
             using (SQLiteConnection sqlConn = new SQLiteConnection(connect))
@@ -419,7 +437,8 @@ namespace Telegram_Spam_Tools
             }
             //  m.Items[2].Text = "Stop";
         }
-        //Contextmenutrip Event Active-Stop item after clicking
+        #endregion
+        #region Event Status Stop
         internal void status_stoped(DataGridView bunifuCustomDataGrid1)
         {
             using (SQLiteConnection sqlConn = new SQLiteConnection(connect))
@@ -442,10 +461,12 @@ namespace Telegram_Spam_Tools
             }
             // m.Items[2].Text = "Active";
         }
+        #endregion
         public void ImageRowDisplay()
         {
             ((TextAndImageCell)bunifuCustomDataGrid1.Rows[0].Cells[0]).Image = (Image)imageList1.Images[1];
         }
+        #region Event Press Enter TextBox Search
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)13)
@@ -471,7 +492,8 @@ namespace Telegram_Spam_Tools
                 fnc.search_item(bunifuCustomDataGrid1, this.search);
             }
         }
-
+        #endregion
+        #region Painting Cell DataGridView
         private void bunifuCustomDataGrid1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.ColumnIndex == grid - 1 && e.RowIndex > -1 && this.species == 1)
@@ -485,9 +507,11 @@ namespace Telegram_Spam_Tools
                 e.AdvancedBorderStyle.Right = DataGridViewAdvancedCellBorderStyle.None;
             }
         }
-
+        #endregion
+        #region Format Cell DataGridView
         private void bunifuCustomDataGrid1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
+            MessageBox.Show(e.ColumnIndex.ToString());
             if (bunifuCustomDataGrid.Columns[e.ColumnIndex].Name == "Password" && e.Value != null)
             {
                 bunifuCustomDataGrid.Rows[e.RowIndex].Tag = e.Value;
@@ -498,6 +522,8 @@ namespace Telegram_Spam_Tools
                 bunifuCustomDataGrid.Columns[e.ColumnIndex].Visible = false;
             }
         }
+        #endregion
+        #region Listbox 
         private void listbox_item()
         {
             using (SQLiteConnection con = new SQLiteConnection(connect))
@@ -549,6 +575,8 @@ namespace Telegram_Spam_Tools
                 }
             }
         }
+        #endregion
+        #region Listbox Inverse
         private void list_box_inverse(int i)
         {
             listBox1.Items.Clear();
@@ -654,6 +682,8 @@ namespace Telegram_Spam_Tools
                 }
             }
         }
+        #endregion
+        #region Edit Item DataGridview after click
         private void item0_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
@@ -687,6 +717,8 @@ namespace Telegram_Spam_Tools
             }
         }
         //Contextmenutrip Event Delete item click
+        #endregion
+        #region Delete Item DataGridview after click
         private void item1_Click(object sender, EventArgs e)
         {
             Function_Settings fnc = new Function_Settings();
@@ -695,6 +727,8 @@ namespace Telegram_Spam_Tools
             fnc.reload(bunifuCustomDataGrid, select, species);
             // your code here
         }
+        #endregion
+        #region Delete Item Function
         private void delete_item(DataGridView bunifuCustomDataGrid)
         {
             Function_Settings fnc = new Function_Settings();
@@ -717,6 +751,8 @@ namespace Telegram_Spam_Tools
             bunifuCustomDataGrid.Rows.RemoveAt(this.rowIndex);
             fnc.reload(bunifuCustomDataGrid, select, species);
         }
+        #endregion
+        #region Check amount item in Listbox 
         private void check_item_listbox()
         {
             int total = 0;
@@ -758,7 +794,8 @@ namespace Telegram_Spam_Tools
                 btnBackAll.BackColor = Color.White;
             }
         }
-
+        #endregion
+        #region Button Back Event
         private void btnBack_Click(object sender, EventArgs e)
         {
             String SelectedItem = listBox2.GetItemText(listBox2.SelectedItem);
@@ -769,7 +806,8 @@ namespace Telegram_Spam_Tools
             }
             check_item_listbox();
         }
-
+        #endregion
+        #region Button Next Event
         private void btnNext_Click(object sender, EventArgs e)
         {
             String SelectedItem = listBox1.GetItemText(listBox1.SelectedItem);
@@ -780,19 +818,22 @@ namespace Telegram_Spam_Tools
             }
             check_item_listbox();
         }
-
+        #endregion
+        #region Button Next All Event
         private void btnNextAll_Click(object sender, EventArgs e)
         {
             list_box_inverse(1);
             check_item_listbox();
         }
-
+        #endregion
+        #region Button Back All Event
         private void btnBackAll_Click(object sender, EventArgs e)
         {
             list_box_inverse(2);
             check_item_listbox();
         }
-
+        #endregion
+        #region Button Apply Event
         private void btnApply_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Click");
@@ -814,46 +855,57 @@ namespace Telegram_Spam_Tools
             //    }
             //}
         }
+        #endregion
+        #region Function UTF-8 String
         private string encode(string read)
         {
             byte[] bytes = Encoding.Default.GetBytes(read);
             read = Encoding.UTF8.GetString(bytes);
             return read;
         }
-        //private void Lang_Image_Font()
-        //{
-        //    PrivateFontCollection pfc = new PrivateFontCollection();
-        //    pfc.AddFontFile(@"font/Roboto-Black.ttf");
-        //    var lang = new IniFile("Language.ini");
-        //    //Language
-        //    btnApply.ButtonText =  encode(lang.Read("btnApply", "Language"));
-        //    btnDashboard.LabelText = encode(lang.Read("btnDashBoard", "Language"));
-        //    btnUser.LabelText= encode(lang.Read("btnFuncA", "Language"));
-        //    btnLink.LabelText = encode(lang.Read("btnFuncB", "Language"));
-        //    btnGroup.LabelText = encode(lang.Read("btnFuncC", "Language"));
-        //    btnCmt.LabelText = encode(lang.Read("btnFuncD", "Language"));
-        //    txtSearch.Text = encode(lang.Read("txtSearch", "Language"));
-        //    lblTitle.Text = encode(lang.Read("Title", "Language"));
-        //    //Image_Button
-        //    btnStart.Image= (Bitmap)Image.FromFile(@"image/image-start.png", true); 
-        //    btnStop.Image= (Bitmap)Image.FromFile(@"image/image-stop.png", true);
-        //    btnReload.Image= (Bitmap)Image.FromFile(@"image/image-reload.png", true);
-        //    btnDelete.Image= (Bitmap)Image.FromFile(@"image/image-delete.png", true);
-        //    btnNew.Image= (Bitmap)Image.FromFile(@"image/image-new.png", true);
-        //    btnSetting.Image= (Bitmap)Image.FromFile(@"image/image-setting.png", true);
-        //    pictureBox1.Image = (Bitmap)Image.FromFile(@"image/logo.png", true);
-        //    //Font_Family
-        //    lblTitle.Font = new Font(pfc.Families[0], 10, FontStyle.Regular);
-        //    btnDashboard.Font = new Font(pfc.Families[0], 10, FontStyle.Regular);
-        //    btnUser.Font = new Font(pfc.Families[0], 10, FontStyle.Regular);
-        //    btnLink.Font = new Font(pfc.Families[0], 10, FontStyle.Regular);
-        //    btnGroup.Font = new Font(pfc.Families[0], 10, FontStyle.Regular);
-        //    btnCmt.Font = new Font(pfc.Families[0], 10, FontStyle.Regular);
-        //    txtSearch.Font = new Font(pfc.Families[0], 10, FontStyle.Regular);
-        //    bunifuCustomDataGrid1.ColumnHeadersDefaultCellStyle.Font = new Font(pfc.Families[0], 10, FontStyle.Regular);
-        //    //this.bunifuCustomDataGrid1.DefaultCellStyle.Font = new Font(pfc.Families[0], 10, FontStyle.Regular);
-        //}
-
+        #endregion
+        #region Fucntion Language-Image-FontStyle Default
+        private void Lang_Image_Font()
+        {
+            PrivateFontCollection pfc = new PrivateFontCollection();
+            pfc.AddFontFile(@"font/BungeeInline-Regular.ttf");
+            PrivateFontCollection pfc2 = new PrivateFontCollection();
+            pfc2.AddFontFile(@"font/RobotoCondensed-Regular.ttf");
+            var lang = new IniFile("Language.ini");
+            //Language
+            btnApply.ButtonText ="         "+ encode(lang.Read("btnApply", "Language"));
+            btnDashBoard.Text = "         " + encode(lang.Read("btnDashBoard", "Language"));
+            btnUser.Text = "         " + encode(lang.Read("btnFuncA", "Language"));
+            btnLink.Text = "         " + encode(lang.Read("btnFuncB", "Language"));
+            btnGroup.Text = "         " + encode(lang.Read("btnFuncC", "Language"));
+            btnComment.Text = "         " + encode(lang.Read("btnFuncD", "Language"));
+            txtSearch.Text = encode(lang.Read("txtSearch", "Language"));
+            lblTitle.Text = encode(lang.Read("Title", "Language"));
+            //Image_Button
+            btnStart.Image = (Bitmap)Image.FromFile(@"image/image-start.png", true);
+            btnStop.Image = (Bitmap)Image.FromFile(@"image/image-stop.png", true);
+            btnReload.Image = (Bitmap)Image.FromFile(@"image/image-reload.png", true);
+            btnDelete.Image = (Bitmap)Image.FromFile(@"image/image-delete.png", true);
+            btnNew.Image = (Bitmap)Image.FromFile(@"image/image-new.png", true);
+            btnSetting.Image = (Bitmap)Image.FromFile(@"image/image-setting.png", true);
+            //pictureBox1.Image = (Bitmap)Image.FromFile(@"image/logo.png", true);
+            //Font_Family and ImageZoom Button
+            lblTitle.Font = new Font(pfc.Families[0], 10);
+            btnDashBoard.TextFont = new Font(pfc2.Families[0], 10);
+            btnDashBoard.IconZoom = 50;
+            btnUser.TextFont = new Font(pfc2.Families[0], 10);
+            btnUser.IconZoom = 50;
+            btnLink.TextFont = new Font(pfc2.Families[0], 10);
+            btnLink.IconZoom = 50;
+            btnGroup.TextFont = new Font(pfc2.Families[0], 10);
+            btnGroup.IconZoom = 50;
+            btnComment.TextFont = new Font(pfc2.Families[0], 10);
+            btnComment.IconZoom = 50;
+            txtSearch.Font = new Font(pfc2.Families[0], 10);
+            bunifuCustomDataGrid1.ColumnHeadersDefaultCellStyle.Font = new Font("Roboto",10,FontStyle.Bold);
+            bunifuCustomDataGrid1.DefaultCellStyle.Font = new Font("RobotoCondensed", 10, FontStyle.Regular);
+        }
+        #endregion
         private void bunifuTextbox1_Leave(object sender, EventArgs e)
         {
             if (bunifuTextbox1.text == "")
@@ -870,32 +922,7 @@ namespace Telegram_Spam_Tools
                 bunifuTextbox1.text = "";
             }
         }
-
-        private void bunifuCustomLabel4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bunifuTextbox3_OnTextChange(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bunifuCustomLabel5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bunifuTextbox4_OnTextChange(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+        #region Button New
         private void btnNew_Click(object sender, EventArgs e)
         {
             if (PanelNew.Width == 1)
@@ -913,18 +940,15 @@ namespace Telegram_Spam_Tools
                 AddNewAnimation.ShowSync(PanelNew);
             }
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+        #endregion
+        #region Button Menu 
         private void btnMenu_Click_1(object sender, EventArgs e)
         {
             if (Panelmenu.Width == 50)
             {
                 PanelNew.Width = 1;
                 Panelmenu.Visible = false;
+                lblTitle.Visible = true;
                 Panelmenu.Width = 218;
                 AddNewAnimation.ShowSync(Panelmenu);
                 MenuAnimation.ShowSync(label);
@@ -932,12 +956,18 @@ namespace Telegram_Spam_Tools
             else
             {
                 PanelNew.Width = 1;
+                lblTitle.Visible = false;
                 MenuAnimation.HideSync(label);
-                Panelmenu.Visible = false;
-                Panelmenu.Width = 50;
+                Panelmenu.Visible = false;               
+                Panelmenu.Width = 50;                
                 AddNewAnimation.ShowSync(Panelmenu);
             }
         }
-    }   
+        #endregion
+        private void tien_te(string name)
+        {
+
+        }
+    }
 }
  
