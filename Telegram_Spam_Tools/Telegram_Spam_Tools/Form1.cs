@@ -34,6 +34,7 @@ namespace Telegram_Spam_Tools
         private string stop = string.Empty;
         private string delete = string.Empty;
         private string search = string.Empty;
+        private string location_type = string.Empty;
         private DataGridView bunifuCustomDataGrid = new DataGridView();
         System.Media.SoundPlayer player = new System.Media.SoundPlayer("click.wav");
         public Form1()
@@ -511,7 +512,6 @@ namespace Telegram_Spam_Tools
         #region Format Cell DataGridView
         private void bunifuCustomDataGrid1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            MessageBox.Show(e.ColumnIndex.ToString());
             if (bunifuCustomDataGrid.Columns[e.ColumnIndex].Name == "Password" && e.Value != null)
             {
                 bunifuCustomDataGrid.Rows[e.RowIndex].Tag = e.Value;
@@ -964,9 +964,62 @@ namespace Telegram_Spam_Tools
             }
         }
         #endregion
-        private void tien_te(string name)
+        private void style(DataGridViewCell name)
         {
+            bunifuCustomDataGrid1.Rows[i].Cells[3].Style.ForeColor = Color.Brown;
+            name.Style.ForeColor = Color.Brown;
+        }
 
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+           Style("Cells", "bunifuCustomDataGrid1.Rows[1].Cells[5]", "currency");
+        }
+        internal void Style(string Name_type, string Location, string Type_style = null)
+        {
+            this.location_type = Location;
+            if (Name_type == "Cells")
+            {
+                //MessageBox.Show(Name_type);
+                currency();
+                //try
+                //{                    
+                //    Type type = this.GetType();
+                //    MethodInfo method = type.GetMethod("currency");
+                //    method.Invoke(this, null);
+                //}
+                //catch (Exception ex)
+                //{                  
+                //    MessageBox.Show(ex.Message);
+                //}
+            }
+            if (Name_type == "Rows")
+            {
+
+            }
+            if (Name_type == "Column")
+            {
+
+            }
+            if (Name_type == "DataGridView")
+            {
+
+            }
+            if (Name_type == "TextBox")
+            {
+
+            }
+            if (Name_type == "Label")
+            {
+
+
+            }
+            //bunifuCustomDataGrid1.Rows[i].Cells[3].Style.ForeColor = Color.Brown;
+            //name.Style.ForeColor = Color.Brown;
+        }
+        private void currency()
+        {
+            DataGridViewCell dta = bunifuCustomDataGrid1.Rows[1].Cells[5];
+            dta.Style.ForeColor = Color.Brown;
         }
     }
 }
