@@ -35,8 +35,15 @@ namespace Telegram_Spam_Tools
         private string delete = string.Empty;
         private string search = string.Empty;
         private string location_type = string.Empty;
-        private DataGridView bunifuCustomDataGrid = new DataGridView();
+        private DataGridViewCell Cell_type;
+        private DataGridViewRow Row_type;
+        private string Fore_Color = string.Empty;
+        private string Back_Color = string.Empty;
+        private string Font_Name = string.Empty;
+        private int Font_size;
+        private DataGridView bunifuCustomDataGrid = new DataGridView();      
         System.Media.SoundPlayer player = new System.Media.SoundPlayer("click.wav");
+        
         public Form1()
         {
             connect = @"Data Source = telegram.db;Verison=3";
@@ -48,6 +55,14 @@ namespace Telegram_Spam_Tools
             bunifuTextbox2._TextBox.PasswordChar = '*';
             Total_Status();
             Lang_Image_Font();
+        }
+        internal void style(string fore_color, string back_color, string font_size, int size)
+        {
+            this.Fore_Color = fore_color;
+            this.Back_Color = back_color;
+            this.Font_Name = font_size;
+            this.Font_size = size;
+            MessageBox.Show(Fore_Color + Back_Color + Font_Name + Font_size.ToString());
         }
         #region Format DataGridView
         private void hahaha()
@@ -70,7 +85,7 @@ namespace Telegram_Spam_Tools
             }
         }
         #endregion
-        #region Button User
+        #region Button A
         private void btnUser_Click(object sender, EventArgs e)
         {
             this.species = 0;
@@ -103,7 +118,7 @@ namespace Telegram_Spam_Tools
             color();
         }
         #endregion
-        #region Button Link
+        #region Button B
         private void btnLink_Click(object sender, EventArgs e)
         {
             this.species = 0;
@@ -134,7 +149,7 @@ namespace Telegram_Spam_Tools
             color();
         }
         #endregion
-        #region Button List_Group
+        #region Button C
         private void btnGroup_Click(object sender, EventArgs e)
         {
             this.species = 1;
@@ -167,14 +182,14 @@ namespace Telegram_Spam_Tools
             color();
         }
         #endregion
-        #region Button DashBoard 
+        #region Button D
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab("tabPage2");
             //player.Play();
         }
         #endregion
-        #region Button Comment 
+        #region Button E 
         private void btnCmt_Click(object sender, EventArgs e)
         {
             this.species = 1;
@@ -274,7 +289,7 @@ namespace Telegram_Spam_Tools
                     string val = bunifuCustomDataGrid1.Rows[i].Cells[2].Value.ToString();
                     if (val == "Active")
                     {
-                        bunifuCustomDataGrid.Rows[i].Cells[3].Style.ForeColor = Color.Brown;
+                        Cells(bunifuCustomDataGrid.Rows[i].Cells[3], "currenry");
                     }
                     if (val == "Stop")
                     {
@@ -963,64 +978,49 @@ namespace Telegram_Spam_Tools
                 AddNewAnimation.ShowSync(Panelmenu);
             }
         }
-        #endregion
-        private void style(DataGridViewCell name)
-        {
-            bunifuCustomDataGrid1.Rows[i].Cells[3].Style.ForeColor = Color.Brown;
-            name.Style.ForeColor = Color.Brown;
-        }
-
+        #endregion 
         private void btnStart_Click(object sender, EventArgs e)
         {
-           Style("Cells", "bunifuCustomDataGrid1.Rows[1].Cells[5]", "currency");
+            // Style("Cells", "bunifuCustomDataGrid1.Rows[1].Cells[5]", "currency");
+            //Cells(bunifuCustomDataGrid1.Rows[1].Cells[5], "currency");
+            Rows(bunifuCustomDataGrid1.Rows[1], "currency");
         }
-        internal void Style(string Name_type, string Location, string Type_style = null)
+        private void Cells(DataGridViewCell Location, string Type_Style = null)
         {
-            this.location_type = Location;
-            if (Name_type == "Cells")
-            {
-                //MessageBox.Show(Name_type);
-                currency();
-                //try
-                //{                    
-                //    Type type = this.GetType();
-                //    MethodInfo method = type.GetMethod("currency");
-                //    method.Invoke(this, null);
-                //}
-                //catch (Exception ex)
-                //{                  
-                //    MessageBox.Show(ex.Message);
-                //}
-            }
-            if (Name_type == "Rows")
-            {
-
-            }
-            if (Name_type == "Column")
-            {
-
-            }
-            if (Name_type == "DataGridView")
-            {
-
-            }
-            if (Name_type == "TextBox")
-            {
-
-            }
-            if (Name_type == "Label")
-            {
-
-
-            }
-            //bunifuCustomDataGrid1.Rows[i].Cells[3].Style.ForeColor = Color.Brown;
-            //name.Style.ForeColor = Color.Brown;
+            Style_Template_Form stf = new Style_Template_Form();
+            Cell_type = Location;
+            stf.currenry();
+            MessageBox.Show(Fore_Color + Back_Color + Font_Name + Font_size.ToString());
+            Cell_type.Style.ForeColor = Color.FromName(this.Fore_Color);
+            Cell_type.Style.BackColor = Color.FromName(this.Back_Color);
+            //Cell_type.Style.Font=new Font(this.Font_Name, this.Font_size);
         }
-        private void currency()
+        private void Rows(DataGridViewRow Location, string Type_Style = null)
         {
-            DataGridViewCell dta = bunifuCustomDataGrid1.Rows[1].Cells[5];
-            dta.Style.ForeColor = Color.Brown;
+            Style_Template_Form stf = new Style_Template_Form();
+            Row_type = Location;
+            stf.Style(Type_Style);
+            Row_type.DefaultCellStyle.ForeColor = Color.FromName(Fore_Color);
+            Row_type.DefaultCellStyle.BackColor = Color.FromName(Back_Color);
         }
+        //private void Style(string name)
+        //{
+        //    if (name == "currency")
+        //    {
+        //        this.Fore_Color = "Brown";
+        //        this.Back_Color = "Yellow";
+        //        this.Font_Name = "Roboto";
+        //        this.Font_size = 10;
+        //    }
+        //    if (name == "play")
+        //    {
+        //        this.Fore_Color = "Yellow";
+        //        this.Back_Color = "Brown";
+        //        this.Font_Name = "Play";
+        //        this.Font_size = 15;
+        //    }
+        //}
+
     }
 }
  
