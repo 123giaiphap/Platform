@@ -35,15 +35,13 @@ namespace Telegram_Spam_Tools
         private string delete = string.Empty;
         private string search = string.Empty;
         private string location_type = string.Empty;
-        private DataGridViewCell Cell_type;
-        private DataGridViewRow Row_type;
         private string Fore_Color = string.Empty;
         private string Back_Color = string.Empty;
         private string Font_Name = string.Empty;
         private int Font_size;
-        private DataGridView bunifuCustomDataGrid = new DataGridView();      
+        private DataGridView bunifuCustomDataGrid = new DataGridView();
         System.Media.SoundPlayer player = new System.Media.SoundPlayer("click.wav");
-        
+
         public Form1()
         {
             connect = @"Data Source = telegram.db;Verison=3";
@@ -55,14 +53,6 @@ namespace Telegram_Spam_Tools
             bunifuTextbox2._TextBox.PasswordChar = '*';
             Total_Status();
             Lang_Image_Font();
-        }
-        internal void style(string fore_color, string back_color, string font_size, int size)
-        {
-            this.Fore_Color = fore_color;
-            this.Back_Color = back_color;
-            this.Font_Name = font_size;
-            this.Font_size = size;
-            MessageBox.Show(Fore_Color + Back_Color + Font_Name + Font_size.ToString());
         }
         #region Format DataGridView
         private void hahaha()
@@ -77,7 +67,7 @@ namespace Telegram_Spam_Tools
                 bunifuCustomDataGrid.ColumnHeadersHeight = 45;
                 bunifuCustomDataGrid1.HeaderBgColor = Color.SeaGreen;
                 bunifuCustomDataGrid1.HeaderForeColor = Color.White;
-                bunifuCustomDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;               
+                bunifuCustomDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
             catch (Exception ex)
             {
@@ -92,16 +82,12 @@ namespace Telegram_Spam_Tools
             lblTitle.Text = "TELEGRAM - USER";
             hahaha();
             tabControl1.SelectTab("tabPage1");
-            string name = "tabPage2";
             Function_Settings dta = new Function_Settings();
-            dta.select_tab(tabControl1, name);
             this.listbox1_item_sql = "select Link.LinkName from LinkUser left join Link on LinkUser.IDLink=Link.IDLink where LinkUser.IDUser='";
             this.listbox2_item_sql = "select Link.LinkName from Link where Link.IDLink NOT IN (select Link.IDLink from LinkUser left join Link on LinkUser.IDLink=Link.IDLink where LinkUser.IDUser='";
             this.active = "update User set Status = '2'  where IDUser ='";
             this.stop = "update User set Status = '1'  where IDUser ='";
             this.delete = "DELETE FROM User WHERE IDUser='";
-            dta.status(this.active, this.stop);
-            dta.delete(this.delete);
             this.select = "select User.IDUser, Status.Status, User.UserName,  User.Password, User.UserAgent, User.ProxyIP, User.ProxyPort, User.Description, User.DeleteDay, User.CreateDay,(select count(*) from LinkUser where LinkUser.IDUser=user.IDUser) as 'Link User' from  User left join Status, LinkUser on User.Status=Status.IDStatus group by User.IDUser";
             if (grid1 == 0)
             {
@@ -116,6 +102,7 @@ namespace Telegram_Spam_Tools
             }
             this.gridview_tab = 1;
             color();
+
         }
         #endregion
         #region Button B
@@ -125,14 +112,10 @@ namespace Telegram_Spam_Tools
             lblTitle.Text = "TELEGRAM - LINK";
             hahaha();
             tabControl1.SelectTab("tabPage1");
-            string name = "tabPage2";
             Function_Settings dta = new Function_Settings();
-            dta.select_tab(tabControl1, name);
             this.active = "update Link set Status = '2'  where IDLink ='";
             this.stop = "update Link set Status = '1'  where IDLink ='";
             this.delete = "DELETE FROM Link WHERE IDLink='";
-            dta.status(this.active, this.stop);
-            dta.delete(this.delete);
             this.select = "select Link.IDLink,Status.Status,Link.LinkName, Link.Description,Link.CreatedDate,(select count(*) from LinkGroup where LinkGroup.IDLink=link.IDLink) as 'Group Used' ,(select count(*) from LinkComment where LinkComment.IDLink=link.IDLink) as 'Comment Used',(select count(*) from LinkUser where LinkUser.IDLink=Link.IDLink) as 'User Used' from Link left join Status on Link.Status=Status.IDStatus";
             if (grid1 == 0)
             {
@@ -156,16 +139,12 @@ namespace Telegram_Spam_Tools
             lblTitle.Text = "TELEGRAM - GROUP";
             hahaha();
             tabControl1.SelectTab("tabPage1");
-            string name = "tabPage2";
             Function_Settings dta = new Function_Settings();
-            dta.select_tab(tabControl1, name);
             this.listbox1_item_sql = "select Link.LinkName from LinkGroup left join Link on LinkGroup.IDLink=Link.IDLink where LinkGroup.IDGroup='";
             this.listbox2_item_sql = "select Link.LinkName from Link where Link.IDLink NOT IN (select Link.IDLink from LinkGroup left join Link on LinkGroup.IDLink=Link.IDLink where LinkGroup.IDGroup='";
             this.active = "update ListGroup set Status = '2'  where IDGroup ='";
             this.stop = "update ListGroup set Status = '1'  where IDGroup ='";
             this.delete = "DELETE FROM ListGroup WHERE IDGroup='";
-            dta.status(this.active, this.stop);
-            dta.delete(this.delete);
             this.select = "select ListGroup.IDGroup, Status.Status, ListGroup.GroupName, ListGroup.Password, ListGroup.CreatedDate,(select count(*) from LinkGroup where LinkGroup.IDGroup=ListGroup.IDGroup) as 'Link Used' from ListGroup , LinkGroup inner JOIN Status on ListGroup.Status=Status.IDStatus group by ListGroup.IDGroup";
             if (grid1 == 0)
             {
@@ -196,16 +175,12 @@ namespace Telegram_Spam_Tools
             lblTitle.Text = "TELEGRAM - COMMENT";
             hahaha();
             tabControl1.SelectTab("tabPage1");
-            string name = "tabPage2";
             Function_Settings dta = new Function_Settings();
-            dta.select_tab(tabControl1, name);
             this.listbox1_item_sql = "select Link.LinkName from LinkComment left join Link on LinkComment.IDLink=Link.IDLink where LinkComment.IDComment='";
             this.listbox2_item_sql = "select Link.LinkName from Link where Link.IDLink NOT IN (select Link.IDLink from LinkComment left join Link on LinkComment.IDLink=Link.IDLink where LinkComment.IDComment='";
             this.active = "update Comment set Status = '2'  where IDCmt ='";
             this.stop = "update Comment set Status = '1'  where IDCmt ='";
             this.delete = "DELETE FROM Comment WHERE IDCmt='";
-            dta.status(this.active, this.stop);
-            dta.delete(this.delete);
             this.select = "select Comment.IDCmt, Status.Status, Comment.Comment,  Comment.Description , Comment.CreatedDate,(select count(*) from LinkComment where LinkComment.IDComment=Comment.IDCmt) as 'Link Used' from  Comment left join Status, LinkComment on Comment.Status=Status.IDStatus group by Comment.IDCmt";
             if (grid1 == 0)
             {
@@ -220,6 +195,12 @@ namespace Telegram_Spam_Tools
             }
             this.gridview_tab = 3;
             color();
+        }
+        #endregion
+        #region Button Start
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+
         }
         #endregion
         #region Button Exit-Logout
@@ -259,8 +240,6 @@ namespace Telegram_Spam_Tools
         private void btnReload_Click(object sender, EventArgs e)
         {
             Function_Settings dta = new Function_Settings();
-            dta.status(this.active, this.stop);
-            dta.delete(this.delete);
             Total_Status();
             if (this.grid1 == 1)
             {
@@ -277,6 +256,7 @@ namespace Telegram_Spam_Tools
         #region Format Column DataGridView, Insert Image, Icon, Create Column
         private void color()
         {
+            Create_Column_DataGridView cld = new Create_Column_DataGridView();
             m.Items.Clear();
             ToolStripItem item0 = m.Items.Add("Edit ");
             item0.Click += new EventHandler(item0_Click);
@@ -304,51 +284,41 @@ namespace Telegram_Spam_Tools
                 {
                     max++;
                 }
-                //MessageBox.Show(max.ToString());
+
                 if (max > 0)
                 {
+                    //MessageBox.Show(max.ToString());
                     DataGridViewImageColumn imgCol = new DataGridViewImageColumn();
-                    imgCol.Name = "abc";
-                    imgCol.HeaderText = "Image";
-                    bunifuCustomDataGrid1.Columns.Add(imgCol);
+                    cld.Create_Image_Column(imgCol, bunifuCustomDataGrid1, "abc", "Image");
                     TextAndImageColumn txtcol = new TextAndImageColumn();
-                    txtcol.Name = "anhxa";
-                    txtcol.HeaderText = "";
-                    bunifuCustomDataGrid1.Columns.Add(txtcol);
+                    cld.Create_TextAndImageColumn(txtcol, bunifuCustomDataGrid1, "anhxa", "");
+                    TextAndImageColumn txtcol1 = new TextAndImageColumn();
+                    cld.Create_TextAndImageColumn(txtcol1, bunifuCustomDataGrid1, "anhxa1", "");
+                    TextAndImageColumn txtcol2 = new TextAndImageColumn();
+                    cld.Create_TextAndImageColumn(txtcol2, bunifuCustomDataGrid1, "anhxa2", "");
                     this.bunifuCustomDataGrid1.Columns[max].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                     this.bunifuCustomDataGrid1.Columns[max + 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                    TextAndImageColumn txtcol1 = new TextAndImageColumn();
-                    txtcol1.Name = "anhxa1";
-                    txtcol1.HeaderText = "";
-                    bunifuCustomDataGrid1.Columns.Add(txtcol1);
                     this.bunifuCustomDataGrid1.Columns[max + 2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                    this.grid = max + 2;
-                    TextAndImageColumn txtcol2 = new TextAndImageColumn();
-                    txtcol2.Name = "anhxa2";
-                    txtcol2.HeaderText = "";
-                    bunifuCustomDataGrid1.Columns.Add(txtcol2);
                     this.bunifuCustomDataGrid1.Columns[max + 3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                    this.grid = max + 2;
                     try
                     {
                         for (int i = 0; i < bunifuCustomDataGrid1.RowCount; i++)
                         {
                             this.bunifuCustomDataGrid1.Rows[i].Cells[1] = new TextAndImageCell();
-                            ((TextAndImageCell)bunifuCustomDataGrid1.Rows[i].Cells[1]).Image = (Image)imageList1.Images[1];
                             string val = bunifuCustomDataGrid1.Rows[i].Cells[2].Value.ToString();
                             bunifuCustomDataGrid1.Rows[i].Cells[max + 1].Value = "12";
                             bunifuCustomDataGrid1.Rows[i].Cells[max + 2].Value = "12";
                             bunifuCustomDataGrid1.Rows[i].Cells[max + 3].Value = "12";
-                            //((TextAndImageCell)bunifuCustomDataGrid1.Rows[i].Cells[max+1]).Image = (Image)imageList1.Images[1];
                             if (val == "Active")
                             {
                                 bunifuCustomDataGrid1.Rows[i].Cells[max].Value = Image.FromFile(@"image_on.png");
-                                //this.bunifuCustomDataGrid1.Columns[max].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                             }
                             if (val == "Stop")
                             {
                                 bunifuCustomDataGrid1.Rows[i].Cells[max].Value = Image.FromFile(@"image_off.png"); ;
                             }
-                            //bunifuCustomDataGrid1.Rows[i].Cells[max + 1].Value = bunifuCustomDataGrid1.Rows[i].Cells[1].Value;                     
+                            ((TextAndImageCell)bunifuCustomDataGrid1.Rows[i].Cells[1]).Image = (Image)imageList1.Images[1];
                             ((TextAndImageCell)bunifuCustomDataGrid1.Rows[i].Cells[max + 1]).Image = (Image)imageList1.Images[1];
                             ((TextAndImageCell)bunifuCustomDataGrid1.Rows[i].Cells[max + 2]).Image = (Image)imageList1.Images[2];
                             ((TextAndImageCell)bunifuCustomDataGrid1.Rows[i].Cells[max + 3]).Image = (Image)imageList1.Images[3];
@@ -367,7 +337,6 @@ namespace Telegram_Spam_Tools
         {
             try
             {
-                MessageBox.Show(species.ToString());
                 bunifuCustomDataGrid.ClearSelection();
                 var hti = bunifuCustomDataGrid.HitTest(e.X, e.Y);
                 this.bunifuCustomDataGrid.Rows[hti.RowIndex].Selected = true;
@@ -415,7 +384,7 @@ namespace Telegram_Spam_Tools
                         this.rowIndex = e.RowIndex;
                         this.columnIndex = e.ColumnIndex;
                         bunifuCustomDataGrid1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = b;
-                        status_actived(bunifuCustomDataGrid1);
+                        status_actived();
                         bunifuCustomDataGrid1.Rows[i].Cells[2].Value = "Stop";
                     }
                     if (val == "Stop")
@@ -423,7 +392,7 @@ namespace Telegram_Spam_Tools
                         this.rowIndex = e.RowIndex;
                         this.columnIndex = e.ColumnIndex;
                         bunifuCustomDataGrid1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = a;
-                        status_stoped(bunifuCustomDataGrid1);
+                        status_stoped();
                         bunifuCustomDataGrid1.Rows[i].Cells[2].Value = "Active";
                     }
 
@@ -432,50 +401,19 @@ namespace Telegram_Spam_Tools
         }
         #endregion
         #region Event Status Active
-        internal void status_actived(DataGridView bunifuCustomDataGrid1)
+        internal void status_actived()
         {
-            using (SQLiteConnection sqlConn = new SQLiteConnection(connect))
-            {
-                try
-                {
-                    string sql = this.active + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "'";
-                    using (var cmd = new SQLiteCommand(sql, sqlConn))
-                    {
-                        sqlConn.Open();
-                        cmd.ExecuteNonQuery();
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            SQLite_Funciton_Query sfq = new SQLite_Funciton_Query();
+            sfq.SQLite_Query_Status(this.active, bunifuCustomDataGrid1.Rows[this.rowIndex].Cells[1].Value.ToString());
+            
             //  m.Items[2].Text = "Stop";
         }
         #endregion
         #region Event Status Stop
-        internal void status_stoped(DataGridView bunifuCustomDataGrid1)
+        internal void status_stoped()
         {
-            using (SQLiteConnection sqlConn = new SQLiteConnection(connect))
-            {
-                try
-                {
-
-                    string sql = this.stop + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "'";
-                    using (var cmd = new SQLiteCommand(sql, sqlConn))
-                    {
-                        sqlConn.Open();
-                        cmd.ExecuteNonQuery();
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            // m.Items[2].Text = "Active";
+            SQLite_Funciton_Query sfq = new SQLite_Funciton_Query();
+            sfq.SQLite_Query_Status(this.stop, bunifuCustomDataGrid1.Rows[this.rowIndex].Cells[1].Value.ToString());
         }
         #endregion
         public void ImageRowDisplay()
@@ -541,160 +479,26 @@ namespace Telegram_Spam_Tools
         #region Listbox 
         private void listbox_item()
         {
-            using (SQLiteConnection con = new SQLiteConnection(connect))
-            {
-                //Add a CheckBox Column to the DataGridView Header Cell.
-                con.Open();
-                string stm = listbox1_item_sql + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "'";
-                try
-                {
-                    using (SQLiteCommand cmd = new SQLiteCommand(stm, con))
-                    {
-                        using (SQLiteDataReader rdr = cmd.ExecuteReader())
-                        {
-                            while (rdr.Read())
-                            {
-                                listBox1.Items.Add(rdr.GetString(0));
-                                i++;
-                            }
-                        }
-                    }
-                    con.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            using (SQLiteConnection con = new SQLiteConnection(connect))
-            {
-                con.Open();
-                string stm = listbox2_item_sql + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "')";
-                try
-                {
-                    using (SQLiteCommand cmd = new SQLiteCommand(stm, con))
-                    {
-                        using (SQLiteDataReader rdr = cmd.ExecuteReader())
-                        {
-                            while (rdr.Read())
-                            {
-                                listBox2.Items.Add(rdr.GetString(0));
-                            }
-                        }
-                    }
-                    con.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            SQLite_Funciton_Query sfq = new SQLite_Funciton_Query();
+            sfq.SQLite_Query_ListBox(listBox1, listbox1_item_sql, bunifuCustomDataGrid1.Rows[this.rowIndex].Cells[1].Value.ToString());
+            sfq.SQLite_Query_ListBox_Inverse(listBox2, listbox2_item_sql, bunifuCustomDataGrid1.Rows[this.rowIndex].Cells[1].Value.ToString());           
         }
         #endregion
         #region Listbox Inverse
         private void list_box_inverse(int i)
         {
+            SQLite_Funciton_Query sfq = new SQLite_Funciton_Query();
             listBox1.Items.Clear();
             listBox2.Items.Clear();
             if (i == 1)
             {
-                using (SQLiteConnection con = new SQLiteConnection(connect))
-                {
-                    con.Open();
-                    string stm = listbox2_item_sql + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "')";
-                    try
-                    {
-                        using (SQLiteCommand cmd = new SQLiteCommand(stm, con))
-                        {
-                            using (SQLiteDataReader rdr = cmd.ExecuteReader())
-                            {
-                                while (rdr.Read())
-                                {
-                                    listBox2.Items.Add(rdr.GetString(0));
-                                }
-                            }
-                        }
-                        con.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
-                using (SQLiteConnection con = new SQLiteConnection(connect))
-                {
-                    //Add a CheckBox Column to the DataGridView Header Cell.
-                    con.Open();
-                    string stm = listbox1_item_sql + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "'";
-                    try
-                    {
-                        using (SQLiteCommand cmd = new SQLiteCommand(stm, con))
-                        {
-                            using (SQLiteDataReader rdr = cmd.ExecuteReader())
-                            {
-                                while (rdr.Read())
-                                {
-                                    listBox2.Items.Add(rdr.GetString(0));
-                                }
-                            }
-                        }
-                        con.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
+                sfq.SQLite_Query_ListBox_Inverse(listBox2, listbox2_item_sql, bunifuCustomDataGrid1.Rows[this.rowIndex].Cells[1].Value.ToString());
+                sfq.SQLite_Query_ListBox(listBox2, listbox1_item_sql, bunifuCustomDataGrid1.Rows[this.rowIndex].Cells[1].Value.ToString());               
             }
             if (i == 2)
             {
-                using (SQLiteConnection con = new SQLiteConnection(connect))
-                {
-                    //Add a CheckBox Column to the DataGridView Header Cell.
-                    con.Open();
-                    string stm = listbox1_item_sql + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "'";
-                    try
-                    {
-                        using (SQLiteCommand cmd = new SQLiteCommand(stm, con))
-                        {
-                            using (SQLiteDataReader rdr = cmd.ExecuteReader())
-                            {
-                                while (rdr.Read())
-                                {
-                                    listBox1.Items.Add(rdr.GetString(0));
-                                }
-                            }
-                        }
-                        con.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
-                using (SQLiteConnection con = new SQLiteConnection(connect))
-                {
-                    con.Open();
-                    string stm = listbox2_item_sql + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "')";
-                    try
-                    {
-                        using (SQLiteCommand cmd = new SQLiteCommand(stm, con))
-                        {
-                            using (SQLiteDataReader rdr = cmd.ExecuteReader())
-                            {
-                                while (rdr.Read())
-                                {
-                                    listBox1.Items.Add(rdr.GetString(0));
-                                }
-                            }
-                        }
-                        con.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
+                sfq.SQLite_Query_ListBox(listBox1, listbox1_item_sql, bunifuCustomDataGrid1.Rows[this.rowIndex].Cells[1].Value.ToString());
+                sfq.SQLite_Query_ListBox_Inverse(listBox1, listbox2_item_sql, bunifuCustomDataGrid1.Rows[this.rowIndex].Cells[1].Value.ToString());               
             }
         }
         #endregion
@@ -736,33 +540,16 @@ namespace Telegram_Spam_Tools
         #region Delete Item DataGridview after click
         private void item1_Click(object sender, EventArgs e)
         {
-            Function_Settings fnc = new Function_Settings();
             ToolStripItem clickedItem = sender as ToolStripItem;
-            delete_item(bunifuCustomDataGrid);
-            fnc.reload(bunifuCustomDataGrid, select, species);
-            // your code here
+            delete_item();
         }
         #endregion
         #region Delete Item Function
-        private void delete_item(DataGridView bunifuCustomDataGrid)
+        private void delete_item()
         {
             Function_Settings fnc = new Function_Settings();
-            using (SQLiteConnection con = new SQLiteConnection(connect))
-            {
-                try
-                {
-                    string sql = delete + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "'";
-                    using (var cmdd = new SQLiteCommand(sql, con))
-                    {
-                        con.Open();
-                        cmdd.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            SQLite_Funciton_Query sfq = new SQLite_Funciton_Query();
+            sfq.SQLite_Query_Delete(this.delete, bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString());           
             bunifuCustomDataGrid.Rows.RemoveAt(this.rowIndex);
             fnc.reload(bunifuCustomDataGrid, select, species);
         }
@@ -888,7 +675,7 @@ namespace Telegram_Spam_Tools
             pfc2.AddFontFile(@"font/RobotoCondensed-Regular.ttf");
             var lang = new IniFile("Language.ini");
             //Language
-            btnApply.ButtonText ="         "+ encode(lang.Read("btnApply", "Language"));
+            btnApply.ButtonText = "         " + encode(lang.Read("btnApply", "Language"));
             btnDashBoard.Text = "         " + encode(lang.Read("btnDashBoard", "Language"));
             btnUser.Text = "         " + encode(lang.Read("btnFuncA", "Language"));
             btnLink.Text = "         " + encode(lang.Read("btnFuncB", "Language"));
@@ -903,7 +690,6 @@ namespace Telegram_Spam_Tools
             btnDelete.Image = (Bitmap)Image.FromFile(@"image/image-delete.png", true);
             btnNew.Image = (Bitmap)Image.FromFile(@"image/image-new.png", true);
             btnSetting.Image = (Bitmap)Image.FromFile(@"image/image-setting.png", true);
-            //pictureBox1.Image = (Bitmap)Image.FromFile(@"image/logo.png", true);
             //Font_Family and ImageZoom Button
             lblTitle.Font = new Font(pfc.Families[0], 10);
             btnDashBoard.TextFont = new Font(pfc2.Families[0], 10);
@@ -917,7 +703,7 @@ namespace Telegram_Spam_Tools
             btnComment.TextFont = new Font(pfc2.Families[0], 10);
             btnComment.IconZoom = 50;
             txtSearch.Font = new Font(pfc2.Families[0], 10);
-            bunifuCustomDataGrid1.ColumnHeadersDefaultCellStyle.Font = new Font("Roboto",10,FontStyle.Bold);
+            bunifuCustomDataGrid1.ColumnHeadersDefaultCellStyle.Font = new Font("Roboto", 10, FontStyle.Bold);
             bunifuCustomDataGrid1.DefaultCellStyle.Font = new Font("RobotoCondensed", 10, FontStyle.Regular);
         }
         #endregion
@@ -931,7 +717,7 @@ namespace Telegram_Spam_Tools
         }
 
         private void bunifuTextbox1_Enter(object sender, EventArgs e)
-        {            
+        {
             if (bunifuTextbox1.text == "Enter some text here")
             {
                 bunifuTextbox1.text = "";
@@ -973,54 +759,39 @@ namespace Telegram_Spam_Tools
                 PanelNew.Width = 1;
                 lblTitle.Visible = false;
                 MenuAnimation.HideSync(label);
-                Panelmenu.Visible = false;               
-                Panelmenu.Width = 50;                
+                Panelmenu.Visible = false;
+                Panelmenu.Width = 50;
                 AddNewAnimation.ShowSync(Panelmenu);
             }
         }
-        #endregion 
-        private void btnStart_Click(object sender, EventArgs e)
-        {
-            // Style("Cells", "bunifuCustomDataGrid1.Rows[1].Cells[5]", "currency");
-            //Cells(bunifuCustomDataGrid1.Rows[1].Cells[5], "currency");
-            Rows(bunifuCustomDataGrid1.Rows[1], "currency");
-        }
-        private void Cells(DataGridViewCell Location, string Type_Style = null)
+        #endregion        
+        #region Style Form like css
+        private void Cells(DataGridViewCell Location, string Type_Style = null) // Style Cells DataGridView
         {
             Style_Template_Form stf = new Style_Template_Form();
-            Cell_type = Location;
-            stf.currenry();
-            MessageBox.Show(Fore_Color + Back_Color + Font_Name + Font_size.ToString());
-            Cell_type.Style.ForeColor = Color.FromName(this.Fore_Color);
-            Cell_type.Style.BackColor = Color.FromName(this.Back_Color);
-            //Cell_type.Style.Font=new Font(this.Font_Name, this.Font_size);
-        }
-        private void Rows(DataGridViewRow Location, string Type_Style = null)
-        {
-            Style_Template_Form stf = new Style_Template_Form();
-            Row_type = Location;
             stf.Style(Type_Style);
-            Row_type.DefaultCellStyle.ForeColor = Color.FromName(Fore_Color);
-            Row_type.DefaultCellStyle.BackColor = Color.FromName(Back_Color);
+            style(stf);
+            Location.Style.ForeColor = Color.FromName(this.Fore_Color);
+            Location.Style.BackColor = Color.FromName(this.Back_Color);
+            Location.Style.Font = new Font(this.Font_Name, this.Font_size);
         }
-        //private void Style(string name)
-        //{
-        //    if (name == "currency")
-        //    {
-        //        this.Fore_Color = "Brown";
-        //        this.Back_Color = "Yellow";
-        //        this.Font_Name = "Roboto";
-        //        this.Font_size = 10;
-        //    }
-        //    if (name == "play")
-        //    {
-        //        this.Fore_Color = "Yellow";
-        //        this.Back_Color = "Brown";
-        //        this.Font_Name = "Play";
-        //        this.Font_size = 15;
-        //    }
-        //}
-
+        private void Rows(DataGridViewRow Location, string Type_Style = null) // Style Rows DataGridView
+        {
+            Style_Template_Form stf = new Style_Template_Form();
+            stf.Style(Type_Style);
+            style(stf);
+            Location.DefaultCellStyle.ForeColor = Color.FromName(this.Fore_Color);
+            Location.DefaultCellStyle.BackColor = Color.FromName(this.Back_Color);
+            Location.DefaultCellStyle.Font = new Font(this.Font_Name, this.Font_size);
+        }
+        private void style(Style_Template_Form stf) // Origin Style 
+        {
+            this.Fore_Color = stf.Fore_Color;
+            this.Back_Color = stf.Back_Color;
+            this.Font_Name = stf.Font_Name;
+            this.Font_size = stf.Font_size;
+        }
+        #endregion
     }
 }
  

@@ -18,36 +18,20 @@ namespace Telegram_Spam_Tools
         private int species_use;
         private string selected = string.Empty;
         private string deleted = string.Empty;
-        private TabControl tabcol;
-        private string name = string.Empty;
         Form1 f = new Form1();
         private string active = string.Empty;
         private string stop = string.Empty;
         private string searched = string.Empty;
-        private CheckBox headerCheckBox = new CheckBox();
-
-        internal void status(string atc, string stp)
-        {
-            active = atc;
-            stop = stp;
-        }
-        internal void delete(string del)
-        {
-            deleted = del;
-        }
+        private CheckBox headerCheckBox = new CheckBox();      
         internal void search_value(string ser)
         {
             searched = ser;
-        }
-        internal void select_tab(TabControl tabcontrol, string nametab)
-        {
-            this.tabcol = tabcontrol;
-            this.name = nametab;
         }
         //Function datagridview no insert checkbox (use reload data or Create datasource)
         #region reload
         internal void reload(DataGridView bunifuCustomDataGrid1, string select, int species)
         {
+            SQLite_Funciton_Query sfq = new SQLite_Funciton_Query();
             this.species_use = species;
             this.bunifuCustomDataGrid = bunifuCustomDataGrid1;
             this.selected = select;
@@ -59,70 +43,12 @@ namespace Telegram_Spam_Tools
             bunifuCustomDataGrid.ReadOnly = true;
             if (species_use == 0)
             {
-                using (SQLiteConnection con = new SQLiteConnection(connect))
-                {
-                    //Add a CheckBox Column to the DataGridView Header Cell.
-                    con.Open();
-                    string stm = select;
-                    try
-                    {
-                        using (SQLiteCommand cmd = new SQLiteCommand(stm, con))
-                        {
-                            SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
-                            DataSet ds = new DataSet();
-                            try
-                            {
-                                da.Fill(ds);
-                                DataTable dt = ds.Tables[0];
-                                bunifuCustomDataGrid1.DataSource = dt;
-
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show("Errrrrrrror");
-                            }
-                        }
-                        con.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
+                sfq.SQLite_Query(bunifuCustomDataGrid1, select);
                 add_checkbox(bunifuCustomDataGrid);               
             }
             if (species_use == 1)
             {
-                using (SQLiteConnection con = new SQLiteConnection(connect))
-                {
-                    //Add a CheckBox Column to the DataGridView Header Cell.
-                    con.Open();
-                    string stm = select;
-                    try
-                    {
-                        using (SQLiteCommand cmd = new SQLiteCommand(stm, con))
-                        {
-                            SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
-                            DataSet ds = new DataSet();
-                            try
-                            {
-                                da.Fill(ds);
-                                DataTable dt = ds.Tables[0];
-                                bunifuCustomDataGrid1.DataSource = dt;
-
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show("Errrrrrrror");
-                            }
-                        }
-                        con.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
+                sfq.SQLite_Query(bunifuCustomDataGrid1, select);
                 add_checkbox(bunifuCustomDataGrid);
             }
         }
@@ -168,9 +94,10 @@ namespace Telegram_Spam_Tools
         }
         #endregion
         //Function datagridview and insert checkbox(use create datasource)
-        #region gridview
+        #region Gridview
         internal void gridview(DataGridView bunifuCustomDataGrid1, string select, int species)
         {
+            SQLite_Funciton_Query sfq = new SQLite_Funciton_Query();
             species_use = species;
             bunifuCustomDataGrid = bunifuCustomDataGrid1;
             selected = select;
@@ -178,70 +105,12 @@ namespace Telegram_Spam_Tools
             bunifuCustomDataGrid.ReadOnly = true;
             if (species_use == 0)
             {
-                using (SQLiteConnection con = new SQLiteConnection(connect))
-                {
-                    //Add a CheckBox Column to the DataGridView Header Cell.
-                    con.Open();
-                    string stm = select;
-                    try
-                    {
-                        using (SQLiteCommand cmd = new SQLiteCommand(stm, con))
-                        {
-                            SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
-                            DataSet ds = new DataSet();
-                            try
-                            {
-                                da.Fill(ds);
-                                DataTable dt = ds.Tables[0];
-                                bunifuCustomDataGrid1.DataSource = dt;
-
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show("Errrrrrrror");
-                            }
-                        }
-                        con.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
+                sfq.SQLite_Query(bunifuCustomDataGrid1, select);
                 add_checkbox(bunifuCustomDataGrid);
             }
             if (species_use == 1)
             {
-                using (SQLiteConnection con = new SQLiteConnection(connect))
-                {
-                    //Add a CheckBox Column to the DataGridView Header Cell.
-                    con.Open();
-                    string stm = select;
-                    try
-                    {
-                        using (SQLiteCommand cmd = new SQLiteCommand(stm, con))
-                        {
-                            SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
-                            DataSet ds = new DataSet();
-                            try
-                            {
-                                da.Fill(ds);
-                                DataTable dt = ds.Tables[0];
-                                bunifuCustomDataGrid1.DataSource = dt;
-
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show("Errrrrrrror");
-                            }
-                        }
-                        con.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
+                sfq.SQLite_Query(bunifuCustomDataGrid1, select);
                 add_checkbox(bunifuCustomDataGrid);
             }
         }
@@ -308,6 +177,5 @@ namespace Telegram_Spam_Tools
             }
         }
         #endregion
-
     }
 }
