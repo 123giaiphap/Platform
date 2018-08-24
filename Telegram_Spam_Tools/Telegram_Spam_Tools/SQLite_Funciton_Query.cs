@@ -134,5 +134,27 @@ namespace Telegram_Spam_Tools
                 }
             }
         }
+        public void SQLite_Query_Log_Database(DataGridView Data_GridView, string Select_Querry)
+        {
+            using (SQLiteConnection con = new SQLiteConnection(connect))
+            {
+                //Add a CheckBox Column to the DataGridView Header Cell.
+                MessageBox.Show(Select_Querry);
+                con.Open();
+                try
+                {
+                    string sql = Select_Querry;
+                    using (var cmd = new SQLiteCommand(sql, con))
+                    {                       
+                        cmd.ExecuteNonQuery();
+                    }
+                    con.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
     }
 }

@@ -39,6 +39,7 @@ namespace Telegram_Spam_Tools
         private string Back_Color = string.Empty;
         private string Font_Name = string.Empty;
         private int Font_size;
+        private string User_Control = "adminstrator";
         private DataGridView bunifuCustomDataGrid = new DataGridView();
         System.Media.SoundPlayer player = new System.Media.SoundPlayer("click.wav");
 
@@ -200,7 +201,7 @@ namespace Telegram_Spam_Tools
         #region Button Start
         private void btnStart_Click(object sender, EventArgs e)
         {
-
+           
         }
         #endregion
         #region Button Exit-Logout
@@ -300,6 +301,9 @@ namespace Telegram_Spam_Tools
                     this.bunifuCustomDataGrid1.Columns[max + 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                     this.bunifuCustomDataGrid1.Columns[max + 2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                     this.bunifuCustomDataGrid1.Columns[max + 3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                    bunifuCustomDataGrid1.Columns[max + 1].HeaderCell.Style.BackColor = Color.Transparent;
+                    bunifuCustomDataGrid1.Columns[max + 2].HeaderCell.Style.BackColor = Color.Transparent;
+                    bunifuCustomDataGrid1.Columns[max + 3].HeaderCell.Style.BackColor = Color.Transparent;
                     this.grid = max + 2;
                     try
                     {
@@ -405,7 +409,8 @@ namespace Telegram_Spam_Tools
         {
             SQLite_Funciton_Query sfq = new SQLite_Funciton_Query();
             sfq.SQLite_Query_Status(this.active, bunifuCustomDataGrid1.Rows[this.rowIndex].Cells[1].Value.ToString());
-            
+            Log_DataBase("Status Active");
+
             //  m.Items[2].Text = "Stop";
         }
         #endregion
@@ -414,6 +419,7 @@ namespace Telegram_Spam_Tools
         {
             SQLite_Funciton_Query sfq = new SQLite_Funciton_Query();
             sfq.SQLite_Query_Status(this.stop, bunifuCustomDataGrid1.Rows[this.rowIndex].Cells[1].Value.ToString());
+            Log_DataBase("Status Stop");
         }
         #endregion
         public void ImageRowDisplay()
@@ -549,7 +555,8 @@ namespace Telegram_Spam_Tools
         {
             Function_Settings fnc = new Function_Settings();
             SQLite_Funciton_Query sfq = new SQLite_Funciton_Query();
-            sfq.SQLite_Query_Delete(this.delete, bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString());           
+            sfq.SQLite_Query_Delete(this.delete, bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString());
+            Log_DataBase("Delete data");
             bunifuCustomDataGrid.Rows.RemoveAt(this.rowIndex);
             fnc.reload(bunifuCustomDataGrid, select, species);
         }
@@ -639,6 +646,7 @@ namespace Telegram_Spam_Tools
         private void btnApply_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Click");
+            Log_DataBase("Apply Choise Link");
             //using (SQLiteConnection sqlConn = new SQLiteConnection(connect))
             //{
             //    try
@@ -790,6 +798,23 @@ namespace Telegram_Spam_Tools
             this.Back_Color = stf.Back_Color;
             this.Font_Name = stf.Font_Name;
             this.Font_size = stf.Font_size;
+        }
+        #endregion
+
+        private void bunifuCustomDataGrid1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        {
+            bunifuCustomDataGrid1.Columns[e.Column.Index].SortMode = DataGridViewColumnSortMode.NotSortable;
+        }
+        private void Create_Sql_menu_db()
+        {
+
+        }
+        #region Write Log DataBase
+        private void Log_DataBase(string fucntion)
+        {
+            string select = "INSERT INTO Log (Name, Time, Action) VALUES('"+User_Control.ToString()+ "', '"+ DateTime.Now.ToString()+ "', '"+fucntion.ToString()+"');";
+            SQLite_Funciton_Query sfq = new SQLite_Funciton_Query();
+            sfq.SQLite_Query_Log_Database(bunifuCustomDataGrid1,select);
         }
         #endregion
     }
