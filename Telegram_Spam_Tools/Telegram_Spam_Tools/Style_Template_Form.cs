@@ -16,7 +16,7 @@ namespace Telegram_Spam_Tools
         public string Fore_Color = string.Empty;
         public string Back_Color = string.Empty;
         public string Font_Name = string.Empty;
-        public int Font_size;        
+        public int Font_Size;        
         internal void Style(string name)
         {
             if (name == "currenry")
@@ -30,7 +30,7 @@ namespace Telegram_Spam_Tools
             this.Fore_Color = "Brown";
             this.Back_Color = "Yellow";
             this.Font_Name = "Roboto";
-            this.Font_size = 10;        
+            this.Font_Size = 10;        
         }
     }
 }

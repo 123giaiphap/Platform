@@ -1,6 +1,6 @@
 ﻿namespace Telegram_Spam_Tools
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            AnimatorNS.Animation animation3 = new AnimatorNS.Animation();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            AnimatorNS.Animation animation4 = new AnimatorNS.Animation();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            AnimatorNS.Animation animation2 = new AnimatorNS.Animation();
+            AnimatorNS.Animation animation1 = new AnimatorNS.Animation();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSetting = new Bunifu.Framework.UI.BunifuImageButton();
             this.btnStart = new Bunifu.Framework.UI.BunifuImageButton();
@@ -53,7 +53,7 @@
             this.bunifuTileButton1 = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.bunifuCustomDataGrid1 = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.Main_GridView = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.bunifuCustomLabel9 = new Bunifu.Framework.UI.BunifuCustomLabel();
@@ -81,14 +81,25 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnApply = new Bunifu.Framework.UI.BunifuThinButton2();
             this.chktp2 = new System.Windows.Forms.CheckBox();
+            this.lbltp2Tittle = new System.Windows.Forms.Label();
+            this.txttp2Name = new System.Windows.Forms.TextBox();
             this.btnBackAll = new Bunifu.Framework.UI.BunifuImageButton();
             this.btnBack = new Bunifu.Framework.UI.BunifuImageButton();
             this.btnNextAll = new Bunifu.Framework.UI.BunifuImageButton();
             this.btnNext = new Bunifu.Framework.UI.BunifuImageButton();
-            this.lbltp2Tittle = new System.Windows.Forms.Label();
-            this.txttp2Name = new System.Windows.Forms.TextBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cb2 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cb1 = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.btnFilter = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.bunifuCustomLabel11 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.bunifuCustomLabel10 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.Log_GridView = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.AddNewAnimation = new AnimatorNS.Animator(this.components);
             this.Panelmenu = new System.Windows.Forms.Panel();
             this.btnMenu = new Bunifu.Framework.UI.BunifuImageButton();
@@ -101,13 +112,6 @@
             this.label = new System.Windows.Forms.PictureBox();
             this.MenuAnimation = new AnimatorNS.Animator(this.components);
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.bunifuCustomDataGrid2 = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-            this.bunifuDatepicker1 = new Bunifu.Framework.UI.BunifuDatepicker();
-            this.bunifuDatepicker2 = new Bunifu.Framework.UI.BunifuDatepicker();
-            this.bunifuCustomLabel10 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.bunifuCustomLabel11 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.bunifuThinButton23 = new Bunifu.Framework.UI.BunifuThinButton2();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStart)).BeginInit();
@@ -116,7 +120,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnReload)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNew)).BeginInit();
             this.PanelNew.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bunifuCustomDataGrid1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Main_GridView)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -127,11 +131,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnBack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNextAll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Log_GridView)).BeginInit();
             this.Panelmenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.label)).BeginInit();
-            this.tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bunifuCustomDataGrid2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -148,9 +152,9 @@
             this.MenuAnimation.SetDecoration(this.panel1, AnimatorNS.DecorationType.None);
             this.AddNewAnimation.SetDecoration(this.panel1, AnimatorNS.DecorationType.None);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(50, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1264, 34);
+            this.panel1.Size = new System.Drawing.Size(1214, 34);
             this.panel1.TabIndex = 0;
             // 
             // btnSetting
@@ -220,6 +224,7 @@
             this.btnStop.TabIndex = 8;
             this.btnStop.TabStop = false;
             this.btnStop.Zoom = 10;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // btnDelete
             // 
@@ -438,41 +443,41 @@
             this.imageList1.Images.SetKeyName(2, "icons8-lock-filled-50.png");
             this.imageList1.Images.SetKeyName(3, "icons8-no-chat-50.png");
             // 
-            // bunifuCustomDataGrid1
+            // Main_GridView
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.bunifuCustomDataGrid1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.bunifuCustomDataGrid1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.bunifuCustomDataGrid1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.bunifuCustomDataGrid1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.bunifuCustomDataGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.bunifuCustomDataGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.AddNewAnimation.SetDecoration(this.bunifuCustomDataGrid1, AnimatorNS.DecorationType.None);
-            this.MenuAnimation.SetDecoration(this.bunifuCustomDataGrid1, AnimatorNS.DecorationType.None);
-            this.bunifuCustomDataGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bunifuCustomDataGrid1.DoubleBuffered = true;
-            this.bunifuCustomDataGrid1.EnableHeadersVisualStyles = false;
-            this.bunifuCustomDataGrid1.HeaderBgColor = System.Drawing.Color.SeaGreen;
-            this.bunifuCustomDataGrid1.HeaderForeColor = System.Drawing.Color.SeaGreen;
-            this.bunifuCustomDataGrid1.Location = new System.Drawing.Point(3, 3);
-            this.bunifuCustomDataGrid1.Name = "bunifuCustomDataGrid1";
-            this.bunifuCustomDataGrid1.ReadOnly = true;
-            this.bunifuCustomDataGrid1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.bunifuCustomDataGrid1.RowTemplate.Height = 32;
-            this.bunifuCustomDataGrid1.Size = new System.Drawing.Size(1199, 604);
-            this.bunifuCustomDataGrid1.TabIndex = 4;
-            this.bunifuCustomDataGrid1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.bunifuCustomDataGrid1_CellContentClick);
-            this.bunifuCustomDataGrid1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.bunifuCustomDataGrid1_CellFormatting);
-            this.bunifuCustomDataGrid1.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.bunifuCustomDataGrid1_CellPainting);
-            this.bunifuCustomDataGrid1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.bunifuCustomDataGrid1_ColumnAdded);
-            this.bunifuCustomDataGrid1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.bunifuCustomDataGrid1_MouseClick);
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.Main_GridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.Main_GridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.Main_GridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Main_GridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Main_GridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.Main_GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.AddNewAnimation.SetDecoration(this.Main_GridView, AnimatorNS.DecorationType.None);
+            this.MenuAnimation.SetDecoration(this.Main_GridView, AnimatorNS.DecorationType.None);
+            this.Main_GridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Main_GridView.DoubleBuffered = true;
+            this.Main_GridView.EnableHeadersVisualStyles = false;
+            this.Main_GridView.HeaderBgColor = System.Drawing.Color.SeaGreen;
+            this.Main_GridView.HeaderForeColor = System.Drawing.Color.SeaGreen;
+            this.Main_GridView.Location = new System.Drawing.Point(3, 3);
+            this.Main_GridView.Name = "Main_GridView";
+            this.Main_GridView.ReadOnly = true;
+            this.Main_GridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.Main_GridView.RowTemplate.Height = 32;
+            this.Main_GridView.Size = new System.Drawing.Size(1200, 638);
+            this.Main_GridView.TabIndex = 4;
+            this.Main_GridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.bunifuCustomDataGrid1_CellContentClick);
+            this.Main_GridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.bunifuCustomDataGrid1_CellFormatting);
+            this.Main_GridView.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.bunifuCustomDataGrid1_CellPainting);
+            this.Main_GridView.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.bunifuCustomDataGrid1_ColumnAdded);
+            this.Main_GridView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.bunifuCustomDataGrid1_MouseClick);
             // 
             // tabControl1
             // 
@@ -484,10 +489,10 @@
             this.AddNewAnimation.SetDecoration(this.tabControl1, AnimatorNS.DecorationType.None);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.tabControl1.Location = new System.Drawing.Point(50, 34);
+            this.tabControl1.Location = new System.Drawing.Point(50, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1213, 647);
+            this.tabControl1.Size = new System.Drawing.Size(1214, 681);
             this.tabControl1.TabIndex = 5;
             // 
             // tabPage3
@@ -518,7 +523,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 33);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1205, 610);
+            this.tabPage3.Size = new System.Drawing.Size(1206, 644);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -775,6 +780,7 @@
             this.AddNewAnimation.SetDecoration(this.bunifuCustomLabel3, AnimatorNS.DecorationType.None);
             this.MenuAnimation.SetDecoration(this.bunifuCustomLabel3, AnimatorNS.DecorationType.None);
             this.bunifuCustomLabel3.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.bunifuCustomLabel3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.bunifuCustomLabel3.Location = new System.Drawing.Point(419, 93);
             this.bunifuCustomLabel3.Name = "bunifuCustomLabel3";
             this.bunifuCustomLabel3.Size = new System.Drawing.Size(249, 32);
@@ -841,13 +847,13 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.bunifuCustomDataGrid1);
+            this.tabPage1.Controls.Add(this.Main_GridView);
             this.MenuAnimation.SetDecoration(this.tabPage1, AnimatorNS.DecorationType.None);
             this.AddNewAnimation.SetDecoration(this.tabPage1, AnimatorNS.DecorationType.None);
             this.tabPage1.Location = new System.Drawing.Point(4, 33);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1205, 610);
+            this.tabPage1.Size = new System.Drawing.Size(1206, 644);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -856,12 +862,12 @@
             // 
             this.tabPage2.Controls.Add(this.btnApply);
             this.tabPage2.Controls.Add(this.chktp2);
+            this.tabPage2.Controls.Add(this.lbltp2Tittle);
+            this.tabPage2.Controls.Add(this.txttp2Name);
             this.tabPage2.Controls.Add(this.btnBackAll);
             this.tabPage2.Controls.Add(this.btnBack);
             this.tabPage2.Controls.Add(this.btnNextAll);
             this.tabPage2.Controls.Add(this.btnNext);
-            this.tabPage2.Controls.Add(this.lbltp2Tittle);
-            this.tabPage2.Controls.Add(this.txttp2Name);
             this.tabPage2.Controls.Add(this.listBox2);
             this.tabPage2.Controls.Add(this.listBox1);
             this.MenuAnimation.SetDecoration(this.tabPage2, AnimatorNS.DecorationType.None);
@@ -869,7 +875,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 33);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1205, 610);
+            this.tabPage2.Size = new System.Drawing.Size(1206, 644);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -913,6 +919,27 @@
             this.chktp2.TabIndex = 9;
             this.chktp2.Text = "checkBox1";
             this.chktp2.UseVisualStyleBackColor = true;
+            // 
+            // lbltp2Tittle
+            // 
+            this.lbltp2Tittle.AutoSize = true;
+            this.AddNewAnimation.SetDecoration(this.lbltp2Tittle, AnimatorNS.DecorationType.None);
+            this.MenuAnimation.SetDecoration(this.lbltp2Tittle, AnimatorNS.DecorationType.None);
+            this.lbltp2Tittle.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lbltp2Tittle.Location = new System.Drawing.Point(17, 22);
+            this.lbltp2Tittle.Name = "lbltp2Tittle";
+            this.lbltp2Tittle.Size = new System.Drawing.Size(88, 16);
+            this.lbltp2Tittle.TabIndex = 3;
+            this.lbltp2Tittle.Text = "Comment: ";
+            // 
+            // txttp2Name
+            // 
+            this.AddNewAnimation.SetDecoration(this.txttp2Name, AnimatorNS.DecorationType.None);
+            this.MenuAnimation.SetDecoration(this.txttp2Name, AnimatorNS.DecorationType.None);
+            this.txttp2Name.Location = new System.Drawing.Point(106, 20);
+            this.txttp2Name.Name = "txttp2Name";
+            this.txttp2Name.Size = new System.Drawing.Size(399, 29);
+            this.txttp2Name.TabIndex = 2;
             // 
             // btnBackAll
             // 
@@ -978,27 +1005,6 @@
             this.btnNext.Zoom = 10;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
-            // lbltp2Tittle
-            // 
-            this.lbltp2Tittle.AutoSize = true;
-            this.AddNewAnimation.SetDecoration(this.lbltp2Tittle, AnimatorNS.DecorationType.None);
-            this.MenuAnimation.SetDecoration(this.lbltp2Tittle, AnimatorNS.DecorationType.None);
-            this.lbltp2Tittle.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lbltp2Tittle.Location = new System.Drawing.Point(17, 22);
-            this.lbltp2Tittle.Name = "lbltp2Tittle";
-            this.lbltp2Tittle.Size = new System.Drawing.Size(88, 16);
-            this.lbltp2Tittle.TabIndex = 3;
-            this.lbltp2Tittle.Text = "Comment: ";
-            // 
-            // txttp2Name
-            // 
-            this.AddNewAnimation.SetDecoration(this.txttp2Name, AnimatorNS.DecorationType.None);
-            this.MenuAnimation.SetDecoration(this.txttp2Name, AnimatorNS.DecorationType.None);
-            this.txttp2Name.Location = new System.Drawing.Point(106, 20);
-            this.txttp2Name.Name = "txttp2Name";
-            this.txttp2Name.Size = new System.Drawing.Size(399, 29);
-            this.txttp2Name.TabIndex = 2;
-            // 
             // listBox2
             // 
             this.MenuAnimation.SetDecoration(this.listBox2, AnimatorNS.DecorationType.None);
@@ -1023,26 +1029,193 @@
             this.listBox1.Size = new System.Drawing.Size(291, 368);
             this.listBox1.TabIndex = 0;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.label2);
+            this.tabPage4.Controls.Add(this.cb2);
+            this.tabPage4.Controls.Add(this.label1);
+            this.tabPage4.Controls.Add(this.cb1);
+            this.tabPage4.Controls.Add(this.dateTimePicker2);
+            this.tabPage4.Controls.Add(this.dateTimePicker1);
+            this.tabPage4.Controls.Add(this.btnFilter);
+            this.tabPage4.Controls.Add(this.bunifuCustomLabel11);
+            this.tabPage4.Controls.Add(this.bunifuCustomLabel10);
+            this.tabPage4.Controls.Add(this.Log_GridView);
+            this.MenuAnimation.SetDecoration(this.tabPage4, AnimatorNS.DecorationType.None);
+            this.AddNewAnimation.SetDecoration(this.tabPage4, AnimatorNS.DecorationType.None);
+            this.tabPage4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.tabPage4.Location = new System.Drawing.Point(4, 33);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(1206, 644);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.AddNewAnimation.SetDecoration(this.label2, AnimatorNS.DecorationType.None);
+            this.MenuAnimation.SetDecoration(this.label2, AnimatorNS.DecorationType.None);
+            this.label2.Location = new System.Drawing.Point(660, 42);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(51, 20);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Name";
+            // 
+            // cb2
+            // 
+            this.MenuAnimation.SetDecoration(this.cb2, AnimatorNS.DecorationType.None);
+            this.AddNewAnimation.SetDecoration(this.cb2, AnimatorNS.DecorationType.None);
+            this.cb2.FormattingEnabled = true;
+            this.cb2.Location = new System.Drawing.Point(720, 38);
+            this.cb2.Name = "cb2";
+            this.cb2.Size = new System.Drawing.Size(153, 28);
+            this.cb2.TabIndex = 10;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.AddNewAnimation.SetDecoration(this.label1, AnimatorNS.DecorationType.None);
+            this.MenuAnimation.SetDecoration(this.label1, AnimatorNS.DecorationType.None);
+            this.label1.Location = new System.Drawing.Point(660, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 20);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Action";
+            // 
+            // cb1
+            // 
+            this.MenuAnimation.SetDecoration(this.cb1, AnimatorNS.DecorationType.None);
+            this.AddNewAnimation.SetDecoration(this.cb1, AnimatorNS.DecorationType.None);
+            this.cb1.FormattingEnabled = true;
+            this.cb1.Location = new System.Drawing.Point(720, 7);
+            this.cb1.Name = "cb1";
+            this.cb1.Size = new System.Drawing.Size(153, 28);
+            this.cb1.TabIndex = 8;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.AddNewAnimation.SetDecoration(this.dateTimePicker2, AnimatorNS.DecorationType.None);
+            this.MenuAnimation.SetDecoration(this.dateTimePicker2, AnimatorNS.DecorationType.None);
+            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dateTimePicker2.Location = new System.Drawing.Point(410, 38);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(214, 26);
+            this.dateTimePicker2.TabIndex = 7;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.AddNewAnimation.SetDecoration(this.dateTimePicker1, AnimatorNS.DecorationType.None);
+            this.MenuAnimation.SetDecoration(this.dateTimePicker1, AnimatorNS.DecorationType.None);
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(410, 7);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(214, 26);
+            this.dateTimePicker1.TabIndex = 6;
+            // 
+            // btnFilter
+            // 
+            this.btnFilter.ActiveBorderThickness = 1;
+            this.btnFilter.ActiveCornerRadius = 20;
+            this.btnFilter.ActiveFillColor = System.Drawing.Color.SeaGreen;
+            this.btnFilter.ActiveForecolor = System.Drawing.Color.White;
+            this.btnFilter.ActiveLineColor = System.Drawing.Color.SeaGreen;
+            this.btnFilter.BackColor = System.Drawing.Color.Transparent;
+            this.btnFilter.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFilter.BackgroundImage")));
+            this.btnFilter.ButtonText = "Filter";
+            this.btnFilter.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MenuAnimation.SetDecoration(this.btnFilter, AnimatorNS.DecorationType.None);
+            this.AddNewAnimation.SetDecoration(this.btnFilter, AnimatorNS.DecorationType.None);
+            this.btnFilter.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFilter.ForeColor = System.Drawing.Color.SeaGreen;
+            this.btnFilter.IdleBorderThickness = 1;
+            this.btnFilter.IdleCornerRadius = 20;
+            this.btnFilter.IdleFillColor = System.Drawing.Color.White;
+            this.btnFilter.IdleForecolor = System.Drawing.Color.SeaGreen;
+            this.btnFilter.IdleLineColor = System.Drawing.Color.SeaGreen;
+            this.btnFilter.Location = new System.Drawing.Point(921, 38);
+            this.btnFilter.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(114, 34);
+            this.btnFilter.TabIndex = 5;
+            this.btnFilter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
+            // 
+            // bunifuCustomLabel11
+            // 
+            this.bunifuCustomLabel11.AutoSize = true;
+            this.AddNewAnimation.SetDecoration(this.bunifuCustomLabel11, AnimatorNS.DecorationType.None);
+            this.MenuAnimation.SetDecoration(this.bunifuCustomLabel11, AnimatorNS.DecorationType.None);
+            this.bunifuCustomLabel11.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.bunifuCustomLabel11.Location = new System.Drawing.Point(288, 44);
+            this.bunifuCustomLabel11.Name = "bunifuCustomLabel11";
+            this.bunifuCustomLabel11.Size = new System.Drawing.Size(89, 18);
+            this.bunifuCustomLabel11.TabIndex = 4;
+            this.bunifuCustomLabel11.Text = "Time End";
+            // 
+            // bunifuCustomLabel10
+            // 
+            this.bunifuCustomLabel10.AutoSize = true;
+            this.AddNewAnimation.SetDecoration(this.bunifuCustomLabel10, AnimatorNS.DecorationType.None);
+            this.MenuAnimation.SetDecoration(this.bunifuCustomLabel10, AnimatorNS.DecorationType.None);
+            this.bunifuCustomLabel10.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.bunifuCustomLabel10.Location = new System.Drawing.Point(288, 13);
+            this.bunifuCustomLabel10.Name = "bunifuCustomLabel10";
+            this.bunifuCustomLabel10.Size = new System.Drawing.Size(100, 18);
+            this.bunifuCustomLabel10.TabIndex = 3;
+            this.bunifuCustomLabel10.Text = "Time Start";
+            // 
+            // Log_GridView
+            // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.Log_GridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.Log_GridView.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.Log_GridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Log_GridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Log_GridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.Log_GridView.ColumnHeadersHeight = 45;
+            this.AddNewAnimation.SetDecoration(this.Log_GridView, AnimatorNS.DecorationType.None);
+            this.MenuAnimation.SetDecoration(this.Log_GridView, AnimatorNS.DecorationType.None);
+            this.Log_GridView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Log_GridView.DoubleBuffered = true;
+            this.Log_GridView.EnableHeadersVisualStyles = false;
+            this.Log_GridView.HeaderBgColor = System.Drawing.Color.SeaGreen;
+            this.Log_GridView.HeaderForeColor = System.Drawing.Color.SeaGreen;
+            this.Log_GridView.Location = new System.Drawing.Point(0, 72);
+            this.Log_GridView.Name = "Log_GridView";
+            this.Log_GridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.Log_GridView.Size = new System.Drawing.Size(1206, 572);
+            this.Log_GridView.TabIndex = 0;
+            // 
             // AddNewAnimation
             // 
             this.AddNewAnimation.AnimationType = AnimatorNS.AnimationType.HorizSlide;
             this.AddNewAnimation.Cursor = null;
-            animation3.AnimateOnlyDifferences = true;
-            animation3.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.BlindCoeff")));
-            animation3.LeafCoeff = 0F;
-            animation3.MaxTime = 1F;
-            animation3.MinTime = 0F;
-            animation3.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.MosaicCoeff")));
-            animation3.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation3.MosaicShift")));
-            animation3.MosaicSize = 0;
-            animation3.Padding = new System.Windows.Forms.Padding(0);
-            animation3.RotateCoeff = 0F;
-            animation3.RotateLimit = 0F;
-            animation3.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.ScaleCoeff")));
-            animation3.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.SlideCoeff")));
-            animation3.TimeCoeff = 0F;
-            animation3.TransparencyCoeff = 0F;
-            this.AddNewAnimation.DefaultAnimation = animation3;
+            animation2.AnimateOnlyDifferences = true;
+            animation2.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.BlindCoeff")));
+            animation2.LeafCoeff = 0F;
+            animation2.MaxTime = 1F;
+            animation2.MinTime = 0F;
+            animation2.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicCoeff")));
+            animation2.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicShift")));
+            animation2.MosaicSize = 0;
+            animation2.Padding = new System.Windows.Forms.Padding(0);
+            animation2.RotateCoeff = 0F;
+            animation2.RotateLimit = 0F;
+            animation2.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.ScaleCoeff")));
+            animation2.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.SlideCoeff")));
+            animation2.TimeCoeff = 0F;
+            animation2.TransparencyCoeff = 0F;
+            this.AddNewAnimation.DefaultAnimation = animation2;
             // 
             // Panelmenu
             // 
@@ -1060,9 +1233,9 @@
             this.AddNewAnimation.SetDecoration(this.Panelmenu, AnimatorNS.DecorationType.None);
             this.Panelmenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panelmenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(216)))), ((int)(((byte)(255)))));
-            this.Panelmenu.Location = new System.Drawing.Point(0, 34);
+            this.Panelmenu.Location = new System.Drawing.Point(0, 0);
             this.Panelmenu.Name = "Panelmenu";
-            this.Panelmenu.Size = new System.Drawing.Size(50, 647);
+            this.Panelmenu.Size = new System.Drawing.Size(50, 681);
             this.Panelmenu.TabIndex = 21;
             // 
             // btnMenu
@@ -1325,22 +1498,22 @@
             // 
             this.MenuAnimation.AnimationType = AnimatorNS.AnimationType.HorizSlideAndRotate;
             this.MenuAnimation.Cursor = null;
-            animation4.AnimateOnlyDifferences = true;
-            animation4.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.BlindCoeff")));
-            animation4.LeafCoeff = 0F;
-            animation4.MaxTime = 1F;
-            animation4.MinTime = 0F;
-            animation4.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.MosaicCoeff")));
-            animation4.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation4.MosaicShift")));
-            animation4.MosaicSize = 0;
-            animation4.Padding = new System.Windows.Forms.Padding(50);
-            animation4.RotateCoeff = 0.3F;
-            animation4.RotateLimit = 0.2F;
-            animation4.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.ScaleCoeff")));
-            animation4.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.SlideCoeff")));
-            animation4.TimeCoeff = 0F;
-            animation4.TransparencyCoeff = 0F;
-            this.MenuAnimation.DefaultAnimation = animation4;
+            animation1.AnimateOnlyDifferences = true;
+            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
+            animation1.LeafCoeff = 0F;
+            animation1.MaxTime = 1F;
+            animation1.MinTime = 0F;
+            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
+            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
+            animation1.MosaicSize = 0;
+            animation1.Padding = new System.Windows.Forms.Padding(50);
+            animation1.RotateCoeff = 0.3F;
+            animation1.RotateLimit = 0.2F;
+            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
+            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
+            animation1.TimeCoeff = 0F;
+            animation1.TransparencyCoeff = 0F;
+            this.MenuAnimation.DefaultAnimation = animation1;
             this.MenuAnimation.TimeStep = 0.01F;
             // 
             // bunifuElipse1
@@ -1348,152 +1521,23 @@
             this.bunifuElipse1.ElipseRadius = 10;
             this.bunifuElipse1.TargetControl = this;
             // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.bunifuThinButton23);
-            this.tabPage4.Controls.Add(this.bunifuCustomLabel11);
-            this.tabPage4.Controls.Add(this.bunifuCustomLabel10);
-            this.tabPage4.Controls.Add(this.bunifuDatepicker2);
-            this.tabPage4.Controls.Add(this.bunifuDatepicker1);
-            this.tabPage4.Controls.Add(this.bunifuCustomDataGrid2);
-            this.MenuAnimation.SetDecoration(this.tabPage4, AnimatorNS.DecorationType.None);
-            this.AddNewAnimation.SetDecoration(this.tabPage4, AnimatorNS.DecorationType.None);
-            this.tabPage4.Location = new System.Drawing.Point(4, 33);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1205, 610);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "tabPage4";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // bunifuCustomDataGrid2
-            // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.bunifuCustomDataGrid2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
-            this.bunifuCustomDataGrid2.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.bunifuCustomDataGrid2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.bunifuCustomDataGrid2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.bunifuCustomDataGrid2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.bunifuCustomDataGrid2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.AddNewAnimation.SetDecoration(this.bunifuCustomDataGrid2, AnimatorNS.DecorationType.None);
-            this.MenuAnimation.SetDecoration(this.bunifuCustomDataGrid2, AnimatorNS.DecorationType.None);
-            this.bunifuCustomDataGrid2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.bunifuCustomDataGrid2.DoubleBuffered = true;
-            this.bunifuCustomDataGrid2.EnableHeadersVisualStyles = false;
-            this.bunifuCustomDataGrid2.HeaderBgColor = System.Drawing.Color.SeaGreen;
-            this.bunifuCustomDataGrid2.HeaderForeColor = System.Drawing.Color.SeaGreen;
-            this.bunifuCustomDataGrid2.Location = new System.Drawing.Point(0, 86);
-            this.bunifuCustomDataGrid2.Name = "bunifuCustomDataGrid2";
-            this.bunifuCustomDataGrid2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.bunifuCustomDataGrid2.Size = new System.Drawing.Size(1205, 524);
-            this.bunifuCustomDataGrid2.TabIndex = 0;
-            // 
-            // bunifuDatepicker1
-            // 
-            this.bunifuDatepicker1.BackColor = System.Drawing.Color.SeaGreen;
-            this.bunifuDatepicker1.BorderRadius = 0;
-            this.MenuAnimation.SetDecoration(this.bunifuDatepicker1, AnimatorNS.DecorationType.None);
-            this.AddNewAnimation.SetDecoration(this.bunifuDatepicker1, AnimatorNS.DecorationType.None);
-            this.bunifuDatepicker1.ForeColor = System.Drawing.Color.White;
-            this.bunifuDatepicker1.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.bunifuDatepicker1.FormatCustom = null;
-            this.bunifuDatepicker1.Location = new System.Drawing.Point(322, 6);
-            this.bunifuDatepicker1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.bunifuDatepicker1.Name = "bunifuDatepicker1";
-            this.bunifuDatepicker1.Size = new System.Drawing.Size(257, 36);
-            this.bunifuDatepicker1.TabIndex = 1;
-            this.bunifuDatepicker1.Value = new System.DateTime(2018, 8, 24, 19, 13, 18, 273);
-            // 
-            // bunifuDatepicker2
-            // 
-            this.bunifuDatepicker2.BackColor = System.Drawing.Color.SeaGreen;
-            this.bunifuDatepicker2.BorderRadius = 0;
-            this.MenuAnimation.SetDecoration(this.bunifuDatepicker2, AnimatorNS.DecorationType.None);
-            this.AddNewAnimation.SetDecoration(this.bunifuDatepicker2, AnimatorNS.DecorationType.None);
-            this.bunifuDatepicker2.ForeColor = System.Drawing.Color.White;
-            this.bunifuDatepicker2.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.bunifuDatepicker2.FormatCustom = null;
-            this.bunifuDatepicker2.Location = new System.Drawing.Point(322, 46);
-            this.bunifuDatepicker2.Margin = new System.Windows.Forms.Padding(11, 11, 11, 11);
-            this.bunifuDatepicker2.Name = "bunifuDatepicker2";
-            this.bunifuDatepicker2.Size = new System.Drawing.Size(257, 36);
-            this.bunifuDatepicker2.TabIndex = 2;
-            this.bunifuDatepicker2.Value = new System.DateTime(2018, 8, 24, 19, 13, 18, 273);
-            // 
-            // bunifuCustomLabel10
-            // 
-            this.bunifuCustomLabel10.AutoSize = true;
-            this.AddNewAnimation.SetDecoration(this.bunifuCustomLabel10, AnimatorNS.DecorationType.None);
-            this.MenuAnimation.SetDecoration(this.bunifuCustomLabel10, AnimatorNS.DecorationType.None);
-            this.bunifuCustomLabel10.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.bunifuCustomLabel10.Location = new System.Drawing.Point(207, 13);
-            this.bunifuCustomLabel10.Name = "bunifuCustomLabel10";
-            this.bunifuCustomLabel10.Size = new System.Drawing.Size(100, 18);
-            this.bunifuCustomLabel10.TabIndex = 3;
-            this.bunifuCustomLabel10.Text = "Time Start";
-            // 
-            // bunifuCustomLabel11
-            // 
-            this.bunifuCustomLabel11.AutoSize = true;
-            this.AddNewAnimation.SetDecoration(this.bunifuCustomLabel11, AnimatorNS.DecorationType.None);
-            this.MenuAnimation.SetDecoration(this.bunifuCustomLabel11, AnimatorNS.DecorationType.None);
-            this.bunifuCustomLabel11.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.bunifuCustomLabel11.Location = new System.Drawing.Point(207, 54);
-            this.bunifuCustomLabel11.Name = "bunifuCustomLabel11";
-            this.bunifuCustomLabel11.Size = new System.Drawing.Size(89, 18);
-            this.bunifuCustomLabel11.TabIndex = 4;
-            this.bunifuCustomLabel11.Text = "Time End";
-            // 
-            // bunifuThinButton23
-            // 
-            this.bunifuThinButton23.ActiveBorderThickness = 1;
-            this.bunifuThinButton23.ActiveCornerRadius = 20;
-            this.bunifuThinButton23.ActiveFillColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton23.ActiveForecolor = System.Drawing.Color.White;
-            this.bunifuThinButton23.ActiveLineColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton23.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuThinButton23.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuThinButton23.BackgroundImage")));
-            this.bunifuThinButton23.ButtonText = "Apply";
-            this.bunifuThinButton23.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.MenuAnimation.SetDecoration(this.bunifuThinButton23, AnimatorNS.DecorationType.None);
-            this.AddNewAnimation.SetDecoration(this.bunifuThinButton23, AnimatorNS.DecorationType.None);
-            this.bunifuThinButton23.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuThinButton23.ForeColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton23.IdleBorderThickness = 1;
-            this.bunifuThinButton23.IdleCornerRadius = 20;
-            this.bunifuThinButton23.IdleFillColor = System.Drawing.Color.White;
-            this.bunifuThinButton23.IdleForecolor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton23.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton23.Location = new System.Drawing.Point(871, 37);
-            this.bunifuThinButton23.Margin = new System.Windows.Forms.Padding(5);
-            this.bunifuThinButton23.Name = "bunifuThinButton23";
-            this.bunifuThinButton23.Size = new System.Drawing.Size(114, 41);
-            this.bunifuThinButton23.TabIndex = 5;
-            this.bunifuThinButton23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.Panelmenu);
             this.Controls.Add(this.PanelNew);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.Panelmenu);
             this.AddNewAnimation.SetDecoration(this, AnimatorNS.DecorationType.None);
             this.MenuAnimation.SetDecoration(this, AnimatorNS.DecorationType.None);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnSetting)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStart)).EndInit();
@@ -1502,7 +1546,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnReload)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNew)).EndInit();
             this.PanelNew.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bunifuCustomDataGrid1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Main_GridView)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
@@ -1515,13 +1559,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnBack)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNextAll)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Log_GridView)).EndInit();
             this.Panelmenu.ResumeLayout(false);
             this.Panelmenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.label)).EndInit();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bunifuCustomDataGrid2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1540,7 +1584,7 @@
         private Bunifu.Framework.UI.BunifuImageButton btnNew;
         private System.Windows.Forms.ImageList imageList1;
         private Bunifu.Framework.UI.BunifuMetroTextbox txtSearch;
-        private Bunifu.Framework.UI.BunifuCustomDataGrid bunifuCustomDataGrid1;
+        private Bunifu.Framework.UI.BunifuCustomDataGrid Main_GridView;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -1596,10 +1640,14 @@
         private System.Windows.Forms.TabPage tabPage4;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel11;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel10;
-        private Bunifu.Framework.UI.BunifuDatepicker bunifuDatepicker2;
-        private Bunifu.Framework.UI.BunifuDatepicker bunifuDatepicker1;
-        private Bunifu.Framework.UI.BunifuCustomDataGrid bunifuCustomDataGrid2;
-        private Bunifu.Framework.UI.BunifuThinButton2 bunifuThinButton23;
+        private Bunifu.Framework.UI.BunifuCustomDataGrid Log_GridView;
+        private Bunifu.Framework.UI.BunifuThinButton2 btnFilter;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cb1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cb2;
     }
 }
 

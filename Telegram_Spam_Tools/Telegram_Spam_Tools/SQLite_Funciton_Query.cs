@@ -139,7 +139,6 @@ namespace Telegram_Spam_Tools
             using (SQLiteConnection con = new SQLiteConnection(connect))
             {
                 //Add a CheckBox Column to the DataGridView Header Cell.
-                MessageBox.Show(Select_Querry);
                 con.Open();
                 try
                 {
@@ -147,6 +146,32 @@ namespace Telegram_Spam_Tools
                     using (var cmd = new SQLiteCommand(sql, con))
                     {                       
                         cmd.ExecuteNonQuery();
+                    }
+                    con.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+        public void SQLite_Query_Combox(ComboBox Combo_Box, string Select_Querry)
+        {
+            using (SQLiteConnection con = new SQLiteConnection(connect))
+            {
+                con.Open();
+                string stm = Select_Querry;
+                try
+                {
+                    using (SQLiteCommand cmd = new SQLiteCommand(stm, con))
+                    {
+                        using (SQLiteDataReader rdr = cmd.ExecuteReader())
+                        {
+                            while (rdr.Read())
+                            {
+                                Combo_Box.Items.Add(rdr.GetString(0));
+                            }
+                        }
                     }
                     con.Close();
                 }

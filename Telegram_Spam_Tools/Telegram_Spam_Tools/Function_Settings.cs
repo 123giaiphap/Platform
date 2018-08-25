@@ -18,7 +18,7 @@ namespace Telegram_Spam_Tools
         private int species_use;
         private string selected = string.Empty;
         private string deleted = string.Empty;
-        Form1 f = new Form1();
+        MainForm f = new MainForm();
         private string active = string.Empty;
         private string stop = string.Empty;
         private string searched = string.Empty;
@@ -124,7 +124,7 @@ namespace Telegram_Spam_Tools
             {
                 Point headerCellLocation = bunifuCustomDataGrid1.GetCellDisplayRectangle(0, -1, true).Location;
                 //Place the Header CheckBox in the Location of the Header Cell.
-                headerCheckBox.Location = new Point(headerCellLocation.X + 8, headerCellLocation.Y + 13);
+                headerCheckBox.Location = new Point(headerCellLocation.X + 2, headerCellLocation.Y + 15);
                 headerCheckBox.BackColor = Color.SeaGreen;
                 headerCheckBox.Size = new Size(15, 15);
                 ////Assign Click event to the Header CheckBox.

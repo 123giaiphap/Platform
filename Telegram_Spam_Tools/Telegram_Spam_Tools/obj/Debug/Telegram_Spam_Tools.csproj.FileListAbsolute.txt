@@ -33,7 +33,6 @@ D:\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\EntityFramework.SqlServer.x
 D:\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\System.Data.SQLite.xml
 D:\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\System.Data.SQLite.dll.config
 D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.csprojAssemblyReference.cache
-D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.Form1.resources
 D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.Properties.Resources.resources
 D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.csproj.GenerateResource.cache
 D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.csproj.CoreCompileInputs.cache
@@ -42,3 +41,5 @@ D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.exe
 D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.pdb
 D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.Resource1.resources
 D:\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\Animator.dll
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.WaitForm.resources
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.MainForm.resources

@@ -14,61 +14,74 @@ using System.Drawing.Text;
 
 namespace Telegram_Spam_Tools
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        private ContextMenuStrip m = new ContextMenuStrip();
-        private string connect = string.Empty;
-        private int rowIndex;
-        private int columnIndex;
-        private int i = 0;
-        private int grid = 0;
-        private int grid1;
-        private int species;
-        internal int gridview_tab;
-        private string save_name = string.Empty;
-        private string save_link = string.Empty;
-        private string listbox1_item_sql = string.Empty;
-        private string listbox2_item_sql = string.Empty;
-        private string select = string.Empty;
-        private string active = string.Empty;
-        private string stop = string.Empty;
-        private string delete = string.Empty;
-        private string search = string.Empty;
-        private string location_type = string.Empty;
-        private string Fore_Color = string.Empty;
-        private string Back_Color = string.Empty;
-        private string Font_Name = string.Empty;
-        private int Font_size;
-        private string User_Control = "adminstrator";
-        private DataGridView bunifuCustomDataGrid = new DataGridView();
-        System.Media.SoundPlayer player = new System.Media.SoundPlayer("click.wav");
 
-        public Form1()
+        private string DBConnect = string.Empty;
+
+        private ContextMenuStrip m = new ContextMenuStrip();
+
+        private int Row_Index;
+        private int Column_Index;
+
+        private int Default_GridView;
+        internal int GridView_Index;
+
+        private int Multiple_Column_Merged_GridView = 0;
+        private int View_Column_Type;//Hien thi column theo hinh anh
+
+        private string Left_Item_ListBox_SQL = string.Empty;
+        private string Righ_Item_ListBox_SQL = string.Empty;
+        private string select = string.Empty;//Select_All_GridView_SQL
+        private string active = string.Empty;//Active_Status_GridView_SQL
+        private string stop = string.Empty;//Disable_Status_GridView_SQL
+        private string delete = string.Empty;//Delete_Row_GridView_SQL
+        private string search = string.Empty;//Search_Row_GridView_SQL
+
+        private string Cell_Back_Color = string.Empty;
+
+        private string Font_Fore_Color = string.Empty;
+        private string Font_Name = string.Empty;
+        private int Font_Size;
+        private string Log_Text_Concatenate;//Log+Text
+        private string User_ACL = "Administrator";
+
+        System.Media.SoundPlayer Clicked_Sound = new System.Media.SoundPlayer("click.wav");
+
+        public MainForm()
         {
-            connect = @"Data Source = telegram.db;Verison=3";
+            DBConnect = @"Data Source = telegram.db;Verison=3";
             InitializeComponent();
         }
-        private void Form1_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
             bunifuTextbox1.text = "Enter some text here";
             bunifuTextbox2._TextBox.PasswordChar = '*';
             Total_Status();
             Lang_Image_Font();
         }
+        private void Waiting_Proccessing_Loading()
+        {
+            for (int i = 0; i <= 500; i++)
+                Thread.Sleep(10);
+        }
         #region Format DataGridView
-        private void hahaha()
+        private void Default_Template_Gridview()
         {
             try
             {
-                this.bunifuCustomDataGrid = bunifuCustomDataGrid1;
-                bunifuCustomDataGrid.DataSource = null;
-                bunifuCustomDataGrid.Refresh();
-                bunifuCustomDataGrid.RowHeadersVisible = false;
-                bunifuCustomDataGrid.AllowUserToAddRows = false;
-                bunifuCustomDataGrid.ColumnHeadersHeight = 45;
-                bunifuCustomDataGrid1.HeaderBgColor = Color.SeaGreen;
-                bunifuCustomDataGrid1.HeaderForeColor = Color.White;
-                bunifuCustomDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                Main_GridView.DataSource = null;
+                Main_GridView.Refresh();
+                Main_GridView.RowHeadersVisible = false;
+                Main_GridView.AllowUserToAddRows = false;
+                Log_GridView.RowHeadersVisible = false;
+                Log_GridView.AllowUserToAddRows = false;
+                Main_GridView.ColumnHeadersHeight = 45;
+                Main_GridView.HeaderBgColor = Color.SeaGreen;
+                Main_GridView.HeaderForeColor = Color.White;
+                Log_GridView.HeaderForeColor = Color.White;
+                Main_GridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                Log_GridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
             catch (Exception ex)
             {
@@ -79,29 +92,32 @@ namespace Telegram_Spam_Tools
         #region Button A
         private void btnUser_Click(object sender, EventArgs e)
         {
-            this.species = 0;
-            lblTitle.Text = "TELEGRAM - USER";
-            hahaha();
+            this.View_Column_Type = 0;
+            //lblTitle.Text = "TELEGRAM - USER";
+            Default_Template_Gridview();
             tabControl1.SelectTab("tabPage1");
             Function_Settings dta = new Function_Settings();
-            this.listbox1_item_sql = "select Link.LinkName from LinkUser left join Link on LinkUser.IDLink=Link.IDLink where LinkUser.IDUser='";
-            this.listbox2_item_sql = "select Link.LinkName from Link where Link.IDLink NOT IN (select Link.IDLink from LinkUser left join Link on LinkUser.IDLink=Link.IDLink where LinkUser.IDUser='";
+            this.Left_Item_ListBox_SQL = "select Link.LinkName from LinkUser " +
+                "left join Link on LinkUser.IDLink=Link.IDLink where LinkUser.IDUser='";
+            this.Righ_Item_ListBox_SQL = "select Link.LinkName from Link where Link.IDLink NOT IN " +
+                "(select Link.IDLink from LinkUser left join Link on LinkUser.IDLink=Link.IDLink where LinkUser.IDUser='";
             this.active = "update User set Status = '2'  where IDUser ='";
             this.stop = "update User set Status = '1'  where IDUser ='";
             this.delete = "DELETE FROM User WHERE IDUser='";
-            this.select = "select User.IDUser, Status.Status, User.UserName,  User.Password, User.UserAgent, User.ProxyIP, User.ProxyPort, User.Description, User.DeleteDay, User.CreateDay,(select count(*) from LinkUser where LinkUser.IDUser=user.IDUser) as 'Link User' from  User left join Status, LinkUser on User.Status=Status.IDStatus group by User.IDUser";
-            if (grid1 == 0)
+            this.select = "select User.IDUser, Status.Status, User.UserName,  User.Password, User.UserAgent, User.ProxyIP, User.ProxyPort, User.Description, User.DeleteDay, User.CreateDay,(select count(*) " +
+                "from LinkUser where LinkUser.IDUser=user.IDUser) as 'Link User' from  User left join Status, LinkUser on User.Status=Status.IDStatus group by User.IDUser";
+            if (Default_GridView == 0)
             {
-                dta.gridview(bunifuCustomDataGrid1, this.select, this.species);
-                bunifuCustomDataGrid1.ClearSelection();
-                this.grid1 = 1;
+                dta.gridview(Main_GridView, this.select, this.View_Column_Type);
+                Main_GridView.ClearSelection();
+                this.Default_GridView = 1;
             }
             else
             {
-                dta.reload(bunifuCustomDataGrid1, this.select, this.species);
-                bunifuCustomDataGrid1.ClearSelection();
+                dta.reload(Main_GridView, this.select, this.View_Column_Type);
+                Main_GridView.ClearSelection();
             }
-            this.gridview_tab = 1;
+            this.GridView_Index = 1;
             color();
 
         }
@@ -109,56 +125,56 @@ namespace Telegram_Spam_Tools
         #region Button B
         private void btnLink_Click(object sender, EventArgs e)
         {
-            this.species = 0;
-            lblTitle.Text = "TELEGRAM - LINK";
-            hahaha();
+            this.View_Column_Type = 0;
+            //lblTitle.Text = "TELEGRAM - LINK";
+            Default_Template_Gridview();
             tabControl1.SelectTab("tabPage1");
             Function_Settings dta = new Function_Settings();
             this.active = "update Link set Status = '2'  where IDLink ='";
             this.stop = "update Link set Status = '1'  where IDLink ='";
             this.delete = "DELETE FROM Link WHERE IDLink='";
             this.select = "select Link.IDLink,Status.Status,Link.LinkName, Link.Description,Link.CreatedDate,(select count(*) from LinkGroup where LinkGroup.IDLink=link.IDLink) as 'Group Used' ,(select count(*) from LinkComment where LinkComment.IDLink=link.IDLink) as 'Comment Used',(select count(*) from LinkUser where LinkUser.IDLink=Link.IDLink) as 'User Used' from Link left join Status on Link.Status=Status.IDStatus";
-            if (grid1 == 0)
+            if (Default_GridView == 0)
             {
-                dta.gridview(bunifuCustomDataGrid1, this.select, this.species);
-                bunifuCustomDataGrid1.ClearSelection();
-                this.grid1 = 1;
+                dta.gridview(Main_GridView, this.select, this.View_Column_Type);
+                Main_GridView.ClearSelection();
+                this.Default_GridView = 1;
             }
             else
             {
-                dta.reload(bunifuCustomDataGrid1, this.select, this.species);
-                bunifuCustomDataGrid1.ClearSelection();
+                dta.reload(Main_GridView, this.select, this.View_Column_Type);
+                Main_GridView.ClearSelection();
             }
-            this.gridview_tab = 2;
+            this.GridView_Index = 2;
             color();
         }
         #endregion
         #region Button C
         private void btnGroup_Click(object sender, EventArgs e)
         {
-            this.species = 1;
-            lblTitle.Text = "TELEGRAM - GROUP";
-            hahaha();
+            this.View_Column_Type = 1;
+            //lblTitle.Text = "TELEGRAM - GROUP";
+            Default_Template_Gridview();
             tabControl1.SelectTab("tabPage1");
             Function_Settings dta = new Function_Settings();
-            this.listbox1_item_sql = "select Link.LinkName from LinkGroup left join Link on LinkGroup.IDLink=Link.IDLink where LinkGroup.IDGroup='";
-            this.listbox2_item_sql = "select Link.LinkName from Link where Link.IDLink NOT IN (select Link.IDLink from LinkGroup left join Link on LinkGroup.IDLink=Link.IDLink where LinkGroup.IDGroup='";
+            this.Left_Item_ListBox_SQL = "select Link.LinkName from LinkGroup left join Link on LinkGroup.IDLink=Link.IDLink where LinkGroup.IDGroup='";
+            this.Righ_Item_ListBox_SQL = "select Link.LinkName from Link where Link.IDLink NOT IN (select Link.IDLink from LinkGroup left join Link on LinkGroup.IDLink=Link.IDLink where LinkGroup.IDGroup='";
             this.active = "update ListGroup set Status = '2'  where IDGroup ='";
             this.stop = "update ListGroup set Status = '1'  where IDGroup ='";
             this.delete = "DELETE FROM ListGroup WHERE IDGroup='";
             this.select = "select ListGroup.IDGroup, Status.Status, ListGroup.GroupName, ListGroup.Password, ListGroup.CreatedDate,(select count(*) from LinkGroup where LinkGroup.IDGroup=ListGroup.IDGroup) as 'Link Used' from ListGroup , LinkGroup inner JOIN Status on ListGroup.Status=Status.IDStatus group by ListGroup.IDGroup";
-            if (grid1 == 0)
+            if (Default_GridView == 0)
             {
-                dta.gridview(bunifuCustomDataGrid1, this.select, this.species);
-                bunifuCustomDataGrid1.ClearSelection();
-                this.grid1 = 1;
+                dta.gridview(Main_GridView, this.select, this.View_Column_Type);
+                Main_GridView.ClearSelection();
+                this.Default_GridView = 1;
             }
             else
             {
-                dta.reload(bunifuCustomDataGrid1, this.select, this.species);
-                bunifuCustomDataGrid1.ClearSelection();
+                dta.reload(Main_GridView, this.select, this.View_Column_Type);
+                Main_GridView.ClearSelection();
             }
-            this.gridview_tab = 4;
+            this.GridView_Index = 4;
             color();
         }
         #endregion
@@ -172,38 +188,53 @@ namespace Telegram_Spam_Tools
         #region Button E 
         private void btnCmt_Click(object sender, EventArgs e)
         {
-            this.species = 1;
-            lblTitle.Text = "TELEGRAM - COMMENT";
-            hahaha();
+            this.View_Column_Type = 1;
+            //lblTitle.Text = "TELEGRAM - COMMENT";
+            Default_Template_Gridview();
             tabControl1.SelectTab("tabPage1");
             Function_Settings dta = new Function_Settings();
-            this.listbox1_item_sql = "select Link.LinkName from LinkComment left join Link on LinkComment.IDLink=Link.IDLink where LinkComment.IDComment='";
-            this.listbox2_item_sql = "select Link.LinkName from Link where Link.IDLink NOT IN (select Link.IDLink from LinkComment left join Link on LinkComment.IDLink=Link.IDLink where LinkComment.IDComment='";
+            this.Left_Item_ListBox_SQL = "select Link.LinkName from LinkComment left join Link on LinkComment.IDLink=Link.IDLink where LinkComment.IDComment='";
+            this.Righ_Item_ListBox_SQL = "select Link.LinkName from Link where Link.IDLink NOT IN (select Link.IDLink from LinkComment left join Link on LinkComment.IDLink=Link.IDLink where LinkComment.IDComment='";
             this.active = "update Comment set Status = '2'  where IDCmt ='";
             this.stop = "update Comment set Status = '1'  where IDCmt ='";
             this.delete = "DELETE FROM Comment WHERE IDCmt='";
             this.select = "select Comment.IDCmt, Status.Status, Comment.Comment,  Comment.Description , Comment.CreatedDate,(select count(*) from LinkComment where LinkComment.IDComment=Comment.IDCmt) as 'Link Used' from  Comment left join Status, LinkComment on Comment.Status=Status.IDStatus group by Comment.IDCmt";
-            if (grid1 == 0)
+            if (Default_GridView == 0)
             {
-                dta.gridview(bunifuCustomDataGrid1, this.select, this.species);
-                bunifuCustomDataGrid1.ClearSelection();
-                this.grid1 = 1;
+                dta.gridview(Main_GridView, this.select, this.View_Column_Type);
+                Main_GridView.ClearSelection();
+                this.Default_GridView = 1;
             }
             else
             {
-                dta.reload(bunifuCustomDataGrid1, this.select, this.species);
-                bunifuCustomDataGrid1.ClearSelection();
+                dta.reload(Main_GridView, this.select, this.View_Column_Type);
+                Main_GridView.ClearSelection();
             }
-            this.gridview_tab = 3;
+            this.GridView_Index = 3;
             color();
         }
         #endregion
         #region Button Start
         private void btnStart_Click(object sender, EventArgs e)
         {
-           
+            tabControl1.SelectTab("tabPage4");
+            Default_Template_Gridview();
+            this.select = "select * from  Log";
+            Function_Settings dta = new Function_Settings();
+            SQLite_Funciton_Query sfq = new SQLite_Funciton_Query();
+            dta.gridview(Log_GridView, this.select, this.View_Column_Type);
+            sfq.SQLite_Query_Combox(cb1, "SELECT DISTINCT Action FROM Log;");
+            sfq.SQLite_Query_Combox(cb2, "SELECT DISTINCT Name FROM Log;");
+            this.Log_GridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
         }
         #endregion
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            using (WaitForm frm = new WaitForm(Waiting_Proccessing_Loading))
+            {
+                frm.ShowDialog(this);
+            }
+        }
         #region Button Exit-Logout
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -242,10 +273,10 @@ namespace Telegram_Spam_Tools
         {
             Function_Settings dta = new Function_Settings();
             Total_Status();
-            if (this.grid1 == 1)
+            if (this.Default_GridView == 1)
             {
-                dta.reload(bunifuCustomDataGrid1, this.select, this.species);
-                bunifuCustomDataGrid1.ClearSelection();
+                dta.reload(Main_GridView, this.select, this.View_Column_Type);
+                Main_GridView.ClearSelection();
             }
             else
             {
@@ -260,28 +291,28 @@ namespace Telegram_Spam_Tools
             Create_Column_DataGridView cld = new Create_Column_DataGridView();
             m.Items.Clear();
             ToolStripItem item0 = m.Items.Add("Edit ");
-            item0.Click += new EventHandler(item0_Click);
+            item0.Click += new EventHandler(Menu_Item_0_Click);
             ToolStripItem item1 = m.Items.Add("Delete ");
             item1.Click += new EventHandler(item1_Click);
-            if (species == 0)
+            if (View_Column_Type == 0)
             {
-                for (int i = 0; i < bunifuCustomDataGrid1.RowCount; i++)
+                for (int i = 0; i < Main_GridView.RowCount; i++)
                 {
-                    string val = bunifuCustomDataGrid1.Rows[i].Cells[2].Value.ToString();
+                    string val = Main_GridView.Rows[i].Cells[2].Value.ToString();
                     if (val == "Active")
                     {
-                        Cells(bunifuCustomDataGrid.Rows[i].Cells[3], "currenry");
+                        Cells(Main_GridView.Rows[i].Cells[3], "currenry");
                     }
                     if (val == "Stop")
                     {
-                        bunifuCustomDataGrid.Rows[i].Cells[3].Style.ForeColor = Color.Red;
+                        Main_GridView.Rows[i].Cells[3].Style.ForeColor = Color.Red;
                     }
                 }
             }
-            if (species == 1)
+            if (View_Column_Type == 1)
             {
                 int max = 0;
-                for (int j = 0; j < bunifuCustomDataGrid1.ColumnCount; j++)
+                for (int j = 0; j < Main_GridView.ColumnCount; j++)
                 {
                     max++;
                 }
@@ -290,42 +321,43 @@ namespace Telegram_Spam_Tools
                 {
                     //MessageBox.Show(max.ToString());
                     DataGridViewImageColumn imgCol = new DataGridViewImageColumn();
-                    cld.Create_Image_Column(imgCol, bunifuCustomDataGrid1, "abc", "Image");
+                    cld.Create_Image_Column(imgCol, Main_GridView, "abc", "Image");
                     TextAndImageColumn txtcol = new TextAndImageColumn();
-                    cld.Create_TextAndImageColumn(txtcol, bunifuCustomDataGrid1, "anhxa", "");
+                    cld.Create_TextAndImageColumn(txtcol, Main_GridView, "anhxa", "");
                     TextAndImageColumn txtcol1 = new TextAndImageColumn();
-                    cld.Create_TextAndImageColumn(txtcol1, bunifuCustomDataGrid1, "anhxa1", "");
+                    cld.Create_TextAndImageColumn(txtcol1, Main_GridView, "anhxa1", "");
                     TextAndImageColumn txtcol2 = new TextAndImageColumn();
-                    cld.Create_TextAndImageColumn(txtcol2, bunifuCustomDataGrid1, "anhxa2", "");
-                    this.bunifuCustomDataGrid1.Columns[max].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                    this.bunifuCustomDataGrid1.Columns[max + 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                    this.bunifuCustomDataGrid1.Columns[max + 2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                    this.bunifuCustomDataGrid1.Columns[max + 3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                    bunifuCustomDataGrid1.Columns[max + 1].HeaderCell.Style.BackColor = Color.Transparent;
-                    bunifuCustomDataGrid1.Columns[max + 2].HeaderCell.Style.BackColor = Color.Transparent;
-                    bunifuCustomDataGrid1.Columns[max + 3].HeaderCell.Style.BackColor = Color.Transparent;
-                    this.grid = max + 2;
+                    cld.Create_TextAndImageColumn(txtcol2, Main_GridView, "anhxa2", "");
+                    this.Main_GridView.Columns[max].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                    this.Main_GridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                    this.Main_GridView.Columns[max + 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                    this.Main_GridView.Columns[max + 2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                    this.Main_GridView.Columns[max + 3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                    //bunifuCustomDataGrid1.Columns[max + 1].HeaderCell.Style.BackColor = Color.Transparent;
+                    //bunifuCustomDataGrid1.Columns[max + 2].HeaderCell.Style.BackColor = Color.Transparent;
+                    //bunifuCustomDataGrid1.Columns[max + 3].HeaderCell.Style.BackColor = Color.Transparent;
+                    this.Multiple_Column_Merged_GridView = max + 2;
                     try
                     {
-                        for (int i = 0; i < bunifuCustomDataGrid1.RowCount; i++)
+                        for (int i = 0; i < Main_GridView.RowCount; i++)
                         {
-                            this.bunifuCustomDataGrid1.Rows[i].Cells[1] = new TextAndImageCell();
-                            string val = bunifuCustomDataGrid1.Rows[i].Cells[2].Value.ToString();
-                            bunifuCustomDataGrid1.Rows[i].Cells[max + 1].Value = "12";
-                            bunifuCustomDataGrid1.Rows[i].Cells[max + 2].Value = "12";
-                            bunifuCustomDataGrid1.Rows[i].Cells[max + 3].Value = "12";
+                            this.Main_GridView.Rows[i].Cells[1] = new TextAndImageCell();
+                            string val = Main_GridView.Rows[i].Cells[2].Value.ToString();
+                            Main_GridView.Rows[i].Cells[max + 1].Value = "12";
+                            Main_GridView.Rows[i].Cells[max + 2].Value = "12";
+                            Main_GridView.Rows[i].Cells[max + 3].Value = "12";
                             if (val == "Active")
                             {
-                                bunifuCustomDataGrid1.Rows[i].Cells[max].Value = Image.FromFile(@"image_on.png");
+                                Main_GridView.Rows[i].Cells[max].Value = Image.FromFile(@"image_on.png");
                             }
                             if (val == "Stop")
                             {
-                                bunifuCustomDataGrid1.Rows[i].Cells[max].Value = Image.FromFile(@"image_off.png"); ;
+                                Main_GridView.Rows[i].Cells[max].Value = Image.FromFile(@"image_off.png"); ;
                             }
-                            ((TextAndImageCell)bunifuCustomDataGrid1.Rows[i].Cells[1]).Image = (Image)imageList1.Images[1];
-                            ((TextAndImageCell)bunifuCustomDataGrid1.Rows[i].Cells[max + 1]).Image = (Image)imageList1.Images[1];
-                            ((TextAndImageCell)bunifuCustomDataGrid1.Rows[i].Cells[max + 2]).Image = (Image)imageList1.Images[2];
-                            ((TextAndImageCell)bunifuCustomDataGrid1.Rows[i].Cells[max + 3]).Image = (Image)imageList1.Images[3];
+                            ((TextAndImageCell)Main_GridView.Rows[i].Cells[1]).Image = (Image)imageList1.Images[1];
+                            ((TextAndImageCell)Main_GridView.Rows[i].Cells[max + 1]).Image = (Image)imageList1.Images[1];
+                            ((TextAndImageCell)Main_GridView.Rows[i].Cells[max + 2]).Image = (Image)imageList1.Images[2];
+                            ((TextAndImageCell)Main_GridView.Rows[i].Cells[max + 3]).Image = (Image)imageList1.Images[3];
                         }
                     }
                     catch (Exception)
@@ -341,11 +373,11 @@ namespace Telegram_Spam_Tools
         {
             try
             {
-                bunifuCustomDataGrid.ClearSelection();
-                var hti = bunifuCustomDataGrid.HitTest(e.X, e.Y);
-                this.bunifuCustomDataGrid.Rows[hti.RowIndex].Selected = true;
-                this.rowIndex = hti.RowIndex;
-                this.columnIndex = hti.ColumnIndex;
+                Main_GridView.ClearSelection();
+                var hti = Main_GridView.HitTest(e.X, e.Y);
+                this.Main_GridView.Rows[hti.RowIndex].Selected = true;
+                this.Row_Index = hti.RowIndex;
+                this.Column_Index = hti.ColumnIndex;
             }
             catch (Exception)
             {
@@ -355,12 +387,12 @@ namespace Telegram_Spam_Tools
             {
                 try
                 {
-                    bunifuCustomDataGrid.ClearSelection();
-                    var hti = bunifuCustomDataGrid.HitTest(e.X, e.Y);
-                    this.bunifuCustomDataGrid.Rows[hti.RowIndex].Selected = true;
-                    this.rowIndex = hti.RowIndex;
-                    this.columnIndex = hti.ColumnIndex;
-                    this.m.Show(this.bunifuCustomDataGrid, e.Location);
+                    Main_GridView.ClearSelection();
+                    var hti = Main_GridView.HitTest(e.X, e.Y);
+                    this.Main_GridView.Rows[hti.RowIndex].Selected = true;
+                    this.Row_Index = hti.RowIndex;
+                    this.Column_Index = hti.ColumnIndex;
+                    this.m.Show(this.Main_GridView, e.Location);
                     m.Show(Cursor.Position);
                 }
                 catch (Exception)
@@ -374,10 +406,10 @@ namespace Telegram_Spam_Tools
         #region Event Cell Content Click DataGridView
         private void bunifuCustomDataGrid1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            for (int i = 0; i < bunifuCustomDataGrid1.RowCount; i++)
+            for (int i = 0; i < Main_GridView.RowCount; i++)
             {
-                string val = bunifuCustomDataGrid1.Rows[i].Cells[2].Value.ToString();
-                if (bunifuCustomDataGrid1.Columns[columnIndex].Name == "abc")
+                string val = Main_GridView.Rows[i].Cells[2].Value.ToString();
+                if (Main_GridView.Columns[Column_Index].Name == "abc")
                 {
 
                     Bitmap a = (Bitmap)Image.FromFile(@"image_on.png", true);
@@ -385,19 +417,19 @@ namespace Telegram_Spam_Tools
                     if (val == "Active")
                     {
 
-                        this.rowIndex = e.RowIndex;
-                        this.columnIndex = e.ColumnIndex;
-                        bunifuCustomDataGrid1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = b;
+                        this.Row_Index = e.RowIndex;
+                        this.Column_Index = e.ColumnIndex;
+                        Main_GridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = b;
                         status_actived();
-                        bunifuCustomDataGrid1.Rows[i].Cells[2].Value = "Stop";
+                        Main_GridView.Rows[i].Cells[2].Value = "Stop";
                     }
                     if (val == "Stop")
                     {
-                        this.rowIndex = e.RowIndex;
-                        this.columnIndex = e.ColumnIndex;
-                        bunifuCustomDataGrid1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = a;
+                        this.Row_Index = e.RowIndex;
+                        this.Column_Index = e.ColumnIndex;
+                        Main_GridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = a;
                         status_stoped();
-                        bunifuCustomDataGrid1.Rows[i].Cells[2].Value = "Active";
+                        Main_GridView.Rows[i].Cells[2].Value = "Active";
                     }
 
                 }
@@ -408,8 +440,8 @@ namespace Telegram_Spam_Tools
         internal void status_actived()
         {
             SQLite_Funciton_Query sfq = new SQLite_Funciton_Query();
-            sfq.SQLite_Query_Status(this.active, bunifuCustomDataGrid1.Rows[this.rowIndex].Cells[1].Value.ToString());
-            Log_DataBase("Status Active");
+            sfq.SQLite_Query_Status(this.active, Main_GridView.Rows[this.Row_Index].Cells[1].Value.ToString());
+            Log_DataBase("Status Active","Active "+ Main_GridView.Rows[this.Row_Index].Cells[3].Value.ToString());
 
             //  m.Items[2].Text = "Stop";
         }
@@ -418,50 +450,50 @@ namespace Telegram_Spam_Tools
         internal void status_stoped()
         {
             SQLite_Funciton_Query sfq = new SQLite_Funciton_Query();
-            sfq.SQLite_Query_Status(this.stop, bunifuCustomDataGrid1.Rows[this.rowIndex].Cells[1].Value.ToString());
-            Log_DataBase("Status Stop");
+            sfq.SQLite_Query_Status(this.stop, Main_GridView.Rows[this.Row_Index].Cells[1].Value.ToString());
+            Log_DataBase("Status Stop", "Stop " + Main_GridView.Rows[this.Row_Index].Cells[3].Value.ToString());
         }
         #endregion
         public void ImageRowDisplay()
         {
-            ((TextAndImageCell)bunifuCustomDataGrid1.Rows[0].Cells[0]).Image = (Image)imageList1.Images[1];
+            ((TextAndImageCell)Main_GridView.Rows[0].Cells[0]).Image = (Image)imageList1.Images[1];
         }
         #region Event Press Enter TextBox Search
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)13)
             {
-                if (this.gridview_tab == 1)
+                if (this.GridView_Index == 1)
                 {
                     this.search = "select * from User where UserName Like '%" + txtSearch.Text + "%'";
                 }
-                if (this.gridview_tab == 2)
+                if (this.GridView_Index == 2)
                 {
                     this.search = "select * from Link where LinkName Like '%" + txtSearch.Text + "%'";
                 }
-                if (this.gridview_tab == 3)
+                if (this.GridView_Index == 3)
                 {
                     this.search = "select * from Comment where Comment Like '%" + txtSearch.Text + "%'";
                 }
-                if (this.gridview_tab == 4)
+                if (this.GridView_Index == 4)
                 {
                     this.search = "select * from ListGroup where GroupName Like '%" + txtSearch.Text + "%'";
                 }
                 Function_Settings fnc = new Function_Settings();
                 fnc.search_value(this.search);
-                fnc.search_item(bunifuCustomDataGrid1, this.search);
+                fnc.search_item(Main_GridView, this.search);
             }
         }
         #endregion
         #region Painting Cell DataGridView
         private void bunifuCustomDataGrid1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.ColumnIndex == grid - 1 && e.RowIndex > -1 && this.species == 1)
+            if (e.ColumnIndex == Multiple_Column_Merged_GridView - 1 && e.RowIndex > -1 && this.View_Column_Type == 1)
             {
                 e.AdvancedBorderStyle.Left = DataGridViewAdvancedCellBorderStyle.None;
                 e.AdvancedBorderStyle.Right = DataGridViewAdvancedCellBorderStyle.None;
             }
-            if (e.ColumnIndex == grid && e.RowIndex > -1 && this.species == 1)
+            if (e.ColumnIndex == Multiple_Column_Merged_GridView && e.RowIndex > -1 && this.View_Column_Type == 1)
             {
                 e.AdvancedBorderStyle.Left = DataGridViewAdvancedCellBorderStyle.None;
                 e.AdvancedBorderStyle.Right = DataGridViewAdvancedCellBorderStyle.None;
@@ -471,72 +503,72 @@ namespace Telegram_Spam_Tools
         #region Format Cell DataGridView
         private void bunifuCustomDataGrid1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (bunifuCustomDataGrid.Columns[e.ColumnIndex].Name == "Password" && e.Value != null)
+            if (Main_GridView.Columns[e.ColumnIndex].Name == "Password" && e.Value != null)
             {
-                bunifuCustomDataGrid.Rows[e.RowIndex].Tag = e.Value;
+                Main_GridView.Rows[e.RowIndex].Tag = e.Value;
                 e.Value = new String('*', e.Value.ToString().Length);
             }
-            if (bunifuCustomDataGrid.Columns[e.ColumnIndex].Name == "Status")
+            if (Main_GridView.Columns[e.ColumnIndex].Name == "Status")
             {
-                bunifuCustomDataGrid.Columns[e.ColumnIndex].Visible = false;
+                Main_GridView.Columns[e.ColumnIndex].Visible = false;
             }
         }
         #endregion
         #region Listbox 
-        private void listbox_item()
+        private void ListBox_Item()
         {
             SQLite_Funciton_Query sfq = new SQLite_Funciton_Query();
-            sfq.SQLite_Query_ListBox(listBox1, listbox1_item_sql, bunifuCustomDataGrid1.Rows[this.rowIndex].Cells[1].Value.ToString());
-            sfq.SQLite_Query_ListBox_Inverse(listBox2, listbox2_item_sql, bunifuCustomDataGrid1.Rows[this.rowIndex].Cells[1].Value.ToString());           
+            sfq.SQLite_Query_ListBox(listBox1, Left_Item_ListBox_SQL, Main_GridView.Rows[this.Row_Index].Cells[1].Value.ToString());
+            sfq.SQLite_Query_ListBox_Inverse(listBox2, Righ_Item_ListBox_SQL, Main_GridView.Rows[this.Row_Index].Cells[1].Value.ToString());
         }
         #endregion
         #region Listbox Inverse
-        private void list_box_inverse(int i)
+        private void ListBox_Item_Inverse(int i)
         {
             SQLite_Funciton_Query sfq = new SQLite_Funciton_Query();
             listBox1.Items.Clear();
             listBox2.Items.Clear();
             if (i == 1)
             {
-                sfq.SQLite_Query_ListBox_Inverse(listBox2, listbox2_item_sql, bunifuCustomDataGrid1.Rows[this.rowIndex].Cells[1].Value.ToString());
-                sfq.SQLite_Query_ListBox(listBox2, listbox1_item_sql, bunifuCustomDataGrid1.Rows[this.rowIndex].Cells[1].Value.ToString());               
+                sfq.SQLite_Query_ListBox_Inverse(listBox2, Righ_Item_ListBox_SQL, Main_GridView.Rows[this.Row_Index].Cells[1].Value.ToString());
+                sfq.SQLite_Query_ListBox(listBox2, Left_Item_ListBox_SQL, Main_GridView.Rows[this.Row_Index].Cells[1].Value.ToString());
             }
             if (i == 2)
             {
-                sfq.SQLite_Query_ListBox(listBox1, listbox1_item_sql, bunifuCustomDataGrid1.Rows[this.rowIndex].Cells[1].Value.ToString());
-                sfq.SQLite_Query_ListBox_Inverse(listBox1, listbox2_item_sql, bunifuCustomDataGrid1.Rows[this.rowIndex].Cells[1].Value.ToString());               
+                sfq.SQLite_Query_ListBox(listBox1, Left_Item_ListBox_SQL, Main_GridView.Rows[this.Row_Index].Cells[1].Value.ToString());
+                sfq.SQLite_Query_ListBox_Inverse(listBox1, Righ_Item_ListBox_SQL, Main_GridView.Rows[this.Row_Index].Cells[1].Value.ToString());
             }
         }
         #endregion
         #region Edit Item DataGridview after click
-        private void item0_Click(object sender, EventArgs e)
+        private void Menu_Item_0_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
             listBox2.Items.Clear();
             ToolStripItem clickedItem = sender as ToolStripItem;
-            if (gridview_tab == 1)
+            if (GridView_Index == 1)
             {
                 lbltp2Tittle.Text = "User";
                 chktp2.Text = "Edit Link-User";
-                listbox_item();
-                txttp2Name.Text = bunifuCustomDataGrid1.Rows[rowIndex].Cells[3].Value.ToString();
+                ListBox_Item();
+                txttp2Name.Text = Main_GridView.Rows[Row_Index].Cells[3].Value.ToString();
             }
-            if (gridview_tab == 3)
+            if (GridView_Index == 3)
             {
                 lbltp2Tittle.Text = "Comment";
                 chktp2.Text = "Edit Link-Comment";
-                listbox_item();
-                txttp2Name.Text = bunifuCustomDataGrid1.Rows[rowIndex].Cells[3].Value.ToString();
+                ListBox_Item();
+                txttp2Name.Text = Main_GridView.Rows[Row_Index].Cells[3].Value.ToString();
             }
-            if (gridview_tab == 4)
+            if (GridView_Index == 4)
             {
                 chktp2.Text = "Edit Link-Group";
-                listbox_item();
-                txttp2Name.Text = bunifuCustomDataGrid1.Rows[rowIndex].Cells[3].Value.ToString();
+                ListBox_Item();
+                txttp2Name.Text = Main_GridView.Rows[Row_Index].Cells[3].Value.ToString();
             }
             check_item_listbox();
             tabControl1.SelectTab("tabPage2");
-            if (gridview_tab == 2)
+            if (GridView_Index == 2)
             {
                 tabControl1.SelectTab("tabPage3");
             }
@@ -555,10 +587,10 @@ namespace Telegram_Spam_Tools
         {
             Function_Settings fnc = new Function_Settings();
             SQLite_Funciton_Query sfq = new SQLite_Funciton_Query();
-            sfq.SQLite_Query_Delete(this.delete, bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString());
-            Log_DataBase("Delete data");
-            bunifuCustomDataGrid.Rows.RemoveAt(this.rowIndex);
-            fnc.reload(bunifuCustomDataGrid, select, species);
+            sfq.SQLite_Query_Delete(this.delete, Main_GridView.Rows[this.Row_Index].Cells[1].Value.ToString());
+            Log_DataBase("Delete data","Delete"+ Main_GridView.Rows[this.Row_Index].Cells[3].Value.ToString());
+            Main_GridView.Rows.RemoveAt(this.Row_Index);
+            fnc.reload(Main_GridView, select, View_Column_Type);
         }
         #endregion
         #region Check amount item in Listbox 
@@ -631,14 +663,14 @@ namespace Telegram_Spam_Tools
         #region Button Next All Event
         private void btnNextAll_Click(object sender, EventArgs e)
         {
-            list_box_inverse(1);
+            ListBox_Item_Inverse(1);
             check_item_listbox();
         }
         #endregion
         #region Button Back All Event
         private void btnBackAll_Click(object sender, EventArgs e)
         {
-            list_box_inverse(2);
+            ListBox_Item_Inverse(2);
             check_item_listbox();
         }
         #endregion
@@ -651,7 +683,7 @@ namespace Telegram_Spam_Tools
             //{
             //    try
             //    {
-            //        string sql = this.active + bunifuCustomDataGrid.Rows[this.rowIndex].Cells[1].Value.ToString() + "'";
+            //        string sql = this.active + bunifuCustomDataGrid.Rows[this.Row_Index].Cells[1].Value.ToString() + "'";
             //        using (var cmd = new SQLiteCommand(sql, sqlConn))
             //        {
             //            sqlConn.Open();
@@ -711,8 +743,8 @@ namespace Telegram_Spam_Tools
             btnComment.TextFont = new Font(pfc2.Families[0], 10);
             btnComment.IconZoom = 50;
             txtSearch.Font = new Font(pfc2.Families[0], 10);
-            bunifuCustomDataGrid1.ColumnHeadersDefaultCellStyle.Font = new Font("Roboto", 10, FontStyle.Bold);
-            bunifuCustomDataGrid1.DefaultCellStyle.Font = new Font("RobotoCondensed", 10, FontStyle.Regular);
+            Main_GridView.ColumnHeadersDefaultCellStyle.Font = new Font("Roboto", 10, FontStyle.Bold);
+            Main_GridView.DefaultCellStyle.Font = new Font("RobotoCondensed", 10, FontStyle.Regular);
         }
         #endregion
         private void bunifuTextbox1_Leave(object sender, EventArgs e)
@@ -759,7 +791,7 @@ namespace Telegram_Spam_Tools
                 Panelmenu.Visible = false;
                 lblTitle.Visible = true;
                 Panelmenu.Width = 218;
-                AddNewAnimation.ShowSync(Panelmenu);
+               // AddNewAnimation.ShowSync(Panelmenu);
                 MenuAnimation.ShowSync(label);
             }
             else
@@ -769,7 +801,7 @@ namespace Telegram_Spam_Tools
                 MenuAnimation.HideSync(label);
                 Panelmenu.Visible = false;
                 Panelmenu.Width = 50;
-                AddNewAnimation.ShowSync(Panelmenu);
+               // AddNewAnimation.ShowSync(Panelmenu);
             }
         }
         #endregion        
@@ -779,44 +811,90 @@ namespace Telegram_Spam_Tools
             Style_Template_Form stf = new Style_Template_Form();
             stf.Style(Type_Style);
             style(stf);
-            Location.Style.ForeColor = Color.FromName(this.Fore_Color);
-            Location.Style.BackColor = Color.FromName(this.Back_Color);
-            Location.Style.Font = new Font(this.Font_Name, this.Font_size);
+            Location.Style.ForeColor = Color.FromName(this.Font_Fore_Color);
+            Location.Style.BackColor = Color.FromName(this.Cell_Back_Color);
+            Location.Style.Font = new Font(this.Font_Name, this.Font_Size);
         }
         private void Rows(DataGridViewRow Location, string Type_Style = null) // Style Rows DataGridView
         {
             Style_Template_Form stf = new Style_Template_Form();
             stf.Style(Type_Style);
             style(stf);
-            Location.DefaultCellStyle.ForeColor = Color.FromName(this.Fore_Color);
-            Location.DefaultCellStyle.BackColor = Color.FromName(this.Back_Color);
-            Location.DefaultCellStyle.Font = new Font(this.Font_Name, this.Font_size);
+            Location.DefaultCellStyle.ForeColor = Color.FromName(this.Font_Fore_Color);
+            Location.DefaultCellStyle.BackColor = Color.FromName(this.Cell_Back_Color);
+            Location.DefaultCellStyle.Font = new Font(this.Font_Name, this.Font_Size);
         }
         private void style(Style_Template_Form stf) // Origin Style 
         {
-            this.Fore_Color = stf.Fore_Color;
-            this.Back_Color = stf.Back_Color;
+            this.Font_Fore_Color = stf.Fore_Color;
+            this.Cell_Back_Color = stf.Back_Color;
             this.Font_Name = stf.Font_Name;
-            this.Font_size = stf.Font_size;
+            this.Font_Size = stf.Font_Size;
         }
         #endregion
 
         private void bunifuCustomDataGrid1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {
-            bunifuCustomDataGrid1.Columns[e.Column.Index].SortMode = DataGridViewColumnSortMode.NotSortable;
+            Main_GridView.Columns[e.Column.Index].SortMode = DataGridViewColumnSortMode.NotSortable;
         }
         private void Create_Sql_menu_db()
         {
 
         }
         #region Write Log DataBase
-        private void Log_DataBase(string fucntion)
+        private void Log_DataBase(string fucntion,string Note=null)
         {
-            string select = "INSERT INTO Log (Name, Time, Action) VALUES('"+User_Control.ToString()+ "', '"+ DateTime.Now.ToString()+ "', '"+fucntion.ToString()+"');";
+            if (GridView_Index == 1)
+            {
+                this.Log_Text_Concatenate = " in User";
+            }
+            if (GridView_Index == 2)
+            {
+                this.Log_Text_Concatenate = " in Link";
+            }
+            if (GridView_Index == 3)
+            {
+                this.Log_Text_Concatenate = " in Comment";
+            }
+            if (GridView_Index == 4)
+            {
+                this.Log_Text_Concatenate = " in Group";
+            }
+            string select = "INSERT INTO Log (Name, Time, Action, Note) VALUES('" + User_ACL.ToString() + "', '" + DateTime.Now.ToString() + "', '" + fucntion.ToString() + "','"+ Note.ToString() + Log_Text_Concatenate + "');";
             SQLite_Funciton_Query sfq = new SQLite_Funciton_Query();
-            sfq.SQLite_Query_Log_Database(bunifuCustomDataGrid1,select);
+            sfq.SQLite_Query_Log_Database(Main_GridView, select);
         }
         #endregion
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+            this.search = "select Name, Time, Action,Note from Log where Action Like '%" + cb1.Text + "%' and Time BETWEEN '" +
+                    "" + dateTimePicker1.Value.ToString() + "' AND '" + dateTimePicker2.Value.ToString() + "'and Name Like '%" + cb2.Text + "%'";
+            Function_Settings fnc = new Function_Settings();
+            fnc.search_value(this.search);
+            fnc.search_item(Log_GridView, this.search);
+            SQL_Select("User",new string[] { "IDUser", "Status", "UserName", "Password", "UserAgent", "ProxyIP", "ProxyPort", "Description", "DeleteDay", "CreateDay" });
+        }
+        private void SQL_Select(string Table_Name,string []Column_Name)
+        {
+            string select_querry = "SELECT ";          
+            for (int i = 0; i < Column_Name.Length; i++)
+            {
+                if (Column_Name[i].ToString() == "Status")
+                {
+                    select_querry = select_querry + "Status" + "." + Column_Name[i].ToString() + ", ";
+                }
+                else
+                    select_querry = select_querry + Table_Name + "." + Column_Name[i].ToString() + ", ";
+            }
+            string select_count = "(SELECT COUNT(*)";
+            MessageBox.Show(select_querry);
+            string sql_string = "SELECT User.IDUser, Status.Status, User.UserName,  User.Password, User.UserAgent, User.ProxyIP, " +
+                "User.ProxyPort, User.Description, User.DeleteDay, User.CreateDay,(SELECT COUNT(*) " +
+                "FROM LinkUser WHERE LinkUser.IDUser=user.IDUser) as 'Link User' from  User LEFT JOIN Status, LinkUser" +
+                " ON User.Status=Status.IDStatus GROUP BY User.IDUser";
+        }
+
+        
     }
 }
  
