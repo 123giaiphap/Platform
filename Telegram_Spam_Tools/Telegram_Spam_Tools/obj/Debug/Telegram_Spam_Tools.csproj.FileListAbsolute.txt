@@ -1,0 +1,68 @@
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\Telegram_Spam_Tools.exe.config
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\Telegram_Spam_Tools.exe
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\Telegram_Spam_Tools.pdb
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\Bunifu_UI_v1.52.dll
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\EntityFramework.dll
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\System.Data.SQLite.dll
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\System.Data.SQLite.EF6.dll
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\System.Data.SQLite.Linq.dll
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\EntityFramework.xml
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\System.Data.SQLite.xml
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\System.Data.SQLite.dll.config
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.csprojAssemblyReference.cache
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.Form1.resources
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.Properties.Resources.resources
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.csproj.GenerateResource.cache
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.csproj.CoreCompileInputs.cache
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.csproj.CopyComplete
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.exe
+c:\users\administrator\documents\visual studio 2017\Projects\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.pdb
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\Telegram_Spam_Tools.exe.config
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\Telegram_Spam_Tools.exe
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\Telegram_Spam_Tools.pdb
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\Bunifu_UI_v1.52.dll
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\EntityFramework.dll
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\EntityFramework.SqlServer.dll
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\System.Data.SQLite.dll
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\System.Data.SQLite.EF6.dll
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\System.Data.SQLite.Linq.dll
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\EntityFramework.xml
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\EntityFramework.SqlServer.xml
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\System.Data.SQLite.xml
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\System.Data.SQLite.dll.config
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.csprojAssemblyReference.cache
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.Properties.Resources.resources
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.csproj.GenerateResource.cache
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.csproj.CoreCompileInputs.cache
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.csproj.CopyComplete
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.exe
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.pdb
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.Resource1.resources
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\Animator.dll
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.WaitForm.resources
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.MainForm.resources
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\Telegram_Spam_Tools.exe.config
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\Telegram_Spam_Tools.exe
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\Telegram_Spam_Tools.pdb
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\Bunifu_UI_v1.52.dll
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\EntityFramework.dll
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\EntityFramework.SqlServer.dll
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\System.Data.SQLite.dll
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\System.Data.SQLite.EF6.dll
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\System.Data.SQLite.Linq.dll
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\EntityFramework.xml
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\EntityFramework.SqlServer.xml
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\System.Data.SQLite.xml
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\bin\Debug\System.Data.SQLite.dll.config
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.csprojAssemblyReference.cache
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.MainForm.resources
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.Properties.Resources.resources
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.Resource1.resources
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.WaitForm.resources
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.csproj.GenerateResource.cache
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.csproj.CoreCompileInputs.cache
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.csproj.CopyComplete
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.exe
+D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.pdb
