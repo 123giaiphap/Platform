@@ -92,90 +92,33 @@ namespace Telegram_Spam_Tools
         #region Button A
         private void btnUser_Click(object sender, EventArgs e)
         {
-            this.View_Column_Type = 0;
-            //lblTitle.Text = "TELEGRAM - USER";
-            Default_Template_Gridview();
-            tabControl1.SelectTab("tabPage1");
-            Function_Settings dta = new Function_Settings();
             this.Left_Item_ListBox_SQL = "select Link.LinkName from LinkUser " +
                 "left join Link on LinkUser.IDLink=Link.IDLink where LinkUser.IDUser='";
             this.Righ_Item_ListBox_SQL = "select Link.LinkName from Link where Link.IDLink NOT IN " +
                 "(select Link.IDLink from LinkUser left join Link on LinkUser.IDLink=Link.IDLink where LinkUser.IDUser='";
-            this.active = "update User set Status = '2'  where IDUser ='";
-            this.stop = "update User set Status = '1'  where IDUser ='";
-            this.delete = "DELETE FROM User WHERE IDUser='";
-            this.select = "select User.IDUser, Status.Status, User.UserName,  User.Password, User.UserAgent, User.ProxyIP, User.ProxyPort, User.Description, User.DeleteDay, User.CreateDay,(select count(*) " +
-                "from LinkUser where LinkUser.IDUser=user.IDUser) as 'Link User' from  User left join Status, LinkUser on User.Status=Status.IDStatus group by User.IDUser";
-            if (Default_GridView == 0)
-            {
-                dta.gridview(Main_GridView, this.select, this.View_Column_Type);
-                Main_GridView.ClearSelection();
-                this.Default_GridView = 1;
-            }
-            else
-            {
-                dta.reload(Main_GridView, this.select, this.View_Column_Type);
-                Main_GridView.ClearSelection();
-            }
-            this.GridView_Index = 1;
-            color();
+            this.select = SQL_Select("User", new string[] { "IDUser", "Status", "UserName", "Password", "UserAgent", "ProxyIP", "ProxyPort" +
+                "", "Description", "DeleteDay", "CreateDay" }, new string[] { "LinkUser" }, new string[] { "IDUser" }, new string[] { "Link Used"},0);
+            button_fuction(0,"tabPage1",Main_GridView);
 
         }
         #endregion
         #region Button B
         private void btnLink_Click(object sender, EventArgs e)
         {
-            this.View_Column_Type = 0;
-            //lblTitle.Text = "TELEGRAM - LINK";
-            Default_Template_Gridview();
-            tabControl1.SelectTab("tabPage1");
-            Function_Settings dta = new Function_Settings();
-            this.active = "update Link set Status = '2'  where IDLink ='";
-            this.stop = "update Link set Status = '1'  where IDLink ='";
-            this.delete = "DELETE FROM Link WHERE IDLink='";
-            this.select = "select Link.IDLink,Status.Status,Link.LinkName, Link.Description,Link.CreatedDate,(select count(*) from LinkGroup where LinkGroup.IDLink=link.IDLink) as 'Group Used' ,(select count(*) from LinkComment where LinkComment.IDLink=link.IDLink) as 'Comment Used',(select count(*) from LinkUser where LinkUser.IDLink=Link.IDLink) as 'User Used' from Link left join Status on Link.Status=Status.IDStatus";
-            if (Default_GridView == 0)
-            {
-                dta.gridview(Main_GridView, this.select, this.View_Column_Type);
-                Main_GridView.ClearSelection();
-                this.Default_GridView = 1;
-            }
-            else
-            {
-                dta.reload(Main_GridView, this.select, this.View_Column_Type);
-                Main_GridView.ClearSelection();
-            }
-            this.GridView_Index = 2;
-            color();
+            this.select = SQL_Select("Link", new string[] { "IDLink", "Status", "LinkName", "Description" +
+                "", "CreatedDate" }, new string[] { "LinkGroup", "LinkComment", "LinkUser" }, new string[] { "IDLink", "IDLink", "IDLink" }, new string[] { "Group Used", "Comment Used", "User Used" },1);
+            button_fuction(0, "tabPage1", Main_GridView);
         }
         #endregion
         #region Button C
         private void btnGroup_Click(object sender, EventArgs e)
         {
-            this.View_Column_Type = 1;
-            //lblTitle.Text = "TELEGRAM - GROUP";
-            Default_Template_Gridview();
-            tabControl1.SelectTab("tabPage1");
-            Function_Settings dta = new Function_Settings();
             this.Left_Item_ListBox_SQL = "select Link.LinkName from LinkGroup left join Link on LinkGroup.IDLink=Link.IDLink where LinkGroup.IDGroup='";
-            this.Righ_Item_ListBox_SQL = "select Link.LinkName from Link where Link.IDLink NOT IN (select Link.IDLink from LinkGroup left join Link on LinkGroup.IDLink=Link.IDLink where LinkGroup.IDGroup='";
-            this.active = "update ListGroup set Status = '2'  where IDGroup ='";
-            this.stop = "update ListGroup set Status = '1'  where IDGroup ='";
-            this.delete = "DELETE FROM ListGroup WHERE IDGroup='";
-            this.select = "select ListGroup.IDGroup, Status.Status, ListGroup.GroupName, ListGroup.Password, ListGroup.CreatedDate,(select count(*) from LinkGroup where LinkGroup.IDGroup=ListGroup.IDGroup) as 'Link Used' from ListGroup , LinkGroup inner JOIN Status on ListGroup.Status=Status.IDStatus group by ListGroup.IDGroup";
-            if (Default_GridView == 0)
-            {
-                dta.gridview(Main_GridView, this.select, this.View_Column_Type);
-                Main_GridView.ClearSelection();
-                this.Default_GridView = 1;
-            }
-            else
-            {
-                dta.reload(Main_GridView, this.select, this.View_Column_Type);
-                Main_GridView.ClearSelection();
-            }
-            this.GridView_Index = 4;
-            color();
+            this.Righ_Item_ListBox_SQL = "select Link.LinkName from Link where Link.IDLink NOT IN (select Link.IDLink" +
+                " from LinkGroup left join Link on LinkGroup.IDLink=Link.IDLink where LinkGroup.IDGroup='";
+            this.select = SQL_Select("ListGroup", new string[] { "IDGroup", "Status", "GroupName", "Password", "CreatedDate" +
+                "" }, new string[] { "LinkGroup" }, new string[] { "IDGroup" }, new string[] { "Link Used" }, 1);
+            button_fuction(1, "tabPage1", Main_GridView);
         }
         #endregion
         #region Button D
@@ -188,30 +131,12 @@ namespace Telegram_Spam_Tools
         #region Button E 
         private void btnCmt_Click(object sender, EventArgs e)
         {
-            this.View_Column_Type = 1;
-            //lblTitle.Text = "TELEGRAM - COMMENT";
-            Default_Template_Gridview();
-            tabControl1.SelectTab("tabPage1");
-            Function_Settings dta = new Function_Settings();
             this.Left_Item_ListBox_SQL = "select Link.LinkName from LinkComment left join Link on LinkComment.IDLink=Link.IDLink where LinkComment.IDComment='";
-            this.Righ_Item_ListBox_SQL = "select Link.LinkName from Link where Link.IDLink NOT IN (select Link.IDLink from LinkComment left join Link on LinkComment.IDLink=Link.IDLink where LinkComment.IDComment='";
-            this.active = "update Comment set Status = '2'  where IDCmt ='";
-            this.stop = "update Comment set Status = '1'  where IDCmt ='";
-            this.delete = "DELETE FROM Comment WHERE IDCmt='";
-            this.select = "select Comment.IDCmt, Status.Status, Comment.Comment,  Comment.Description , Comment.CreatedDate,(select count(*) from LinkComment where LinkComment.IDComment=Comment.IDCmt) as 'Link Used' from  Comment left join Status, LinkComment on Comment.Status=Status.IDStatus group by Comment.IDCmt";
-            if (Default_GridView == 0)
-            {
-                dta.gridview(Main_GridView, this.select, this.View_Column_Type);
-                Main_GridView.ClearSelection();
-                this.Default_GridView = 1;
-            }
-            else
-            {
-                dta.reload(Main_GridView, this.select, this.View_Column_Type);
-                Main_GridView.ClearSelection();
-            }
-            this.GridView_Index = 3;
-            color();
+            this.Righ_Item_ListBox_SQL = "select Link.LinkName from Link where Link.IDLink NOT IN (select Link.IDLink " +
+                "from LinkComment left join Link on LinkComment.IDLink=Link.IDLink where LinkComment.IDComment='";
+            this.select = SQL_Select("Comment", new string[] { "IDCmt", "Status", "Comment", "Description", "CreatedDate" +
+                "" }, new string[] { "LinkComment" }, new string[] { "IDCmt" }, new string[] { "Link Used" }, 1);
+            button_fuction(1, "tabPage1", Main_GridView);
         }
         #endregion
         #region Button Start
@@ -872,11 +797,14 @@ namespace Telegram_Spam_Tools
             Function_Settings fnc = new Function_Settings();
             fnc.search_value(this.search);
             fnc.search_item(Log_GridView, this.search);
-            SQL_Select("User",new string[] { "IDUser", "Status", "UserName", "Password", "UserAgent", "ProxyIP", "ProxyPort", "Description", "DeleteDay", "CreateDay" });
+            
         }
-        private void SQL_Select(string Table_Name,string []Column_Name)
+        private string SQL_Select(string Table_Name, string[] Column_Name, string[] Table_Name_Count, string[] ID_Table_Name_Count, string []As_Name,int group_by,string select=null)
         {
-            string select_querry = "SELECT ";          
+            string select_querry = "SELECT ";
+            string select_count = "";
+            string selects = "";
+            string table_name_count = "";
             for (int i = 0; i < Column_Name.Length; i++)
             {
                 if (Column_Name[i].ToString() == "Status")
@@ -886,15 +814,62 @@ namespace Telegram_Spam_Tools
                 else
                     select_querry = select_querry + Table_Name + "." + Column_Name[i].ToString() + ", ";
             }
-            string select_count = "(SELECT COUNT(*)";
-            MessageBox.Show(select_querry);
-            string sql_string = "SELECT User.IDUser, Status.Status, User.UserName,  User.Password, User.UserAgent, User.ProxyIP, " +
-                "User.ProxyPort, User.Description, User.DeleteDay, User.CreateDay,(SELECT COUNT(*) " +
-                "FROM LinkUser WHERE LinkUser.IDUser=user.IDUser) as 'Link User' from  User LEFT JOIN Status, LinkUser" +
-                " ON User.Status=Status.IDStatus GROUP BY User.IDUser";
+            for (int j = 0; j < Table_Name_Count.Length; j++)
+            {
+                if(j < Table_Name_Count.Length - 1)
+                {
+                    table_name_count = table_name_count  + Table_Name_Count[j] + ", ";
+                    select_count = select_count + "(SELECT COUNT(*) FROM " + Table_Name_Count[j] + " WHERE " + Table_Name_Count[j] +
+                        "." + ID_Table_Name_Count[j] + "=" + Table_Name + "." + Column_Name[0].ToString() + ") as '" + As_Name[j] + "',";
+                }
+                else
+                {
+                    table_name_count = table_name_count + Table_Name_Count[j];
+                    select_count = select_count + "(SELECT COUNT(*) FROM " + Table_Name_Count[j] + " WHERE " + Table_Name_Count[j] +
+                        "." + ID_Table_Name_Count[j] + "=" + Table_Name + "." + Column_Name[0].ToString() + ") as '" + As_Name[j] + "'";
+                }                  
+            }
+            if (group_by == 0)
+            {
+                 selects = " FROM " + Table_Name + " LEFT JOIN Status, " + table_name_count + " ON " + Table_Name + ".Status=Status.ID" + Column_Name[1].ToString() +
+                                " GROUP BY " + Table_Name + "." + Column_Name[0].ToString();
+            }
+            else
+            {
+                selects = " FROM " + Table_Name + " LEFT JOIN Status " + " ON " + Table_Name + ".Status=Status.ID" + Column_Name[1].ToString();       
+            }       
+            select = select_querry + select_count + selects;
+            //string sql_string = "SELECT User.IDUser, Status.Status, User.UserName,  User.Password, User.UserAgent, User.ProxyIP, " +
+            //    "User.ProxyPort, User.Description, User.DeleteDay, User.CreateDay,(SELECT COUNT(*) " +
+            //    "FROM LinkUser WHERE LinkUser.IDUser=user.IDUser) as 'Link User' from  User LEFT JOIN Status, LinkUser" +
+            //    " ON User.Status=Status.IDStatus GROUP BY User.IDUser";    
+            this.active = "update "+ Table_Name + " set Status = '2'  where " + Column_Name[0].ToString() +" ='";
+            this.stop = "update "+ Table_Name + " set Status = '1'  where " + Column_Name[0].ToString() + " ='";
+            this.delete = "DELETE FROM "+ Table_Name + " WHERE " + Column_Name[0].ToString() + "='";
+            return select;
         }
-
-        
+        private void button_fuction(int view_column_type, string tabpage,DataGridView name)
+        {
+            this.View_Column_Type = view_column_type;
+            Default_Template_Gridview();
+            tabControl1.SelectTab(tabpage);
+            Function_Settings dta = new Function_Settings();
+            if (Default_GridView == 0)
+            {
+                MessageBox.Show(select);
+                dta.gridview(name, this.select, this.View_Column_Type);
+                name.ClearSelection();
+                this.Default_GridView = 1;
+            }
+            else
+            {
+                MessageBox.Show(select);
+                dta.reload(name, this.select, this.View_Column_Type);
+                name.ClearSelection();
+            }
+            this.GridView_Index = 1;
+            color();
+        }
     }
 }
  

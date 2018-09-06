@@ -123,7 +123,7 @@ namespace Telegram_Spam_Tools
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Errrrrrrror");
+                            MessageBox.Show(ex.Message);
                         }
                     }
                     con.Close();
