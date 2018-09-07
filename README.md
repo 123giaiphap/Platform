@@ -19,7 +19,7 @@ _SQL_Select(string Table_Name, string[] Column_Name, string[] Table_Name_Count, 
 
 SQL ListBox Function Select Item
 =======
-### SQL_ListBox(string Table_Name, string Column_Name, string ID_Table_Name, string Table_Name_From, string ID_Table_Name_From, int NOT_IN)
+_SQL_ListBox(string Table_Name, string Column_Name, string ID_Table_Name, string Table_Name_From, string ID_Table_Name_From, int NOT_IN)_
 
 **Table_Name** : tên bảng cần khai báo trên ListBox
 
