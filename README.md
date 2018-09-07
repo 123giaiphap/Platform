@@ -1,6 +1,6 @@
 # Platform
 Multi Platforms
-
+---
 SQL_Select Column
 =======
 _SQL_Select(string Table_Name, string[] Column_Name, string[] Table_Name_Count, string[] ID_Table_Name_Count, string []As_Name,int group_by)_
