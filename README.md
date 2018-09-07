@@ -1,5 +1,5 @@
 # Platform
-_Project Telegram Spam Tools_
+Project Telegram Spam Tools
 
 SQL_Select Column
 =======
