@@ -2,9 +2,9 @@
 Multi Platforms
 
 SQL_Select Column
-
-##SQL_ListBox(string Table_Name, string Column_Name, string ID_Table_Name, string Table_Name_From, string ID_Table_Name_From, int NOT_IN)
 =======
+##SQL_ListBox(string Table_Name, string Column_Name, string ID_Table_Name, string Table_Name_From, string ID_Table_Name_From, int NOT_IN)
+
 Table_Name : tên bảng cần hiển thị trên GridView
 
 Colomn_Name : tên cột cần khai báo trên GridView(bắt buộc phải có ID vị trí đầu, status vị trí 2)
