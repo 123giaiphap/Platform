@@ -66,3 +66,4 @@ D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Sp
 D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.csproj.CopyComplete
 D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.exe
 D:\GitHub\Platform\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.pdb
+D:\Telegram_Spam_Tools\Telegram_Spam_Tools\obj\Debug\Telegram_Spam_Tools.LoginForm.resources

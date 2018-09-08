@@ -92,13 +92,11 @@ namespace Telegram_Spam_Tools
         #region Button A
         private void btnUser_Click(object sender, EventArgs e)
         {
-            this.Left_Item_ListBox_SQL = "select Link.LinkName from LinkUser " +
-                "left join Link on LinkUser.IDLink=Link.IDLink where LinkUser.IDUser='";
-            this.Righ_Item_ListBox_SQL = "select Link.LinkName from Link where Link.IDLink NOT IN " +
-                "(select Link.IDLink from LinkUser left join Link on LinkUser.IDLink=Link.IDLink where LinkUser.IDUser='";
+            this.Left_Item_ListBox_SQL = SQL_ListBox("Link", "LinkName", "IDLink", "LinkUser", "IDUser", 0);
+            this.Righ_Item_ListBox_SQL = SQL_ListBox("Link", "LinkName", "IDLink", "LinkUser", "IDUser", 1);
             this.select = SQL_Select("User", new string[] { "IDUser", "Status", "UserName", "Password", "UserAgent", "ProxyIP", "ProxyPort" +
                 "", "Description", "DeleteDay", "CreateDay" }, new string[] { "LinkUser" }, new string[] { "IDUser" }, new string[] { "Link Used"},0);
-            button_fuction(0,"tabPage1",Main_GridView);
+            button_fuction(0,"tabPage1",Main_GridView,1);
 
         }
         #endregion
@@ -107,20 +105,19 @@ namespace Telegram_Spam_Tools
         {
             this.select = SQL_Select("Link", new string[] { "IDLink", "Status", "LinkName", "Description" +
                 "", "CreatedDate" }, new string[] { "LinkGroup", "LinkComment", "LinkUser" }, new string[] { "IDLink", "IDLink", "IDLink" }, new string[] { "Group Used", "Comment Used", "User Used" },1);
-            button_fuction(0, "tabPage1", Main_GridView);
+            button_fuction(0, "tabPage1", Main_GridView,2);
         }
         #endregion
         #region Button C
         private void btnGroup_Click(object sender, EventArgs e)
         {
-            this.Left_Item_ListBox_SQL = "select Link.LinkName from LinkGroup left join Link on LinkGroup.IDLink=Link.IDLink where LinkGroup.IDGroup='";
-            this.Righ_Item_ListBox_SQL = "select Link.LinkName from Link where Link.IDLink NOT IN (select Link.IDLink" +
-                " from LinkGroup left join Link on LinkGroup.IDLink=Link.IDLink where LinkGroup.IDGroup='";
+            this.Left_Item_ListBox_SQL = SQL_ListBox("Link","LinkName","IDLink","LinkGroup","IDGroup",0);
+            this.Righ_Item_ListBox_SQL = SQL_ListBox("Link", "LinkName", "IDLink", "LinkGroup", "IDGroup", 1);
             this.select = SQL_Select("ListGroup", new string[] { "IDGroup", "Status", "GroupName", "Password", "CreatedDate" +
                 "" }, new string[] { "LinkGroup" }, new string[] { "IDGroup" }, new string[] { "Link Used" }, 1);
-            button_fuction(1, "tabPage1", Main_GridView);
+            button_fuction(1, "tabPage1", Main_GridView,3);
         }
-        #endregion
+        #endregion       
         #region Button D
         private void btnDashboard_Click(object sender, EventArgs e)
         {
@@ -131,12 +128,11 @@ namespace Telegram_Spam_Tools
         #region Button E 
         private void btnCmt_Click(object sender, EventArgs e)
         {
-            this.Left_Item_ListBox_SQL = "select Link.LinkName from LinkComment left join Link on LinkComment.IDLink=Link.IDLink where LinkComment.IDComment='";
-            this.Righ_Item_ListBox_SQL = "select Link.LinkName from Link where Link.IDLink NOT IN (select Link.IDLink " +
-                "from LinkComment left join Link on LinkComment.IDLink=Link.IDLink where LinkComment.IDComment='";
+            this.Left_Item_ListBox_SQL = SQL_ListBox("Link", "LinkName", "IDLink", "LinkComment", "IDComment", 0);
+            this.Righ_Item_ListBox_SQL = SQL_ListBox("Link", "LinkName", "IDLink", "LinkComment", "IDComment", 1);
             this.select = SQL_Select("Comment", new string[] { "IDCmt", "Status", "Comment", "Description", "CreatedDate" +
-                "" }, new string[] { "LinkComment" }, new string[] { "IDCmt" }, new string[] { "Link Used" }, 1);
-            button_fuction(1, "tabPage1", Main_GridView);
+                "" }, new string[] { "LinkComment" }, new string[] { "IDComment" }, new string[] { "Link Used" }, 1);
+            button_fuction(1, "tabPage1", Main_GridView,4);
         }
         #endregion
         #region Button Start
@@ -168,30 +164,7 @@ namespace Telegram_Spam_Tools
         #endregion
         internal void Total_Status()
         {
-            //string TotalUser = "select count(User.IDUser) from User";
-            //string User_active = "select count(user.Status) from User where user.Status='1'";
-            //string User_stop = "select count(user.Status) from User where user.Status='2'";
-            //count(TotalUser, User_active, User_stop);
-            //this.lblTotalUser.Text = count_total.ToString();
-            //this.lblStatusUser.Text = status_active.ToString() + "/" + status_stop.ToString();
-            //string TotalLink = "select count(Link.IDLink) from Link";
-            //string Link_active = "select count(Link.Status) from Link where Link.Status='1'";
-            //string Link_stop = "select count(Link.Status) from Link where Link.Status='2'";
-            //count(TotalLink, Link_active, Link_stop);
-            //this.lblTotalLink.Text = count_total.ToString();
-            //this.lblStatusLink.Text = status_active.ToString() + "/" + status_stop.ToString();
-            //string TotalGroup = "select count(ListGroup.IDGroup) from ListGroup";
-            //string Group_active = "select count(ListGroup.Status) from ListGroup where ListGroup.Status='1'";
-            //string Group_stop = "select count(ListGroup.Status) from ListGroup where ListGroup.Status='2'";
-            //count(TotalGroup, Group_active, Group_stop);
-            //this.lblTotalGroup.Text = count_total.ToString();
-            //this.lblStatusGroup.Text = status_active.ToString() + "/" + status_stop.ToString();
-            //string TotalCmt = "select count(Comment.IDCmt) from Comment";
-            //string Cmt_active = "select count(Comment.Status) from Comment where Comment.Status='1'";
-            //string Cmt_stop = "select count(Comment.Status) from Comment where Comment.Status='2'";
-            //count(TotalCmt, Cmt_active, Cmt_stop);
-            //this.lblTotalCmt.Text = count_total.ToString();
-            //this.lblStatusCmt.Text = status_active.ToString() + "/" + status_stop.ToString();
+            
         }
         #region Button Reload
         private void btnReload_Click(object sender, EventArgs e)
@@ -379,10 +352,6 @@ namespace Telegram_Spam_Tools
             Log_DataBase("Status Stop", "Stop " + Main_GridView.Rows[this.Row_Index].Cells[3].Value.ToString());
         }
         #endregion
-        public void ImageRowDisplay()
-        {
-            ((TextAndImageCell)Main_GridView.Rows[0].Cells[0]).Image = (Image)imageList1.Images[1];
-        }
         #region Event Press Enter TextBox Search
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -792,15 +761,17 @@ namespace Telegram_Spam_Tools
         #endregion
         private void btnFilter_Click(object sender, EventArgs e)
         {
-            this.search = "select Name, Time, Action,Note from Log where Action Like '%" + cb1.Text + "%' and Time BETWEEN '" +
-                    "" + dateTimePicker1.Value.ToString() + "' AND '" + dateTimePicker2.Value.ToString() + "'and Name Like '%" + cb2.Text + "%'";
+            this.search = "SELECT Name, Time, Action,Note FROM Log WHERE Action LIKE '%" + cb1.Text + "%' and Time BETWEEN '" +
+                    "" + dateTimePicker1.Value.ToString() + "' AND '" + dateTimePicker2.Value.ToString() + "'AND Name LIKE '%" + cb2.Text + "%'";
             Function_Settings fnc = new Function_Settings();
             fnc.search_value(this.search);
             fnc.search_item(Log_GridView, this.search);
             
         }
-        private string SQL_Select(string Table_Name, string[] Column_Name, string[] Table_Name_Count, string[] ID_Table_Name_Count, string []As_Name,int group_by,string select=null)
+        #region SQL Select Column
+        private string SQL_Select(string Table_Name, string[] Column_Name, string[] Table_Name_Count, string[] ID_Table_Name_Count, string []As_Name,int group_by)
         {
+            string select = string.Empty;
             string select_querry = "SELECT ";
             string select_count = "";
             string selects = "";
@@ -838,17 +809,34 @@ namespace Telegram_Spam_Tools
             {
                 selects = " FROM " + Table_Name + " LEFT JOIN Status " + " ON " + Table_Name + ".Status=Status.ID" + Column_Name[1].ToString();       
             }       
-            select = select_querry + select_count + selects;
-            //string sql_string = "SELECT User.IDUser, Status.Status, User.UserName,  User.Password, User.UserAgent, User.ProxyIP, " +
-            //    "User.ProxyPort, User.Description, User.DeleteDay, User.CreateDay,(SELECT COUNT(*) " +
-            //    "FROM LinkUser WHERE LinkUser.IDUser=user.IDUser) as 'Link User' from  User LEFT JOIN Status, LinkUser" +
-            //    " ON User.Status=Status.IDStatus GROUP BY User.IDUser";    
+            select = select_querry + select_count + selects; 
             this.active = "update "+ Table_Name + " set Status = '2'  where " + Column_Name[0].ToString() +" ='";
             this.stop = "update "+ Table_Name + " set Status = '1'  where " + Column_Name[0].ToString() + " ='";
             this.delete = "DELETE FROM "+ Table_Name + " WHERE " + Column_Name[0].ToString() + "='";
             return select;
         }
-        private void button_fuction(int view_column_type, string tabpage,DataGridView name)
+        #endregion
+        #region SQL ListBox Function Select Item
+        private string SQL_ListBox(string Table_Name, string Column_Name, string ID_Table_Name, string Table_Name_From, string ID_Table_Name_From, int NOT_IN)
+        {
+            string querry = string.Empty;
+            if (NOT_IN == 0)
+            {
+                querry = "SELECT " + Table_Name + "." + Column_Name + " FROM " + Table_Name_From + " LEFT JOIN " + Table_Name +
+                    " ON " + Table_Name_From + "." + ID_Table_Name + "=" + Table_Name + "." +
+                    ID_Table_Name + " WHERE " + Table_Name_From + "." + ID_Table_Name_From + "='";
+            }
+            else
+            {
+                querry = "SELECT " + Table_Name + "." + Column_Name + " FROM " + Table_Name + " WHERE " + Table_Name + "." + ID_Table_Name + " NOT IN (SELECT " + Table_Name + "." + ID_Table_Name +
+                     " FROM " + Table_Name_From + " LEFT JOIN " + Table_Name + " ON " + Table_Name_From + "." + ID_Table_Name + "=" + Table_Name + "." +
+                     ID_Table_Name + " WHERE " + Table_Name_From + "." + ID_Table_Name_From + "='";
+            }
+            return querry;
+        }
+        #endregion
+        #region Button Fuction DataGridView
+        private void button_fuction(int view_column_type, string tabpage,DataGridView name,int GridViewIndex)
         {
             this.View_Column_Type = view_column_type;
             Default_Template_Gridview();
@@ -867,9 +855,10 @@ namespace Telegram_Spam_Tools
                 dta.reload(name, this.select, this.View_Column_Type);
                 name.ClearSelection();
             }
-            this.GridView_Index = 1;
+            this.GridView_Index = GridViewIndex;
             color();
         }
+        #endregion
     }
 }
  
